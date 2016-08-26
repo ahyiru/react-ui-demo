@@ -37,8 +37,8 @@ export default class yTables extends Component {
 		      				)
 		      			})
 		      		}
-		      		{editable&&<th key="edit">编辑</th>}
-		      		{editable&&<th key="delete">删除</th>}
+		      		{editable&&<th className="edit">编辑</th>}
+		      		{editable&&<th className="delete">删除</th>}
 	      		</tr>
 	      	</thead>
 	      	<tbody>
