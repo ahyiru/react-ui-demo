@@ -1,0 +1,16 @@
+
+.m-l-3{
+  padding:10px;
+}
+
+.m-l-3 button{
+  margin-left:3px;
+}
+
+.bg-c>div>div{
+  background-color:#23b7e5;
+  color:#fff;
+  padding:2px 4px;
+  border-radius:5px;
+  margin:3px 0px;
+}

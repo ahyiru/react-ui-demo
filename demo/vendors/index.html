@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+	<meta charset="utf-8">
+	<title>YUI</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="share">
+	<meta name="keywords" content="web,分享,react">
+	<meta name="author" content="yiru,ah.yiru@gmail.com">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-title" content="my website">
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+
+	<link rel="stylesheet" href="src/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="src/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../mystyle.css">
+	<link rel="stylesheet" href="../y-style.css">
+</head>
+<body>
+	<header>
+    <div class="y-header">
+      <section class="y-brand">
+        <a href="javascript:;" class="brand">
+          <i class="fa fa-github"></i> <span><b>React</b> UI Demo</span>   
+        </a>
+      </section>
+      <nav class="y-nav">
+        <article class="y-nav-wrap y-left">
+          <ul class="y-left">
+            <li class="sidebar-collapse">
+              <a href="javascript:;">
+                <i class="fa fa-outdent"></i>
+              </a>
+            </li>
+            <li class="y-dropdown theme">
+              <a href="javascript:;">
+                <i class="fa fa-cog"></i>
+              </a>
+              <ul class="y-dropdown-menu fade-in-left">
+                <li>
+                  <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                </li>
+                <li>
+                  <div>
+                    
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="y-search">
+            <input type="text" placeholder="搜索...">
+            <i class="fa fa-search"></i>
+          </div>
+        </article>
+        <article class="y-nav-wrap y-right">
+          <ul class="y-left">
+            <li class="y-dropdown msg">
+              <a href="javascript:;"><i class="fa fa-envelope"></i><span class="y-badge">3</span></a>
+              <div class="y-dropdown-menu fade-in-left">
+                <div></div>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+            </li>
+            <li class="y-dropdown tips">
+              <a href="javascript:;"><i class="fa fa-bell"></i><span class="y-badge">5</span></a>
+              <div class="y-dropdown-menu fade-in-right">
+                <div></div>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+            </li>
+            <li class="y-dropdown language">
+              <a href="javascript:;"><i class="fa fa-html5"></i></a>
+              <ul class="y-dropdown-menu fade-in-up">
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </li>
+            <li class="y-dropdown profile">
+              <a href="javascript:;"><i class="fa fa-user"></i><span class="y-badge">2</span></a>
+              <ul class="y-dropdown-menu fade-in-down">
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </li>
+            <li class="toggle-right-sidebar">
+              <a href="javascript:;"><i class="fa fa-hand-o-right"></i></a>
+            </li>
+          </ul> 
+        </article>
+      </nav>
+    </div>
+	</header>
+	
+  <aside>
+    <section class="y-sidebar">
+      <div class="y-sidebar-wrap">
+        <div class="y-sidebar-title">侧边栏</div>
+        <ul class="y-sidebar-l1">
+          <li>
+            <a href="javascript:;" class="active">
+              <i class="fa fa-home"></i>
+              <p>主页</p>
+              <!-- <i class="fa fa-angle-right"></i> -->
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <p>功能</p>
+              <i class="fa fa-angle-right"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>功能1</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>功能2</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>功能3</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-picture-o"></i>
+              <p>UI设计</p>
+              <i class="fa fa-angle-right"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>UI设计1</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>UI设计2</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>UI设计3</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-gavel"></i>
+              <p>常用插件</p>
+              <i class="fa fa-angle-right"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>常用插件1</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>常用插件2</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>常用插件3</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>常用插件4</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>常用插件5</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-table"></i>
+              <p>表格</p>
+              <i class="fa fa-angle-right"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>表格1</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>表格2</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-pie-chart"></i>
+              <p>图表</p>
+              <i class="fa fa-angle-right"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>Highcharts</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>Echarts</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-arrow-right"></i>
+                  <span>EasyPie</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="right-bar">
+      <div class="y-rightbar-wrap">
+        <ul class="y-tab">
+          <li class="active"><i class="fa fa-qq"></i></li>
+          <li><i class="fa fa-weibo"></i></li>
+          <li><i class="fa fa-weixin"></i></li>
+          <li><i class="fa fa-apple"></i></li>
+          <span class="y-tab-act"></span>
+        </ul>
+        <article class="y-tab-page active">
+          <h4>tab1</h4>
+          <div class="y-list">
+            <div class="y-list-left">
+              <div class="pic">l1</div>
+            </div>
+            <div class="y-list-middle vertical-parent">
+              <div class="vertical-children">
+                <h4>hhhhhhhhhhhhhh</h4>
+                <p>eeeeeeeeeeeeeee</p>
+              </div>
+            </div>
+            <div class="y-list-right">
+              <i class="fa fa-hand-o-left"></i>
+            </div>
+          </div>
+          <div class="y-list">
+            <div class="y-list-left">
+              <div class="pic">l1</div>
+            </div>
+            <div class="y-list-middle vertical-parent">
+              <div class="vertical-children">
+                <h4>hhhhhhhhhhhhhh</h4>
+                <p>eeeeeeeeeeeeeee</p>
+              </div>
+            </div>
+            <div class="y-list-right">
+              <i class="fa fa-hand-o-left"></i>
+            </div>
+          </div>
+          <div class="y-list">
+            <div class="y-list-left">
+              <div class="pic">l1</div>
+            </div>
+            <div class="y-list-middle vertical-parent">
+              <div class="vertical-children">
+                <h4>hhhhhhhhhhhhhh</h4>
+                <p>eeeeeeeeeeeeeee</p>
+              </div>
+            </div>
+            <div class="y-list-right">
+              <i class="fa fa-hand-o-left"></i>
+            </div>
+          </div>
+        </article>
+        <article class="y-tab-page">
+          <h4>tab2</h4>
+          <div class="y-list">
+            
+          </div>
+        </article>
+        <article class="y-tab-page">
+          <h4>tab3</h4>
+          <div class="y-list">
+            
+          </div>
+        </article>
+        <article class="y-tab-page">
+          <h4>tab4</h4>
+          <div class="y-list">
+            
+          </div>
+        </article>
+      </div>
+    </section>
+  </aside>
+
+  <main>
+    <section class="y-main">
+      <div class="y-container">
+        <!-- page header -->
+        <div class="y-pageheader">
+          <h2>标题 <span>// 副标题</span></h2>
+          <div class="y-page-bar">
+            <ul class="y-page-breadcrumb">
+              <li>
+                <a href="javascript:;"><i class="fa fa-home"></i> 主页</a>
+              </li>
+              <li>
+                <a href="javascript:;">一级</a>
+              </li>
+              <li>
+                <a href="javascript:;">二级</a>
+              </li>
+            </ul>
+            <article class="y-timer"></article>
+          </div>
+        </div>
+        <!-- /page header -->
+
+        <div class="y-pagecontent">
+          <button class="btn btn-success fs">全屏测试</button>
+        </div>
+        <div class="">
+          <input type="checkbox" class="y-switch">
+        </div> 
+        <div class="notify">
+          <button class="ybtn ybtn-success mr">左上</button>
+          <button class="ybtn ybtn-warning mr">中上</button>
+          <button class="ybtn ybtn-danger mr">右上</button>
+          <button class="ybtn ybtn-info">右下</button>
+        </div>
+        
+      </div>
+      
+      <!-- back to top -->
+      <div class="y-back-top">
+        <i class="fa fa-angle-up"></i>
+        <span>返回顶部</span>
+      </div>
+    </section>
+  </main>
+
+  <div class="notifyList">
+    <div class="y-notification top-left success">
+      <i class="fa fa-check-square-o"></i><span>更新成功！</span>
+    </div>
+    <div class="y-notification top-middle warning">
+      <i class="fa fa-exclamation-triangle"></i><span>数据格式不规范！</span>
+    </div>
+    <div class="y-notification top-right danger">
+      <i class="fa fa-times-circle"></i><span>更新出错！</span>
+    </div>
+    <div class="y-notification bottom-right info">
+      <i class="fa fa-info-circle"></i><span>请升级版本！</span>
+    </div>
+  </div>
+
+  <section class="y-loadding"></section>
+
+	<script src="src/jquery/dist/jquery.min.js"></script>
+	<script src="src/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="myfunc.js"></script>
+</body>
+</html>
