@@ -17,6 +17,10 @@ module.exports = merge(webpackConfig, {
       test: /\.css$/,
       loaders: ['style', 'css'],
       exclude: /components/,
+    },{
+      test: /\.less$/,
+      loaders: ['style', 'css', 'less'],
+      exclude: /components/,
     }],
   },
   plugins: [

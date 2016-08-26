@@ -7,7 +7,7 @@ import 'font-awesome/css/font-awesome.css';
 // import 'antd/dist/antd.min.css';
 
 import 'styles/mystyle.css';
-import 'styles/y-style.css';
+import 'styles/y-style.less';
 
 module.exports = (
   <Router history={hashHistory} routes={routes}/>

@@ -84,7 +84,7 @@ export default class Base extends Component {
     const that=this;
     //hashchange
     window.addEventListener('hashchange',function(){
-    	// var str=location.hash.match(/#(\S+)\?/);
+    	var str=location.hash.match(/#(\S+)\?/);
     	getCurrent(sidebarMenu,str,data);
 
     	that.setState({

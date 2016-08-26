@@ -73,9 +73,13 @@ export const sidebarMenu=[{
   rightIcon:'fa fa-angle-right',
   open:'',
   subMenu:[{
+    url:'/tables/yTables',
+    icon:'fa fa-arrow-right',
+    title:'yTables'
+  },{
     url:'/tables/datatables',
     icon:'fa fa-arrow-right',
-    title:'Datatables'
+    title:'bsTables'
   },{
     url:'/tables/bstables',
     icon:'fa fa-arrow-right',
@@ -204,6 +208,18 @@ export const rightbarTabLists=[{
   rightIcon:'fa fa-hand-o-left'
 }];
 
+//tables
+export const tableData={
+  thead:['ID','青龙','白虎','朱雀','玄武'],
+  tbody:[
+    [1,'r11','r12','r13','r14'],
+    [2,'r21','r22','r23','r24'],
+    [3,'r31','r32','r33','r34'],
+    [4,'r41','r42','r43','r44'],
+    [5,'r51','r52','r53','r54'],
+    [6,'r61','r62','r63','r64']
+  ]
+};
 
 
 
