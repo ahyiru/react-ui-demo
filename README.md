@@ -3,19 +3,19 @@
 
 ## Getting start
 1. Clone this repo:
-2. 
+
 ```
 $ git clone https://github.com/ahyiru/react-ui-demo.git
 ```
 
 2. Install dependenices:
-3. 
+
 ```
 $ npm i
 ```
 
 3. Start the project:
-4. 
+
 ```
 $ npm start 		//默认端口4000
 ```
