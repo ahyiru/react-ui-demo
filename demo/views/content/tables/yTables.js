@@ -116,7 +116,7 @@ export default class yTables extends Component {
       				{
       					(pagination.length>5)?pagination.map(function(v,k){
       						return(
-      							(k<3||k>pagination.length-3)&&<li className={k==0&&'active'}>{k==2?'...':k+1}</li>
+      							(k<3||k>pagination.length-3)&&<li className={k==0&&'active'||k==2&&'more'}>{k==2?'...':k+1}</li>
       						)
       					}):pagination.map(function(v,k){
       						return(
