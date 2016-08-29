@@ -193,7 +193,7 @@ table{border-spacing:0;border-collapse:collapse;}
   }
 }
 .top-left{
-  animation:top-left .5s;
+  animation:top-left .5s ease-in-out;
 }
 @keyframes top-middle{
   0%{
@@ -206,7 +206,7 @@ table{border-spacing:0;border-collapse:collapse;}
   }
 }
 .top-middle{
-  animation:top-middle .5s;
+  animation:top-middle .5s ease-in-out;
 }
 @keyframes top-right{
   0%{
@@ -219,7 +219,7 @@ table{border-spacing:0;border-collapse:collapse;}
   }
 }
 .top-right{
-  animation:top-right .5s;
+  animation:top-right .5s ease-in-out;
 }
 @keyframes bottom-right{
   0%{
@@ -232,7 +232,7 @@ table{border-spacing:0;border-collapse:collapse;}
   }
 }
 .bottom-right{
-  animation:bottom-right .5s;
+  animation:bottom-right .5s ease-in-out;
 }
 
 /*@media*/

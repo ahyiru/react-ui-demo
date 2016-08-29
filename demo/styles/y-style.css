@@ -283,6 +283,10 @@ body aside .y-sidebar .y-sidebar-wrap .y-sidebar-l1 > li {
   font-size: 15px;
   font-weight: 500;
 }
+body aside .y-sidebar .y-sidebar-wrap .y-sidebar-l1 > li:hover {
+  background-color: #ff9655;
+  color: #fff;
+}
 body aside .y-sidebar .y-sidebar-wrap .y-sidebar-l1 > li:last-child {
   border: none;
 }
@@ -291,10 +295,6 @@ body aside .y-sidebar .y-sidebar-wrap .y-sidebar-l1 > li > a {
   color: #eee;
   height: 42px;
   cursor: pointer;
-}
-body aside .y-sidebar .y-sidebar-wrap .y-sidebar-l1 > li > a:hover {
-  background-color: #ff9655;
-  color: #fff;
 }
 body aside .y-sidebar .y-sidebar-wrap .y-sidebar-l1 > li > a.active {
   background-color: #45b6af;
@@ -756,6 +756,7 @@ body main .y-main .y-container .y-pagecontent {
 }
 .y-panel {
   width: 100%;
+  position: relative;
 }
 .y-panel .y-panel-header {
   height: 42px;
@@ -1046,8 +1047,138 @@ body main .y-main .y-container .y-pagecontent {
   background-color: #f05050;
   color: #fff;
 }
-.y-loading {
+.ytable {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+.ytable > thead > tr > th,
+.ytable > tbody > tr > th,
+.ytable > tfoot > tr > th,
+.ytable > thead > tr > td,
+.ytable > tbody > tr > td,
+.ytable > tfoot > tr > td {
+  heght: 32px;
+  line-height: 32px;
+  padding: 0;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+.ytable > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+.ytable > thead > tr > th.edit,
+.ytable > thead > tr > th.delete {
+  width: 42px;
+}
+.ytable > thead:first-child > tr:first-child > th,
+.ytable > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.ytable > tbody > tr:hover {
+  background-color: #f5f5f5;
+}
+.ytable > tbody > tr > td > input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  font-style: italic;
+  color: #03c;
+  padding: 0 8px;
+}
+.ytable > tbody + body {
+  border-top: 2px;
+}
+.ytable.ytable-bordered {
+  border: 1px solid #ddd;
+}
+.ytable.ytable-bordered > thead > tr > th,
+.ytable.ytable-bordered > tbody > tr > th,
+.ytable.ytable-bordered > tfoot > tr > th,
+.ytable.ytable-bordered > thead > tr td,
+.ytable.ytable-bordered > tbody > tr td,
+.ytable.ytable-bordered > tfoot > tr td {
+  border: 1px solid #ddd;
+}
+.ytable.ytable-bordered > thead > tr > th,
+.ytable.ytable-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+}
+.ytable.ytable-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #fafafa;
+}
+.y-loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   z-index: 10000;
+  opacity: .7;
+  background-color: #ddd;
+}
+.y-loader .y-loading {
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(165deg);
+}
+.y-loader .y-loading:before,
+.y-loader .y-loading:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 0.3em;
+  transform: translate(-50%, -50%);
+}
+.y-loader .y-loading:before {
+  animation: before 1.5s infinite;
+}
+.y-loader .y-loading:after {
+  animation: after 1.5s infinite;
+}
+@keyframes before {
+  0% {
+    width: 0.6em;
+    box-shadow: 1.2em -0.6em #f05050, -1.2em 0.6em #23b7e5;
+  }
+  35% {
+    width: 3em;
+    box-shadow: 0 -0.6em #f05050, 0 0.6em #23b7e5;
+  }
+  70% {
+    width: 0.6em;
+    box-shadow: -1.2em -0.6em #f05050, 1.2em 0.6em #23b7e5;
+  }
+  100% {
+    box-shadow: 1.2em -0.6em #f05050, -1.2em 0.6em #23b7e5;
+  }
+}
+@keyframes after {
+  0% {
+    height: 0.6em;
+    box-shadow: 0.6em 1.2em #27c24c, -0.6em -1.2em #fad733;
+  }
+  35% {
+    height: 3em;
+    box-shadow: 0.6em 0 #27c24c, -0.6em 0 #fad733;
+  }
+  70% {
+    height: 0.6em;
+    box-shadow: 0.6em -1.2em #27c24c, -0.6em 1.2em #fad733;
+  }
+  100% {
+    box-shadow: 0.6em 1.2em #27c24c, -0.6em -1.2em #fad733;
+  }
 }
 @media screen and (max-width: 768px) {
   .y-header {

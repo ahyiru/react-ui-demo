@@ -12,6 +12,7 @@ export default class Home extends Component {
     	collapse:200,
     	collapseIcon:'minus',
     	fsIcon:'expand',
+    	loadingIcon:'refresh',
     	checkBox:true
     })
   }
@@ -50,7 +51,6 @@ export default class Home extends Component {
   }
 
   switchChk=()=>{
-  	console.log(this.state.checkBox);
   	this.setState({
   		checkBox:!this.state.checkBox
   	})
@@ -60,9 +60,22 @@ export default class Home extends Component {
   	EventEmitter.dispatch('subNotify',direction);
   }
 
+  loading=()=>{
+  	var load,that=this;
+  	clearTimeout(load);
+  	this.setState({
+  		loading:true
+  	});
+  	load=setTimeout(function(){
+  		that.setState({
+	  		loading:false
+	  	});
+  	},3000);
+  }
+
   render() {
 
-  	const {current,changeTo,collapse,collapseIcon,fsIcon,checkBox}=this.state;
+  	const {current,changeTo,collapse,collapseIcon,fsIcon,loadingIcon,loading,checkBox}=this.state;
 
     return (
     	<div className="y-items">
@@ -107,6 +120,7 @@ export default class Home extends Component {
 	      						<li className="bg-danger" onClick={this.changeTheme.bind(this,'danger')}></li>
 	      					</ul>
 	      				</div> 
+		      			<div><i className={'fa fa-'+loadingIcon} onClick={this.loading}></i></div>
 		      			<div><i className={'fa fa-'+collapseIcon} onClick={this.collapse}></i></div>
 		      			<div><i className={'fa fa-'+fsIcon} onClick={this.fullScreen}></i></div>
 		      			<div><i className="fa fa-times" onClick={this.closeItem}></i></div>
@@ -115,6 +129,7 @@ export default class Home extends Component {
 	      		<div className={'y-panel-body '+(checkBox?'bg-info':'bg-default')} style={{height:collapse}}>
 	      			
 	      		</div>
+	      		{loading?<div className="y-loader"><figure className="y-loading"></figure></div>:''}
 	      	</div>
 	      </div>
 	      <div className="y-item">

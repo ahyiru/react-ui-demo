@@ -241,8 +241,14 @@ $(function(){
 		})
 	});
 
-	$.get('https://suggest.taobao.com/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3').then(function(res){
-		console.log(res);
+	$('.load').on('click',function(){
+		$('.load').attr('disabled',true);
+		$('.y-panel').css('position','relative');
+		$('.y-panel').append('<div class="y-loader"><figure class="y-loading"></figure></div>');
+		setTimeout(function(){
+			$('.y-loader').remove();
+			$('.load').attr('disabled',false);
+		},3000);
 	})
 
 })
