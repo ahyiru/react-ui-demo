@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/_dist', // 内存中生成文件的路径
-    // publicPath: '/assets/', // 物理地址
+    // publicPath: '/assets/', // 绝对地址
     filename: '[name]_[hash:8].js',
   },
   resolve: {

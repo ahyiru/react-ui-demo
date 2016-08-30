@@ -66,22 +66,29 @@ body{
 					height:45px;
 					line-height:45px;
 					position:relative;
-					i{
+					>.logo{
 						position:absolute;
-						left:0;
-						top:0;
+						left:5px;
+						top:5px;
+						padding:0;
+						margin:0;
+						border:0;
 						display:block;
-						width:45px;
-						height:45px;
-						line-height:45px;
+						width:35px;
+						height:35px;
+						line-height:35px;
+						border-radius:100%;
 						text-align:center;
+						background-image:url('./images/usr.jpg');
+						background-size:35px 35px;
+						background-repeat:no-repeat;
 						// background-color:#24cbe5;
 						color:#fff;
 						font-size:24px;
 					}
-					span{
+					>span{
 						display:block;
-						margin:0 15px 0 45px;
+						margin:0 10px 0 50px;
 					}
 				}
 			}
@@ -492,7 +499,7 @@ body{
 						top:42px;
 						left:0;
 						background-color:#f60;
-						transition:left .2s;
+						transition:left .3s;
 						&::after{
 							content:'';
 							position:absolute;
@@ -527,6 +534,7 @@ body{
 						height:52px;
 						position:relative;
 						border-bottom:1px solid #666;
+						cursor:pointer;
 						//left
 						.y-list-left{
 							position: absolute;
@@ -1392,7 +1400,7 @@ body{
   				width:70px;
   				font-weight:500;
   				>a{
-  					padding:4px 5px;
+  					padding:3px 4px;
   					border-radius:3px;
   					color:#fff;
   				}

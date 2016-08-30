@@ -88,8 +88,8 @@ export default class Header extends Component {
       <header>
         <div className="y-header">
           <section className="y-brand">
-            <a href="javascript:;" className="brand">
-              <i className="fa fa-github"></i> <span><b>React</b> UI Demo</span>   
+            <a href="javascript:;" className="brand"> 
+              <h4 className="logo"></h4> <span><b>React</b> UI Demo</span>   
             </a>
           </section>
           <nav className="y-nav">
