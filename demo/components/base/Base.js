@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Header from 'components/header/Header';
-import Sidebar from 'components/sidebar/Sidebar';
+import Header from '../header/Header';
+import Sidebar from '../sidebar/Sidebar';
 
 import EventEmitter from '../../configs/eventEmitter';
 

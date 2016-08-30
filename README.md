@@ -17,7 +17,7 @@ $ npm i
 $ npm start 		//默认端口4000
 `
 
-4. 打开浏览器，访问: ` http://localhost:4000/ `
+4. 打开浏览器，访问: [http://localhost:4000/](http://localhost:4000/)
 
 #### 持续更新中...
 

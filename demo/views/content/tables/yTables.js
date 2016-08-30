@@ -59,7 +59,7 @@ export default class yTables extends Component {
       			<input type='text' className="y-input" value="5" />
       			<span className="select-icon" onClick={this.select}><i className="fa fa-caret-down"></i></span>
       			<span className="select-tip">5 条/页</span>
-      			<ul className={selected?'y-show':''}>
+      			<ul className={'fade-in-up '+(selected?'y-show':'')}>
       				<li>5</li>
       				<li>10</li>
       				<li>15</li>
