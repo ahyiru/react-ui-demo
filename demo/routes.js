@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute, Redirect, IndexRedirect } from 'react-router';
-import Base from 'components/base/Base';
+import Base from './components/base/Base';
 
 import {
   Home,
@@ -23,7 +23,7 @@ import {
   User,
   About,
   ErrorPage
-} from 'views/content';
+} from './views/content';
 
 
 export default (
