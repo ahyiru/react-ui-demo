@@ -56,7 +56,7 @@ export default class yTables extends Component {
       <div>
       	<div className="ytable-header">
       		<div className="y-select sm y-left">
-      			<input type='text' className="y-input" value="5" />
+      			<input type='text' className="y-input" defaultValue="5" />
       			<span className="select-icon" onClick={this.select}><i className="fa fa-caret-down"></i></span>
       			<span className="select-tip">5 条/页</span>
       			<ul className={'fade-in-up '+(selected?'y-show':'')}>
@@ -116,11 +116,11 @@ export default class yTables extends Component {
       				{
       					(pagination.length>5)?pagination.map(function(v,k){
       						return(
-      							(k<3||k>pagination.length-3)&&<li className={k==0&&'active'||k==2&&'more'}>{k==2?'...':k+1}</li>
+      							(k<3||k>pagination.length-3)&&<li key={'page'+k} className={k==0&&'active'||k==2&&'more'}>{k==2?'...':k+1}</li>
       						)
       					}):pagination.map(function(v,k){
       						return(
-      							<li>{k+1}</li>
+      							<li key={'page'+k}>{k+1}</li>
       						)
       					})
       				}
