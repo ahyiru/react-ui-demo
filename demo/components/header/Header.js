@@ -18,7 +18,8 @@ export default class Header extends Component {
         icon:'fa fa-cog',
         animate:'fade-in-up',
         sel:false,
-        open:''
+        open:'',
+        items:['header','branding','sidebar','active']
       }
     });
 
@@ -52,10 +53,14 @@ export default class Header extends Component {
         v.open='';
       }
     });
-    theme.sel=false;
+    
     if(theme.name==cur){
       theme.sel=true;
       theme.open=theme.open?'':'open';
+    }
+    else{
+      theme.sel=false;
+      theme.open='';
     }
     this.setState({
       dropList:dropList,
@@ -82,7 +87,7 @@ export default class Header extends Component {
   }  
 
   render() {
-    const {name,animate,icon,sel,open}=this.state.theme;
+    const {name,animate,icon,sel,open,items}=this.state.theme;
     var that=this;
     return (
       <header>
@@ -100,7 +105,7 @@ export default class Header extends Component {
                     <i className="fa fa-outdent"></i>
                   </a>
                 </li>
-                <DropDown name={name} icon={icon} animate={animate} sel={sel} open={open} getCur={that.dropDown} />
+                <DropDown name={name} icon={icon} animate={animate} sel={sel} open={open} items={items} getCur={that.dropDown} />
               </ul>
               <div className="y-search">
                 <input type="text" placeholder="搜索..." />
@@ -113,7 +118,7 @@ export default class Header extends Component {
                 {
                   dropList.map(function(v,k){
                     return(
-                      <DropDown key={k} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} sel={v.sel} open={v.open} getCur={that.dropDown} />
+                      <DropDown key={k} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} sel={v.sel} open={v.open} items={v.items} getCur={that.dropDown} />
                     )
                   })
                 }

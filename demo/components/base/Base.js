@@ -64,6 +64,8 @@ var getCurrent=function(obj,str,data){
 	return obj;
 };
 
+
+
 export default class Base extends Component {
 
 	constructor(props){

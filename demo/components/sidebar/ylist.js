@@ -24,8 +24,8 @@ export default class YList extends Component {
     const {tab}=this.props;
 
     return (
-      <article className={'y-tab-page '+tab.active}>
-        <h4>{tab.name}</h4>
+      <article className={'y-tab-page y-lists '+tab.active}>
+        <h4 className="y-list-title">{tab.name}</h4>
         {
           lists.map(function(v,k){
             return(
@@ -33,8 +33,8 @@ export default class YList extends Component {
                 <div className="y-list-left">
                   <div className="pic">{v.pic}</div>
                 </div>
-                <div className="y-list-middle vertical-parent">
-                  <div className="vertical-children">
+                <div className="y-list-middle">
+                  <div className="ylm-content">
                     <h4>{v.h4}</h4>
                     <p>{v.p}</p>
                   </div>

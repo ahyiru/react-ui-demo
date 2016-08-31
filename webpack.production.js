@@ -7,10 +7,23 @@ var webpackConfig = require('./webpack.config');
 process.env.NODE_ENV = 'production';
 
 module.exports = merge(webpackConfig, {
+  //development
+  devtool: 'eval',
+  debug: true,
+  entry: {
+    app: ['webpack-hot-middleware/client'],
+    login: ['webpack-hot-middleware/client'],
+  },
+
   module: {
     loaders: [{
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      loader: ExtractTextPlugin.extract('style','css'),
+      exclude: /components/,
+    },{
+      test: /\.less$/,
+      //!从右到左的顺序依次调用less、css加载器，前一个的输出是后一个的输入
+      loader: ExtractTextPlugin.extract('style','css!less'),
       exclude: /components/,
     }],
   },
@@ -23,9 +36,13 @@ module.exports = merge(webpackConfig, {
         comments: false,  // remove all comments
       },
       compress: {
-        warnings: false,
+        warnings: true, //development
+        // warnings: false,
       }
     }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),

@@ -100,6 +100,10 @@ export const sidebarMenu=[{
     icon:'fa fa-arrow-right',
     title:'Echarts'
   },{
+    url:'/charts/Recharts',
+    icon:'fa fa-arrow-right',
+    title:'Recharts(D3)'
+  },{
     url:'/charts/easypie',
     icon:'fa fa-arrow-right',
     title:'EasyPie'
@@ -132,7 +136,24 @@ export const dropList=[{
   animate:'fade-in-left',
   msg:'3',
   sel:false,
-  open:''
+  open:'',
+  items:[{
+    pic:'m1',
+    h4:'你有一条新信息',
+    p:'请注意查收 '
+  },{
+    pic:'m2',
+    h4:'你有一条新信息',
+    p:'请注意查收 '
+  },{
+    pic:'m3',
+    h4:'你有一条新信息',
+    p:'请注意查收 '
+  },{
+    pic:'m4',
+    h4:'你有一条新信息',
+    p:'请注意查收 '
+  }]
 },
 {
   name:'tips',
@@ -140,7 +161,28 @@ export const dropList=[{
   animate:'fade-in-up',
   msg:'5',
   sel:false,
-  open:''
+  open:'',
+  items:[{
+    pic:'t1',
+    h4:'你的系统有更新',
+    p:'请升级到最新版本'
+  },{
+    pic:'t2',
+    h4:'你的系统有更新',
+    p:'请升级到最新版本'
+  },{
+    pic:'t3',
+    h4:'你的系统有更新',
+    p:'请升级到最新版本'
+  },{
+    pic:'t4',
+    h4:'你的系统有更新',
+    p:'请升级到最新版本'
+  },{
+    pic:'t5',
+    h4:'你的系统有更新',
+    p:'请升级到最新版本'
+  }]
 },
 {
   name:'language',
@@ -148,7 +190,20 @@ export const dropList=[{
   animate:'fade-in-down',
   msg:'',
   sel:false,
-  open:''
+  open:'',
+  items:[{
+    pic:'中',
+    h4:'中文',
+    p:'简体'
+  },{
+    pic:'英',
+    h4:'English',
+    p:'en'
+  },{
+    pic:'日',
+    h4:'Japanese',
+    p:'japan'
+  }]
 },
 {
   name:'profile',
@@ -156,7 +211,24 @@ export const dropList=[{
   animate:'fade-in-right',
   msg:'4',
   sel:false,
-  open:''
+  open:'',
+  items:[{
+    pic:'用',
+    h4:'用户信息',
+    p:''
+  },{
+    pic:'消',
+    h4:'消息',
+    p:''
+  },{
+    pic:'设',
+    h4:'设置',
+    p:''
+  },{
+    pic:'退',
+    h4:'退出',
+    p:''
+  }]
 }];
 
 //rightbarTabs
