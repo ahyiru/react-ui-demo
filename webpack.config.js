@@ -4,13 +4,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: [__dirname + '/demo/index'],
+    app: [__dirname + '/demo/index']
   },
   output: {
     // path.join 路径结合、合并.
     // path.resolve 获取绝对路径.
-    path: path.resolve(__dirname, 'dist'), // 内存中生成文件的路径
-    // publicPath: '../', // 绝对地址
+    path: path.resolve(__dirname, '_dist'), // 内存中生成文件的路径
+    // publicPath: './assets/', // 绝对地址,资源存放路径
     filename: '[name]_[hash:8].js',
   },
   resolve: {

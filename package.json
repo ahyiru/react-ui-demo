@@ -61,6 +61,8 @@
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "echarts-for-react":"^1.1.4",
+    "react-highcharts":"^10.0.0"
   }
 }

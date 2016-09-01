@@ -14,6 +14,7 @@ export Datatables from './tables/datatables';
 export BStables from './tables/bstables';
 export Highcharts from './charts/highcharts';
 export Echarts from './charts/echarts';
+export Recharts from './charts/recharts';
 export Easypie from './charts/easypie';
 export User from '../user/user';
 export About from '../about/about';

@@ -7,14 +7,6 @@ var webpackConfig = require('./webpack.config');
 process.env.NODE_ENV = 'production';
 
 module.exports = merge(webpackConfig, {
-  //development
-  devtool: 'eval',
-  debug: true,
-  entry: {
-    app: ['webpack-hot-middleware/client'],
-    login: ['webpack-hot-middleware/client'],
-  },
-
   module: {
     loaders: [{
       test: /\.css$/,
@@ -36,13 +28,9 @@ module.exports = merge(webpackConfig, {
         comments: false,  // remove all comments
       },
       compress: {
-        warnings: true, //development
-        // warnings: false,
+        warnings: false,
       }
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),

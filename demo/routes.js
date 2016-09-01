@@ -19,6 +19,7 @@ import {
   BStables,
   Highcharts,
   Echarts,
+  Recharts,
   Easypie,
   User,
   About,
@@ -50,6 +51,7 @@ export default (
   
     <Route path="charts/highcharts" component={Highcharts} />
     <Route path="charts/echarts" component={Echarts} />
+    <Route path="charts/recharts" component={Recharts} />
     <Route path="charts/easypie" component={Easypie} />
     
     <Route path="/user" component={User} />

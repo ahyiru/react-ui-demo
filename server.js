@@ -1,6 +1,6 @@
 var express = require('express');
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.production');
+var webpackConfig = require('./webpack.development');
 var https=require('https');
 
 var app = express();
