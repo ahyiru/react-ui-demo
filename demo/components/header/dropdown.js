@@ -29,20 +29,22 @@ export default class DropDown extends Component {
           <article className="y-lists">
             <h4 className="y-list-title">{name}</h4>
             {
-              (name=='theme')?
-                <div className="y-list">
-                  <h4>{name}</h4>
-                  <ul className="theme-select">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                  </ul>
-                </div>
-                :items.map(function(v,k){
+              (name=='theme')?items.map(function(v,k){
                 return(
-                  <div key={'dropmenu'+k} className="y-list">
+                  <div key={name+''+k} className="y-list">
+                    <h4>{v}</h4>
+                    <ul className="theme-select">
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
+                )
+              }):items.map(function(v,k){
+                return(
+                  <div key={name+''+k} className="y-list">
                     <div className="y-list-left">
                       <div className="pic">{v.pic}</div>
                     </div>

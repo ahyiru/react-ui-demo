@@ -146,6 +146,7 @@ export default class Base extends Component {
   }
   backTop=()=>{
     document.body.scrollTop=0;
+    document.documentElement.scrollTop=0;
   }
 
   render() {
