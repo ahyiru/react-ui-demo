@@ -4,8 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "build": "webpack --config webpack.production.js --progress && npm run clean && mv _dist dist",
-    "clean": "rimraf dist"
+    "build": "webpack --config webpack.production.js --progress && npm run clean && mv _dist y_dist",
+    "clean": "rimraf y_dist"
   },
   "repository": {
     "type": "git",
