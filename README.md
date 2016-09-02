@@ -17,7 +17,7 @@ $ npm i
 $ npm start 		//默认端口8000
 `
 
-4. 打开浏览器，访问: [http://localhost:4000/](http://localhost:8000/)
+4. 打开浏览器，访问: [http://localhost:8000/](http://localhost:8000/)
 
 #### 持续更新中...
 
