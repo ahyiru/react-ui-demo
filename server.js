@@ -16,7 +16,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 8000);
 
 //test
 /*app.get('/api/test',(req,res)=>{
