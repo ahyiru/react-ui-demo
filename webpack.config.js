@@ -3,6 +3,17 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+
+  /*//https://webpack.github.io/docs/webpack-dev-server.html#webpack-dev-server-cli
+  devServer: {
+    contentBase: './dist', //Content base
+    inline: true, //Enable watch and live reload
+    host: 'localhost',
+    port: 8080
+  },
+  // http://webpack.github.io/docs/configuration.html#devtool
+  devtool: 'source-map',*/
+
   entry: {
     app: [__dirname + '/demo/index']
   },

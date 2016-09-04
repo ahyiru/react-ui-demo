@@ -19,7 +19,7 @@ import {hasClass,addClass,removeClass} from '../../configs/tools';
 
 //根据屏幕大小控制collapse
 var smallScreen=function(){
-  
+  clearTimeout(timer);
   if(document.body.clientWidth<992){
     addClass(document.body,'y-sidebar-sm y-collapse');
   }
@@ -40,16 +40,14 @@ var smallScreen=function(){
     removeClass(document.getElementsByClassName('y-sidebar')[0],'open');
   });*/
 
-};
+},timer;
 //...
-setTimeout(smallScreen,350);
+timer=setTimeout(smallScreen,350);
 //...
 //resize
 window.addEventListener('resize',function(){
-  setTimeout(smallScreen,350);
+  timer=setTimeout(smallScreen,350);
 });
-
-
 
 // console.log(menu);
 

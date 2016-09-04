@@ -5,7 +5,7 @@ export const addClass=(target,cname)=>{
   var nameArr=cname.split(' ');
   nameArr.map(function(v,k){
     if(!!v&&!hasClass(target,v)){
-      target.className+=' '+cname;
+      target.className+=' '+v;
     }
   });
 };
@@ -13,7 +13,7 @@ export const removeClass=(target,cname)=>{
   var nameArr=cname.split(' ');
   nameArr.map(function(v,k){
     if(!!v&&hasClass(target,v)){
-      var reg=new RegExp('(\\s|^)'+cname+'(\\s|$)');  
+      var reg=new RegExp('(\\s|^)'+v+'(\\s|$)');  
       target.className=target.className.replace(reg,'');
     }
   });

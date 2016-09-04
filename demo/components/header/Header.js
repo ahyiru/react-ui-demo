@@ -66,7 +66,6 @@ export default class Header extends Component {
       dropList:dropList,
       theme:theme
     });
-
     removeClass(document.getElementsByClassName('right-bar')[0],'open');
   };
 
@@ -82,8 +81,7 @@ export default class Header extends Component {
     this.setState({
       rightBar:true
     });
-    var rightSideBar=document.getElementsByClassName('right-bar')[0];
-    toggleClass(rightSideBar,'open');
+    toggleClass(document.getElementsByClassName('right-bar')[0],'open');
   }  
 
   render() {
