@@ -33,6 +33,7 @@ build/Release
 node_modules
 jspm_packages
 bower_components
+typings
 
 # Editors
 .idea
@@ -44,3 +45,5 @@ Thumbs.db
 
 # yiru
 y_dist
+js_demo
+jsDemo.js

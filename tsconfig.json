@@ -1,0 +1,16 @@
+{
+  "compilerOptions":{
+  	"module":"es6", //output code which uses the ES6 module
+    "target":"es6", //output ES6 rather than ES5 Javascript code
+    "moduleResolution":"node", //use the Node module resolution strategy
+    "jsx":"preserve",
+    "allowSyntheticDefaultImports":true, //allows us to use ES6 import syntax for npmmodules which don’t have a default export.
+    "noImplicitAny":false, //warn us if any variables are inferred as having a type of any
+    "sourceMap":true //output a source map
+  },
+  "exclude":[
+    "node_modules",
+    "y_dist",
+    "js_demo"
+  ]
+}

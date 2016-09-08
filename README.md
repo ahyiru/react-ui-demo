@@ -1,5 +1,5 @@
 # react-ui-demo
-#### 基于react，使用es6编写，webpack构建的 react-ui template
+#### 基于react，使用typescript(es6)编写，webpack构建的 react-ui template
 
 ## Getting start
 1. Clone this repo:
@@ -21,4 +21,5 @@ $ npm start 		//默认端口8000
 
 #### 持续更新中...
 
-![ds](doc/ds.png)
+![charts](doc/charts.png)
+![tables](doc/tables.png)

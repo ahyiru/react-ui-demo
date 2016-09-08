@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var appName=require('./package').name;
 
 module.exports = {
 
@@ -21,7 +22,7 @@ module.exports = {
     // path.join 路径结合、合并.
     // path.resolve 获取绝对路径.
     path: path.resolve(__dirname, '_dist'), // 内存中生成文件的路径
-    // publicPath: './assets/', // 绝对地址,资源存放路径
+    // publicPath: '/', // 绝对地址,资源存放路径
     filename: '[name]_[hash:8].js',
   },
   resolve: {
@@ -30,11 +31,15 @@ module.exports = {
       __dirname + '/node_modules',
       __dirname,
     ],
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx','.ts','.tsx'],
   },
   module: {
     loaders: [{
-      test: /\.js[x]?$/,
+      test: /\.tsx?$/,
+      loaders: ['babel','ts'],
+      exclude: /node_modules/,
+    }, {
+      test: /\.jsx?$/,
       loaders: ['babel'],
       exclude: /node_modules/,
     }, {
@@ -61,7 +66,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title:'React UI Demo',
+      title:appName,
       template: __dirname + '/demo/index.html',
       favicon: __dirname + '/demo/favicon.ico',
       inject: false,
