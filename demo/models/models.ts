@@ -130,102 +130,108 @@ export const notifyList=[{
 }];
 
 //dropList
-export const dropList=[{
-  name:'msg',
-  icon:'fa fa-envelope',
-  animate:'fade-in-left',
-  msg:'3',
-  open:'',
-  items:[{
-    pic:'m1',
-    h4:'你有一条新信息',
-    p:'请注意查收 '
+export const dropList={
+  leftList:[{
+    name:'theme',
+    icon:'fa fa-cog',
+    animate:'fade-in-up',
+    open:'',
+    items:['header','branding','sidebar','active']
+  }],
+  rightList:[{
+    name:'msg',
+    icon:'fa fa-envelope',
+    animate:'fade-in-left',
+    msg:'3',
+    open:'',
+    items:[{
+      pic:'m1',
+      h4:'你有一条新信息',
+      p:'请注意查收 '
+    },{
+      pic:'m2',
+      h4:'你有一条新信息',
+      p:'请注意查收 '
+    },{
+      pic:'m3',
+      h4:'你有一条新信息',
+      p:'请注意查收 '
+    },{
+      pic:'m4',
+      h4:'你有一条新信息',
+      p:'请注意查收 '
+    }]
   },{
-    pic:'m2',
-    h4:'你有一条新信息',
-    p:'请注意查收 '
+    name:'tips',
+    icon:'fa fa-bell',
+    animate:'fade-in-up',
+    msg:'5',
+    open:'',
+    items:[{
+      pic:'t1',
+      h4:'你的系统有更新',
+      p:'请升级到最新版本'
+    },{
+      pic:'t2',
+      h4:'你的系统有更新',
+      p:'请升级到最新版本'
+    },{
+      pic:'t3',
+      h4:'你的系统有更新',
+      p:'请升级到最新版本'
+    },{
+      pic:'t4',
+      h4:'你的系统有更新',
+      p:'请升级到最新版本'
+    },{
+      pic:'t5',
+      h4:'你的系统有更新',
+      p:'请升级到最新版本'
+    }]
   },{
-    pic:'m3',
-    h4:'你有一条新信息',
-    p:'请注意查收 '
+    name:'language',
+    icon:'fa fa-html5',
+    animate:'fade-in-down',
+    msg:'',
+    open:'',
+    items:[{
+      pic:'中',
+      h4:'中文',
+      p:'简体'
+    },{
+      pic:'英',
+      h4:'English',
+      p:'en'
+    },{
+      pic:'日',
+      h4:'Japanese',
+      p:'japan'
+    }]
   },{
-    pic:'m4',
-    h4:'你有一条新信息',
-    p:'请注意查收 '
+    name:'profile',
+    icon:'fa fa-user',
+    animate:'fade-in-right',
+    msg:'4',
+    open:'',
+    items:[{
+      pic:'用',
+      h4:'用户信息',
+      p:''
+    },{
+      pic:'消',
+      h4:'消息',
+      p:''
+    },{
+      pic:'设',
+      h4:'设置',
+      p:''
+    },{
+      pic:'退',
+      h4:'退出',
+      p:''
+    }]
   }]
-},
-{
-  name:'tips',
-  icon:'fa fa-bell',
-  animate:'fade-in-up',
-  msg:'5',
-  open:'',
-  items:[{
-    pic:'t1',
-    h4:'你的系统有更新',
-    p:'请升级到最新版本'
-  },{
-    pic:'t2',
-    h4:'你的系统有更新',
-    p:'请升级到最新版本'
-  },{
-    pic:'t3',
-    h4:'你的系统有更新',
-    p:'请升级到最新版本'
-  },{
-    pic:'t4',
-    h4:'你的系统有更新',
-    p:'请升级到最新版本'
-  },{
-    pic:'t5',
-    h4:'你的系统有更新',
-    p:'请升级到最新版本'
-  }]
-},
-{
-  name:'language',
-  icon:'fa fa-html5',
-  animate:'fade-in-down',
-  msg:'',
-  open:'',
-  items:[{
-    pic:'中',
-    h4:'中文',
-    p:'简体'
-  },{
-    pic:'英',
-    h4:'English',
-    p:'en'
-  },{
-    pic:'日',
-    h4:'Japanese',
-    p:'japan'
-  }]
-},
-{
-  name:'profile',
-  icon:'fa fa-user',
-  animate:'fade-in-right',
-  msg:'4',
-  open:'',
-  items:[{
-    pic:'用',
-    h4:'用户信息',
-    p:''
-  },{
-    pic:'消',
-    h4:'消息',
-    p:''
-  },{
-    pic:'设',
-    h4:'设置',
-    p:''
-  },{
-    pic:'退',
-    h4:'退出',
-    p:''
-  }]
-}];
+};
 
 //rightbarTabs
 export const rightbarTabs=[{

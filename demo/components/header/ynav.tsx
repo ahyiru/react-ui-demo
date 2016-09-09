@@ -1,46 +1,47 @@
 import * as React from 'react';
-import { Link } from 'react-router';
 
-import DropDown from './dropdown';
-
-import {dropList} from '../../models/models';
+import YdropDown from './ydropdown';
 
 import {removeClass,toggleClass} from '../../configs/tools';
 
-export default class Header extends React.Component<any,any> {
+export default class Ynav extends React.Component<any,any> {
 
   constructor(props){
     super(props);
     this.state=({
-      dropList:dropList,
-      theme:{
-        name:'theme',
-        icon:'fa fa-cog',
-        animate:'fade-in-up',
-        open:'',
-        items:['header','branding','sidebar','active']
-      }
+      leftList:this.props.dropList.leftList,
+      rightList:this.props.dropList.rightList
     });
 
     window.addEventListener('click',(e)=>{
       e.stopPropagation();
-      let dropList=this.state.dropList;
-      let theme=this.state.theme;
-      dropList.map((v,k)=>{
+      let leftList=this.state.leftList;
+      let rightList=this.state.rightList;
+      leftList.map((v,k)=>{
         v.open='';
       });
-      theme.open='';
+      rightList.map((v,k)=>{
+        v.open='';
+      });
       this.setState({
-        dropList:dropList,
-        theme:theme
+        leftList:leftList,
+        rightList:rightList
       });
     });
   };
 
   dropDown=(cur)=>{
-    let dropList=this.state.dropList;
-    let theme=this.state.theme;
-    dropList.map((v,k)=>{
+    let leftList=this.state.leftList;
+    let rightList=this.state.rightList;
+    leftList.map((v,k)=>{
+      if(v.name==cur){
+        v.open=v.open?'':'open';
+      }
+      else{
+        v.open='';
+      }
+    });
+    rightList.map((v,k)=>{
       if(v.name==cur){
         v.open=v.open?'':'open';
       }
@@ -49,15 +50,9 @@ export default class Header extends React.Component<any,any> {
       }
     });
     
-    if(theme.name==cur){
-      theme.open=theme.open?'':'open';
-    }
-    else{
-      theme.open='';
-    }
     this.setState({
-      dropList:dropList,
-      theme:theme
+      leftList:leftList,
+      rightList:rightList
     });
     removeClass(document.getElementsByClassName('right-bar')[0],'open');
   };
@@ -78,7 +73,7 @@ export default class Header extends React.Component<any,any> {
   }  
 
   render() {
-    const {name,animate,icon,open,items}=this.state.theme;
+    const {leftList,rightList}=this.state;
     let that=this;
     return (
       <header>
@@ -96,7 +91,13 @@ export default class Header extends React.Component<any,any> {
                     <i className="fa fa-outdent"></i>
                   </a>
                 </li>
-                <DropDown name={name} icon={icon} animate={animate} open={open} items={items} getCur={that.dropDown} />
+                {
+                  leftList.map((v,k)=>{
+                    return(
+                      <YdropDown key={`leftList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
+                    )
+                  })
+                }
               </ul>
               <div className="y-search">
                 <input type="text" placeholder="搜索..." />
@@ -107,9 +108,9 @@ export default class Header extends React.Component<any,any> {
               <ul>
 
                 {
-                  dropList.map((v,k)=>{
+                  rightList.map((v,k)=>{
                     return(
-                      <DropDown key={k} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
+                      <YdropDown key={`rightList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
                     )
                   })
                 }

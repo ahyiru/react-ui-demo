@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 
-import {rightbarTabs as tabs} from '../../models/models';
-import YList from './ylist';
+import Ylist from './ylist';
 
-export default class RightBar extends Component<any,any> {
+export default class YrightBar extends Component<any,any> {
 
   constructor(props){
     super(props);
+    const {tabs}=this.props;
     tabs[0].active='active';
     this.state=({
       tabs:tabs,
@@ -57,7 +56,7 @@ export default class RightBar extends Component<any,any> {
           {
             tabs.map((v,k)=>{
               return(
-                <YList key={`tabpage${k}`} tab={v} />
+                <Ylist key={`tabpage${k}`} tab={v} list={this.props.tabList} />
               )
             })
           }

@@ -2,8 +2,6 @@ import * as React from 'react';
 
 import { Link } from 'react-router';
 
-import RightBar from './rightbar';
-
 import {hasClass,addClass,removeClass} from '../../configs/tools';
 
 /*const slideStyle={
@@ -51,7 +49,7 @@ window.addEventListener('resize',()=>{
 
 // console.log(menu);
 
-export default class Sidebar extends React.Component<any,any> {
+export default class Ysidebar extends React.Component<any,any> {
 
   constructor(props){
     super(props);
@@ -196,47 +194,44 @@ export default class Sidebar extends React.Component<any,any> {
     const that=this;
 
     return (
-      <aside>
-        <section className="y-sidebar">
-          <div className="y-sidebar-wrap">
-            <div className="y-sidebar-title">侧边栏</div>
-            <ul className="y-sidebar-l1">
-              
-              {
-                menu.map((v,k)=>{
-                  return(
-                    <li key={`firstMenu${k}`} className={v.open} onMouseEnter={that.menuMouseEnter.bind(that,v,k)} onMouseLeave={that.menuMouseLeave.bind(that,v,k)}>
-                      <a href={v.url} className={v.selMenu} onClick={that.firstMenuClick.bind(that,v,k)}>
-                        <i className={v.leftIcon}></i>
-                        <p>{v.title}</p>
-                        {!!v.subMenu?<i className={v.rightIcon}></i>:''}
-                      </a>
-                      {!!v.subMenu&&v.subMenu.length>0?
-                        <ul className={v.hover} style={v.toggleSlide}>
-                          {
-                            v.subMenu.map((sv,sk)=>{
-                              return(
-                                <li key={`subMenu${sk}`} onClick={that.subMenuClick.bind(that,k,sk)}>
-                                  <Link to={sv.url} className={sv.selected}>
-                                    <i className={sv.icon}></i>
-                                    <span>{sv.title}</span>
-                                  </Link>
-                                </li>
-                              )
-                            })
-                          }
-                        </ul>
-                      :''}
-                    </li>
-                  )
-                })
-              }
-              
-            </ul>
-          </div>
-        </section>
-        <RightBar />
-      </aside>
+      <section className="y-sidebar">
+        <div className="y-sidebar-wrap">
+          <div className="y-sidebar-title">侧边栏</div>
+          <ul className="y-sidebar-l1">
+            
+            {
+              menu.map((v,k)=>{
+                return(
+                  <li key={`firstMenu${k}`} className={v.open} onMouseEnter={that.menuMouseEnter.bind(that,v,k)} onMouseLeave={that.menuMouseLeave.bind(that,v,k)}>
+                    <a href={v.url} className={v.selMenu} onClick={that.firstMenuClick.bind(that,v,k)}>
+                      <i className={v.leftIcon}></i>
+                      <p>{v.title}</p>
+                      {!!v.subMenu?<i className={v.rightIcon}></i>:''}
+                    </a>
+                    {!!v.subMenu&&v.subMenu.length>0?
+                      <ul className={v.hover} style={v.toggleSlide}>
+                        {
+                          v.subMenu.map((sv,sk)=>{
+                            return(
+                              <li key={`subMenu${sk}`} onClick={that.subMenuClick.bind(that,k,sk)}>
+                                <Link to={sv.url} className={sv.selected}>
+                                  <i className={sv.icon}></i>
+                                  <span>{sv.title}</span>
+                                </Link>
+                              </li>
+                            )
+                          })
+                        }
+                      </ul>
+                    :''}
+                  </li>
+                )
+              })
+            }
+            
+          </ul>
+        </div>
+      </section>
     );
   }
 }

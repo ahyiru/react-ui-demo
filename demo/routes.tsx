@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route, IndexRoute, Redirect, IndexRedirect } from 'react-router';
 // import Base from './components/base/base';
-const Base=require('./components/base/base').default;
+const Base=require('./components/base').default;
 
 import {
   Home,
