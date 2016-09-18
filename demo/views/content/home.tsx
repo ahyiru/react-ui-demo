@@ -1,9 +1,10 @@
 import * as React from 'react';
 
 import EventEmitter from '../../configs/eventEmitter';
+import {fs} from '../../configs/tools';
 
 export default class Home extends React.Component<any,any> {
-
+	refs:any;
 	constructor(props){
     super(props);
     this.state=({
@@ -38,6 +39,7 @@ export default class Home extends React.Component<any,any> {
   }
 
   fullScreen=()=>{
+  	fs(this.refs.fs);
   	this.setState({
   		// current:this.state.current?'':'y-show',
   		fsIcon:this.state.fsIcon=='expand'?'compress':'expand'
@@ -105,7 +107,7 @@ export default class Home extends React.Component<any,any> {
 	      </div>
 	      <div className="y-item">
 	      	<h2>panel</h2>
-	      	<div className={`y-panel ${changeTo}`}>
+	      	<div ref="fs" className={`y-panel ${changeTo}`}>
 	      		<div className="y-panel-header">
 	      			<h4>panel标题栏</h4>
 	      			<div className="plugins">

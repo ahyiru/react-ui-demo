@@ -121,6 +121,40 @@ export const getCurrent=(obj,str,data)=>{
   return obj;
 };
 
+//fullscreen
+export const fs=(element)=>{
+  if(!document.fullscreenElement&&/*!document.msFullscreenElement&&!document.mozFullScreenElement&&*/!document.webkitFullscreenElement){
+    if(element.requestFullscreen){
+      element.requestFullscreen();
+    }
+    else if(element.msRequestFullscreen){
+      element.msRequestFullscreen();
+    }
+    else if(element.mozRequestFullscreen){
+      element.mozRequestFullscreen();
+    }
+    else if(element.webkitRequestFullscreen){
+      element.webkitRequestFullscreen();
+    }
+  }
+  else{
+    if(document.exitFullscreen){
+      document.exitFullscreen();
+    }
+    /*else if(document.msExitFullscreen){
+      document.msExitFullscreen();
+    }
+    else if(document.mozCanselFullscreen){
+      document.mozCanselFullscreen();
+    }*/
+    else if(document.webkitExitFullscreen){
+      document.webkitExitFullscreen();
+    }
+  }
+};
+/*let ele=document.getElementsByClassName('fs')[0];
+fs(ele);*/
+
 
 
 

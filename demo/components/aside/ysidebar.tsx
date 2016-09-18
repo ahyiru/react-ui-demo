@@ -210,7 +210,7 @@ export default class Ysidebar extends React.Component<any,any> {
                     <a href={v.url} className={v.selMenu} onClick={that.firstMenuClick.bind(that,v,k)}>
                       <i className={v.leftIcon}></i>
                       <p>{v.title}</p>
-                      {!!v.subMenu?<i className={v.rightIcon}></i>:''}
+                      {!!v.subMenu?<i className={v.rightIcon}></i>:<span></span>}
                     </a>
                     {!!v.subMenu&&v.subMenu.length>0?
                       <ul className={v.hover} style={v.toggleSlide}>
