@@ -50,10 +50,11 @@ window.addEventListener('resize',()=>{
 // console.log(menu);
 
 export default class Ysidebar extends React.Component<any,any> {
-
+  timer:number;
   constructor(props){
     super(props);
     const {menu}=this.props;
+    this.timer=0;
     this.state=({
       menu:menu
     });
@@ -157,23 +158,26 @@ export default class Ysidebar extends React.Component<any,any> {
 
   menuMouseEnter=(v,k)=>{
     if(hasClass(document.body,'y-collapse')){
-      addClass(document.getElementsByClassName('y-sidebar')[0],'open');
-      let newMenu=this.state.menu;
-      newMenu.map((val,key)=>{
-        if(k==key){
-          val.hover='hover';
-        }
-        else{
-          val.hover='';
-        }
-      });
-      this.setState({
-        menu:newMenu
-      });
+      this.timer=setTimeout(()=>{
+        addClass(document.getElementsByClassName('y-sidebar')[0],'open');
+        let newMenu=this.state.menu;
+        newMenu.map((val,key)=>{
+          if(k==key){
+            val.hover='hover';
+          }
+          else{
+            val.hover='';
+          }
+        });
+        this.setState({
+          menu:newMenu
+        });
+      },200);
     }
   };
   menuMouseLeave=(v,k)=>{
     if(hasClass(document.body,'y-collapse')){
+      clearTimeout(this.timer);
       removeClass(document.getElementsByClassName('y-sidebar')[0],'open');
       let newMenu=this.state.menu;
       newMenu.map((val,key)=>{

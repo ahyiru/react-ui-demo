@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import YEcharts from './yEcharts';
+import Yecharts from './yEcharts';
 
 import {chart1,chart2} from '../../../models/echarts';
 
@@ -70,11 +70,11 @@ export default class Echarts extends React.Component<ecProps,any> {
       <div className="y-items">
       	<div className="y-item">
 	        <span>Echarts</span>
-	        <YEcharts ref='echarts_react' option={this.state.option} style={{height: 300}} />
+	        <Yecharts ref='echarts_react' option={this.state.option} style={{height: 300}} />
 	      </div>
 	      <div className="y-item">
 	        <span>Echart1</span>
-	        <YEcharts option={this.state.option2} style={{height: 300}} onChartReady={this.onChartReady} onEvents={onEvents} />
+	        <Yecharts option={this.state.option2} style={{height: 300}} onChartReady={this.onChartReady} onEvents={onEvents} />
 	      </div>
       </div>
     )

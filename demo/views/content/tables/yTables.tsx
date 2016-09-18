@@ -52,6 +52,7 @@ export default class yTables extends React.Component<any,any> {
   render() {
   	let that=this;
   	const {editable,editState,selected}=this.state;
+    console.log('1');
     return (
       <div>
       	<div className="ytable-header">
