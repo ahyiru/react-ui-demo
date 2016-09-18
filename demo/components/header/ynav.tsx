@@ -76,53 +76,44 @@ export default class Ynav extends React.Component<any,any> {
     const {leftList,rightList}=this.state;
     let that=this;
     return (
-      <header>
-        <div className="y-header">
-          <section className="y-brand">
-            <a href="javascript:;" className="brand"> 
-              <h4 className="logo"></h4> <span><b>React</b> UI Demo</span>   
-            </a>
-          </section>
-          <nav className="y-nav">
-            <article className="y-nav-wrap y-nav-left">
-              <ul className="y-left">
-                <li className="sidebar-collapse" onClick={this.sideBar}>
-                  <a href="javascript:;">
-                    <i className="fa fa-outdent"></i>
-                  </a>
-                </li>
-                {
-                  leftList.map((v,k)=>{
-                    return(
-                      <YdropDown key={`leftList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
-                    )
-                  })
-                }
-              </ul>
-              <div className="y-search">
-                <input type="text" placeholder="搜索..." />
-                <i className="fa fa-search"></i>
-              </div>
-            </article>
-            <article className="y-nav-wrap y-nav-right">
-              <ul>
+      <nav className="y-nav">
+        <article className="y-nav-wrap y-nav-left">
+          <ul className="y-left">
+            <li className="sidebar-collapse" onClick={this.sideBar}>
+              <a href="javascript:;">
+                <i className="fa fa-outdent"></i>
+              </a>
+            </li>
+            {
+              leftList.map((v,k)=>{
+                return(
+                  <YdropDown key={`leftList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
+                )
+              })
+            }
+          </ul>
+          <div className="y-search">
+            <input type="text" placeholder="搜索..." />
+            <i className="fa fa-search"></i>
+          </div>
+        </article>
+        <article className="y-nav-wrap y-nav-right">
+          <ul>
 
-                {
-                  rightList.map((v,k)=>{
-                    return(
-                      <YdropDown key={`rightList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
-                    )
-                  })
-                }
+            {
+              rightList.map((v,k)=>{
+                return(
+                  <YdropDown key={`rightList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
+                )
+              })
+            }
 
-                <li className="toggle-right-sidebar" onClick={this.rightBar}>
-                  <a href="javascript:;"><i className="fa fa-hand-o-right"></i></a>
-                </li>
-              </ul> 
-            </article>
-          </nav>
-        </div>
-      </header>
+            <li className="toggle-right-sidebar" onClick={this.rightBar}>
+              <a href="javascript:;"><i className="fa fa-hand-o-right"></i></a>
+            </li>
+          </ul> 
+        </article>
+      </nav>
     );
   }
 }
