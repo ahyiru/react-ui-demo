@@ -1,84 +1,37 @@
 import * as React from 'react';
 
 import EventEmitter from '../../configs/eventEmitter';
-import {fs} from '../../configs/tools';
+
+import Ydnd from './ydnd';
+import Ypanel from './ypanel';
+
+let panel={
+  title:'panel标题栏',
+  defaultTheme:'',
+  plugins:{
+    pCheckbox:true,
+    pSelTheme:true,
+    pRefrash:true,
+    pCollapse:true,
+    pFullscreen:true,
+    pClose:true
+  }
+}
 
 export default class Home extends React.Component<any,any> {
-	refs:any;
 	constructor(props){
     super(props);
-    this.state=({
-    	current:'',
-    	changeTo:'default',
-    	collapse:200,
-    	collapseIcon:'minus',
-    	fsIcon:'expand',
-    	loadingIcon:'refresh',
-    	checkBox:true
-    })
-  }
+  };
 
-  selectTheme=()=>{
-  	this.setState({
-  		current:this.state.current?'':'y-show'
-  	})
-  }
-
-  changeTheme=(color)=>{
-  	this.setState({
-  		current:this.state.current?'':'y-show',
-  		changeTo:color
-  	})
-  }
-
-  collapse=()=>{
-  	this.setState({
-  		collapse:this.state.collapse?0:200,
-  		collapseIcon:this.state.collapseIcon=='minus'?'plus':'minus'
-  	})
-  }
-
-  fullScreen=()=>{
-  	fs(this.refs.fs);
-  	this.setState({
-  		// current:this.state.current?'':'y-show',
-  		fsIcon:this.state.fsIcon=='expand'?'compress':'expand'
-  	})
-  }
-
-  closeItem=()=>{
-  	this.setState({
-  		
-  	})
-  }
-
-  switchChk=()=>{
-  	this.setState({
-  		checkBox:!this.state.checkBox
-  	})
-  }
+  componentDidMount(){
+    
+  };
 
   showNotify=(direction)=>{
   	EventEmitter.dispatch('subNotify',direction);
-  }
-
-  loading=()=>{
-  	let load=0,that=this;
-  	clearTimeout(load);
-  	this.setState({
-  		loading:true
-  	});
-  	load=setTimeout(()=>{
-  		that.setState({
-	  		loading:false
-	  	});
-  	},3000);
-  }
+  };
 
   render() {
-
-  	const {current,changeTo,collapse,collapseIcon,fsIcon,loadingIcon,loading,checkBox}=this.state;
-
     return (
     	<div className="y-items">
 	    	<div className="y-item">
@@ -107,32 +60,9 @@ export default class Home extends React.Component<any,any> {
 	      </div>
 	      <div className="y-item">
 	      	<h2>panel</h2>
-	      	<div ref="fs" className={`y-panel ${changeTo}`}>
-	      		<div className="y-panel-header">
-	      			<h4>panel标题栏</h4>
-	      			<div className="plugins">
-	      				<section className="y-left"><input type="checkbox" className="y-switch" checked={checkBox} onChange={this.switchChk} /></section>
-	      				<div className="select-theme">
-	      					<i onClick={this.selectTheme}></i>
-	      					<ul className={`fade-in-down ${current}`}>
-	      						<li className="bg-default" onClick={this.changeTheme.bind(this,'default')}></li>
-	      						<li className="bg-success" onClick={this.changeTheme.bind(this,'success')}></li>
-	      						<li className="bg-info" onClick={this.changeTheme.bind(this,'info')}></li>
-	      						<li className="bg-warning" onClick={this.changeTheme.bind(this,'warning')}></li>
-	      						<li className="bg-danger" onClick={this.changeTheme.bind(this,'danger')}></li>
-	      					</ul>
-	      				</div> 
-		      			<div><i className={`fa fa-${loadingIcon}`} onClick={this.loading}></i></div>
-		      			<div><i className={`fa fa-${collapseIcon}`} onClick={this.collapse}></i></div>
-		      			<div><i className={`fa fa-${fsIcon}`} onClick={this.fullScreen}></i></div>
-		      			<div><i className="fa fa-times" onClick={this.closeItem}></i></div>
-		      		</div>
-	      		</div>
-	      		<div className={'y-panel-body '+(checkBox?'bg-info':'bg-default')} style={{height:collapse}}>
-	      			
-	      		</div>
-	      		{loading?<div className="y-loader"><figure className="y-loading"></figure></div>:''}
-	      	</div>
+	      	<Ydnd canDrop={false}>
+            <Ypanel panelTitle={panel.title} defaultTheme={panel.defaultTheme} {...panel.plugins} />
+          </Ydnd>
 	      </div>
 	      <div className="y-item">
 	      	<h2>notification</h2>

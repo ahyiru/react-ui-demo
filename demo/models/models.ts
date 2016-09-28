@@ -136,7 +136,8 @@ export const dropList={
     icon:'fa fa-cog',
     animate:'fade-in-up',
     open:'',
-    items:['header','branding','sidebar','active']
+    // items:['header','branding','sidebar','active']
+    items:['头部','LOGO','侧边栏','选中']
   }],
   rightList:[{
     name:'msg',
@@ -294,6 +295,29 @@ export const tableData={
     [6,'r61','r62','r63','r64']
   ]
 };
+
+//projectList
+export const projectList=[{
+  url:'#/',
+  title:'project1',
+  icon:'fa fa-user'
+},{
+  url:'#/',
+  title:'project2',
+  icon:'fa fa-user'
+},{
+  url:'#/',
+  title:'project3',
+  icon:'fa fa-user'
+},{
+  url:'#/',
+  title:'project4',
+  icon:'fa fa-user'
+},{
+  url:'#/',
+  title:'project5',
+  icon:'fa fa-user'
+}];
 
 
 

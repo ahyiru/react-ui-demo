@@ -3,6 +3,7 @@ const echarts=require('echarts');
 
 export default class Yecharts extends React.Component<any,any> {
   refs:any;
+  yresize:any;
   static propTypes={
     option: React.PropTypes.object.isRequired,
     style: React.PropTypes.object,
@@ -14,6 +15,7 @@ export default class Yecharts extends React.Component<any,any> {
   };
   constructor(props){
     super(props);
+    this.yresize;
   }
   componentDidMount(){
     let echartObj=this.renderEchartDom();
@@ -28,15 +30,17 @@ export default class Yecharts extends React.Component<any,any> {
     if(typeof this.props.onChartReady==='function'){
       this.props.onChartReady(echartObj);
     }
-    window.addEventListener('resize',()=>{
+    this.yresize=()=>{
       echartObj.resize();
-    });
+    }
+    window.addEventListener('resize',this.yresize,false);
   };
   componentDidUpdate() {
     this.renderEchartDom();
   };
   componentWillUnmount() {
     echarts.dispose(this.refs.echartsDom);
+    window.removeEventListener('resize',this.yresize,false);
   };
   renderEchartDom=()=>{
     let echartObj=this.getEchartsInstance();

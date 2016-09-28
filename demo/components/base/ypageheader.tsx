@@ -16,10 +16,10 @@ export default class YpageHeader extends React.Component<any,any> {
             <li>
               <a href="javascript:;"><i className="fa fa-home"></i> {data.title}</a>
             </li>
-            <li className={data.level<2&&'y-hide'}>
+            <li className={data.level<2?'y-hide':''}>
               <a href="javascript:;">{data.subTitle}</a>
             </li>
-            <li className={data.level<3&&'y-hide'}>
+            <li className={data.level<3?'y-hide':''}>
               <a href="javascript:;">{data.subTitle}</a>
             </li>
           </ul>

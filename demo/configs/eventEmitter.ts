@@ -17,8 +17,7 @@ const EventEmitter={
   unSubscribe:function(event){
     if(this._events&&this._events[event]){
       delete this._events[event]; //事件解绑
-      console.log('解绑成功！');
-   }
+    }
   }
 };
 export default EventEmitter;

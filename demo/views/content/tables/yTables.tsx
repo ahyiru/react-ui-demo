@@ -83,7 +83,7 @@ export default class yTables extends React.Component<any,any> {
 		      				)
 		      			})
 		      		}
-		      		{editable&&<th colSpan="2">操作</th>}
+		      		{editable?<th colSpan={2}>操作</th>:''}
 	      		</tr>
 	      	</thead>
 	      	<tbody>

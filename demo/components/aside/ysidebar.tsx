@@ -56,7 +56,9 @@ export default class Ysidebar extends React.Component<any,any> {
     const {menu}=this.props;
     this.timer=0;
     this.state=({
-      menu:menu
+      menu:menu,
+      icon1:'minus',
+      icon2:'minus'
     });
 
     //resize
@@ -191,8 +193,28 @@ export default class Ysidebar extends React.Component<any,any> {
     }
   };
 
-  render() {
+  gotoProject=(k)=>{
 
+  };
+
+  collapseList=(id)=>{
+    if(id==1){
+      this.setState({
+        collapsed1:this.state.collapsed1?'':'collapsed',
+        icon1:this.state.icon1=='plus'?'minus':'plus'
+      });
+    }
+    else if(id==2){
+      this.setState({
+        collapsed2:this.state.collapsed2?'':'collapsed',
+        icon2:this.state.icon2=='plus'?'minus':'plus'
+      });
+    }
+  };
+
+  render() {
+    const {projectList}=this.props;
+    
     const {menu}=this.state;
 
     const that=this;
@@ -200,40 +222,70 @@ export default class Ysidebar extends React.Component<any,any> {
     return (
       <section className="y-sidebar">
         <div className="y-sidebar-wrap">
-          <div className="y-sidebar-title">侧边栏</div>
-          <ul className="y-sidebar-l1">
-            
-            {
-              menu.map((v,k)=>{
-                return(
-                  <li key={`firstMenu${k}`} className={v.open} onMouseEnter={that.menuMouseEnter.bind(that,v,k)} onMouseLeave={that.menuMouseLeave.bind(that,v,k)}>
-                    <a href={v.url} className={v.selMenu} onClick={that.firstMenuClick.bind(that,v,k)}>
-                      <i className={v.leftIcon}></i>
-                      <p>{v.title}</p>
-                      {!!v.subMenu?<i className={v.rightIcon}></i>:<span></span>}
-                    </a>
-                    {!!v.subMenu&&v.subMenu.length>0?
-                      <ul className={v.hover} style={v.toggleSlide}>
-                        {
-                          v.subMenu.map((sv,sk)=>{
-                            return(
-                              <li key={`subMenu${sk}`} onClick={that.subMenuClick.bind(that,k,sk)}>
-                                <Link to={sv.url} className={sv.selected}>
-                                  <i className={sv.icon}></i>
-                                  <span>{sv.title}</span>
-                                </Link>
-                              </li>
-                            )
-                          })
-                        }
-                      </ul>
-                    :''}
-                  </li>
-                )
-              })
-            }
-            
-          </ul>
+          <div className="y-collapse-wrap"></div>
+          <div className="y-sidebar-list">
+            <div className="y-sidebar-title" onClick={this.collapseList.bind(this,'1')}>
+              <i className={`fa fa-${this.state.icon1}`}></i>
+              <h4>导航栏</h4>
+            </div>
+            <ul className={`y-sidebar-l1 ${this.state.collapsed1}`}>
+              
+              {
+                menu.map((v,k)=>{
+                  return(
+                    <li key={`firstMenu${k}`} className={v.open} onMouseEnter={that.menuMouseEnter.bind(that,v,k)} onMouseLeave={that.menuMouseLeave.bind(that,v,k)}>
+                      <a href={v.url} className={v.selMenu} onClick={that.firstMenuClick.bind(that,v,k)}>
+                        <i className={v.leftIcon}></i>
+                        <p>{v.title}</p>
+                        {!!v.subMenu?<i className={v.rightIcon}></i>:<span></span>}
+                      </a>
+                      {!!v.subMenu&&v.subMenu.length>0?
+                        <ul className={v.hover} style={v.toggleSlide}>
+                          {
+                            v.subMenu.map((sv,sk)=>{
+                              return(
+                                <li key={`subMenu${sk}`} onClick={that.subMenuClick.bind(that,k,sk)}>
+                                  <Link to={sv.url} className={sv.selected}>
+                                    <i className={sv.icon}></i>
+                                    <span>{sv.title}</span>
+                                  </Link>
+                                </li>
+                              )
+                            })
+                          }
+                        </ul>
+                      :''}
+                    </li>
+                  )
+                })
+              }
+              
+            </ul>
+          </div>
+
+          {!!projectList&&projectList.length>0?
+            <div className="y-sidebar-list">
+              <div className="y-sidebar-title" onClick={this.collapseList.bind(this,'2')}>
+                <i className={`fa fa-${this.state.icon2}`}></i>
+                <h4>项目列表</h4>
+              </div>
+              <ul className={`y-sidebar-l1 ${this.state.collapsed2}`}>
+                {
+                  projectList.map((v,k)=>{
+                    return(
+                      <li key={`project${k}`}>
+                        <a href={v.url} onClick={that.gotoProject.bind(that,k)}>
+                          <i className={v.icon}></i>
+                          <p>{v.title}</p>
+                          <span></span>
+                        </a>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          :''}
         </div>
       </section>
     );

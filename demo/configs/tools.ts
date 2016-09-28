@@ -105,6 +105,7 @@ export const getCurrent=(obj,str,data)=>{
         if(v.url==str){
           data.title=v.title;
           data.subTitle='';
+          data.level=1;
 
           v.selMenu='active';
         }

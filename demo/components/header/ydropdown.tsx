@@ -9,7 +9,7 @@ export default class YdropDown extends React.Component<any,any> {
     });*/
   };
 
-  toggleDrop=(e:Event)=>{
+  toggleDrop=(e)=>{
     e.stopPropagation();
     this.props.getCur(this.props.name);
     /*this.setState({
