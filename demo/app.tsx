@@ -8,6 +8,8 @@ import 'font-awesome/css/font-awesome.css';
 
 import './styles/y-style.less';
 
+import './styles/theme.less';
+
 export default (
   <Router history={hashHistory} routes={routes}/>
 );

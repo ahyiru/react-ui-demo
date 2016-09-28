@@ -65,6 +65,7 @@ var move=function(ev){
 	ele.parentNode.style.width='auto';
 	ele.parentNode.style.height='auto';
   //
+  ele.style.transition='none';
   ele.style.width=ele.offsetWidth+'px';
   ele.style.height=ele.offsetHeight+'px';
 	ele.style.position='absolute';
@@ -127,6 +128,7 @@ var mousedown=function(e){
 		  //
 			x=e.pageX-ele.offsetLeft;
 			y=e.pageY-ele.offsetTop;
+
 			document.addEventListener('mousemove',move,false);
 		}
 	}
@@ -143,15 +145,23 @@ var mouseup=function(e){
 		//
 		removeClass(ele,'ydragging');
 		//
-		ele.style.position='relative';
-		ele.style.left=0;
-		ele.style.top=0;
-		ele.style.zIndex='auto';
-
-		var newNode=ele.cloneNode(true);
-		droparea.parentNode.replaceChild(newNode,droparea);
-		newNode.style.width='100%';
-		ele.parentNode.removeChild(ele);
+		ele.style.transition='all .3s ease-in-out';// 放在定位top,left上面 y??
+		ele.style.top=droparea.offsetTop+'px';
+		ele.style.left=droparea.offsetLeft+'px';
+		//
+		setTimeout(function(){
+			var newNode=ele.cloneNode(true);
+			droparea.parentNode.replaceChild(newNode,droparea);
+			//
+			newNode.style.position='relative';
+			newNode.style.left=0;
+			newNode.style.top=0;
+			newNode.style.width='100%';
+			newNode.style.zIndex='auto';
+			//
+			ele.parentNode.removeChild(ele);
+		},308);
+		
 	}
 	else{
 		//
@@ -167,11 +177,9 @@ var ydnd=document.getElementsByClassName('ydnd');
 var ydrop=document.getElementsByClassName('ydrop');
 var ydrag=document.getElementsByClassName('ydrag');
 for(var i=0,l=ydrag.length;i<l;i++){
-	// ydnd[i].style.position='relative';
 	ydrop[i].style.position='relative';
 	ydrop[i].style.width='100%';
-	ydrop[i].style.transition='none';
-
+	// ydrop[i].style.transition='none';
 	ydrag[i].style.cursor='move';
 };
 
