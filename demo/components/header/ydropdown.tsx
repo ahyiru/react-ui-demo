@@ -21,10 +21,17 @@ export default class YdropDown extends React.Component<any,any> {
     const {name,icon,animate,msg,open,items}=this.props;
     return (
       <li className={`y-dropdown ${name} ${open}`} onClick={this.toggleDrop}>
-        <a href="javascript:;">
-          <i className={icon}></i>
-          <span className={msg?`y-badge`:`y-hide`}>{msg}</span>
-        </a>
+        {
+          name=='profile'?
+          <a href="javascript:;">
+            <span className="username">admin</span>
+            <img src={require('../../styles/images/usr.jpg')} />
+          </a>:
+          <a href="javascript:;">
+            <i className={icon}></i>
+            <span className={msg?`y-badge`:`y-hide`}>{msg}</span>
+          </a>
+        }
         <div className={`y-dropdown-menu `+(name==`theme`?`left `:``)+`${animate}`}>
           <article className="y-lists">
             <h4 className="y-list-title">{name}</h4>

@@ -10,7 +10,8 @@ export default class Ynav extends React.Component<any,any> {
     super(props);
     this.state=({
       leftList:this.props.dropList.leftList,
-      rightList:this.props.dropList.rightList
+      rightList:this.props.dropList.rightList,
+      searchFlag:this.props.dropList.searchFlag
     });
 
     window.addEventListener('click',(e)=>{
@@ -73,7 +74,7 @@ export default class Ynav extends React.Component<any,any> {
   }  
 
   render() {
-    const {leftList,rightList}=this.state;
+    const {leftList,rightList,searchFlag}=this.state;
     let that=this;
     return (
       <nav className="y-nav">
@@ -92,10 +93,14 @@ export default class Ynav extends React.Component<any,any> {
               })
             }
           </ul>
-          <div className="y-search">
-            <input type="text" placeholder="搜索..." />
-            <i className="fa fa-search"></i>
-          </div>
+          {
+            searchFlag?
+              <div className="y-search">
+                <input type="text" placeholder="搜索..." />
+                <i className="fa fa-search"></i>
+              </div>
+            :''
+          }
         </article>
         <article className="y-nav-wrap y-nav-right">
           <ul>
@@ -107,7 +112,7 @@ export default class Ynav extends React.Component<any,any> {
                 )
               })
             }
-
+            
             <li className="toggle-right-sidebar" onClick={this.rightBar}>
               <a href="javascript:;"><i className="fa fa-hand-o-right"></i></a>
             </li>

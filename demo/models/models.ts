@@ -131,6 +131,7 @@ export const notifyList=[{
 
 //dropList
 export const dropList={
+  searchFlag:true,
   leftList:[{
     name:'theme',
     icon:'fa fa-cog',

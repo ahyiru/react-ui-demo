@@ -1,8 +1,8 @@
 /*ydnd*/
 
-`blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu`.split(' ').map(function(v,k){
+/*`blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu`.split(' ').map(function(v,k){
 	// var str=str.replace(/\r\n/ig,','); 
-});
+});*/
 
 // start className
 var hasClass=(target,cname)=>{

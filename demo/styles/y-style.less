@@ -119,7 +119,10 @@ body{
 					}
 					>span{
 						display:block;
-						margin:0 10px 0 50px;
+						font-size:16px;
+						font-weight:500;
+						// margin:0 10px 0 50px;
+						margin:0 10px 0 20px;
 					}
 				}
 			}
@@ -142,15 +145,66 @@ body{
 					padding:0;
 					height:45px;
 					line-height:45px;
-					>ul>li{
-						float:left;
-						width:48px;
-						text-align:center;
-						>a:hover{
-							>i{
-								color:#ff7f50;
-								transform:scale(1.3,1.3);
-								transition:transform .2s;
+					>ul{
+						>li{
+							float:left;
+							width:48px;
+							height:45px;
+							text-align:center;
+							position:relative;
+							font-size:14px;
+							>a{
+								display:inline-block;
+								width:100%;
+								&:hover{
+									>i{
+										color:#ff7f50;
+										transform:scale(1.3,1.3);
+										transition:transform .2s;
+									}
+								}
+							}
+							&.profile{
+								width:auto;
+								padding-left:10px;
+								// font-size:0;
+								>a{
+									// font-size:14px;
+									height:45px;
+									&:hover{
+										color:#e0e0e0;
+										>.username,>img,&:after{
+											transform:scale(1.1,1.1);
+											transition:transform .2s;
+										}
+									}
+									>.username{
+										font-size:15px;
+										font-weight:500;
+										float:left;
+									}
+									>img{
+										margin:7px 10px 6px 10px;
+										width:32px;
+										height:32px;
+										border-radius:100%;
+									}
+									&:after{
+										content:'';
+										position:absolute;
+										background-color:#27c24c;
+										top:auto;
+									  right:9px;
+									  bottom:8px;
+									  left:auto;
+									  width:9px;
+									  height:9px;
+									  border-style:solid;
+									  border-width:2px;
+									  border-radius:100%;
+									  border-color:#ffffff;
+									}
+								}
 							}
 						}
 					}
@@ -192,12 +246,10 @@ body{
 						}
 					}
 					.y-dropdown{
-						position:relative;
-						font-size:14px;
 						>.y-dropdown-menu{
 							position:absolute;
 							right:0;
-							top:43px;
+							top:50px;
 							width:200px;
 							display:none;
 							background-color:#777;

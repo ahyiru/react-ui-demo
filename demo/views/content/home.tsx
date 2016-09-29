@@ -20,7 +20,20 @@ let panel={
     pFullscreen:true,
     pClose:true
   }
-}
+};
+let dragPanel={
+  title1:'可拖放panel1',
+  title2:'可拖放panel2',
+  defaultTheme:'',
+  plugins:{
+    pCheckbox:false,
+    pSelTheme:false,
+    pRefrash:false,
+    pCollapse:false,
+    pFullscreen:false,
+    pClose:false
+  }
+};
 
 export default class Home extends React.Component<any,any> {
 	constructor(props){
@@ -36,6 +49,13 @@ export default class Home extends React.Component<any,any> {
   		removeClass(document.body,v);
   		if(theme==v){
   			addClass(document.body,v);
+  			try{
+  				localStorage.setItem('theme',v);
+				}
+				catch(e){
+					console.log('你处于无痕模式!');
+					return false;
+				}
   		}
   	});
   };
@@ -49,7 +69,7 @@ export default class Home extends React.Component<any,any> {
     	<div className="y-items">
     		<div className="y-item">
 	      	<h2>主题</h2>
-	      	<button className="ybtn ybtn-default mr" onClick={this.changeTheme.bind(this,'')}>默认</button>
+	      	<button className="ybtn ybtn-default mr" onClick={this.changeTheme.bind(this,'default')}>默认</button>
 	      	<button className="ybtn ybtn-success mr" onClick={this.changeTheme.bind(this,'theme1')}>清新</button>
           <button className="ybtn ybtn-warning mr" onClick={this.changeTheme.bind(this,'theme2')}>淡雅</button>
           <button className="ybtn ybtn-danger mr" onClick={this.changeTheme.bind(this,'theme3')}>浅墨</button>
@@ -81,9 +101,20 @@ export default class Home extends React.Component<any,any> {
 	      </div>
 	      <div className="y-item">
 	      	<h2>panel</h2>
-	      	<Ydnd canDrop={false}>
-            <Ypanel panelTitle={panel.title} defaultTheme={panel.defaultTheme} {...panel.plugins} />
+	      	<Ydnd>
+            <Ypanel canDrag={false} panelTitle={panel.title} defaultTheme={panel.defaultTheme} {...panel.plugins} />
           </Ydnd>
+	      </div>
+	      <div className="y-item">
+	      	<h2>可拖放panel</h2>
+	      	<div>
+		      	<Ydnd>
+	            <Ypanel canDrag={true} panelTitle={dragPanel.title1} defaultTheme={dragPanel.defaultTheme} {...dragPanel.plugins} />
+	          </Ydnd>
+	          <Ydnd>
+	            <Ypanel canDrag={true} panelTitle={dragPanel.title2} defaultTheme={dragPanel.defaultTheme} {...dragPanel.plugins} />
+	          </Ydnd>
+          </div>
 	      </div>
 	      <div className="y-item">
 	      	<h2>notification</h2>

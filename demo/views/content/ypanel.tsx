@@ -13,7 +13,8 @@ export default class Ypanel extends React.Component<any,any> {
     	collapseIcon:'minus',
     	fsIcon:'expand',
     	loadingIcon:'refresh',
-    	checkBox:true
+    	checkBox:true,
+      canDrag:this.props.canDrag?'ydrag':''
     });
   };
 
@@ -74,11 +75,11 @@ export default class Ypanel extends React.Component<any,any> {
   };
 
   render() {
-  	const {current,changeTo,collapse,collapseIcon,fsIcon,loadingIcon,isLoading,checkBox}=this.state;
+  	const {current,changeTo,collapse,collapseIcon,fsIcon,loadingIcon,isLoading,checkBox,canDrag}=this.state;
     const {panelTitle,pCheckbox,pSelTheme,pRefrash,pCollapse,pFullscreen,pClose}=this.props;
     return (
     	<div ref="fs" className={`y-panel ydrop ${changeTo}`}>
-    		<div className="y-panel-header ydrag">
+    		<div className={`y-panel-header ${canDrag}`}>
     			<h4>{panelTitle}</h4>
     			<div className="plugins">
     				{pCheckbox?<div><input type="checkbox" className="y-switch" checked={checkBox} onChange={this.switchChk} /></div>:''}
