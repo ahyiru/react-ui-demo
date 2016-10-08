@@ -172,8 +172,8 @@ body{
 									// font-size:14px;
 									height:45px;
 									&:hover{
-										color:#e0e0e0;
-										>.username,>img,&:after{
+										color:#eee;
+										>.username,>img,&::after{
 											transform:scale(1.1,1.1);
 											transition:transform .2s;
 										}
@@ -189,20 +189,20 @@ body{
 										height:32px;
 										border-radius:100%;
 									}
-									&:after{
+									&::after{
 										content:'';
 										position:absolute;
-										background-color:#27c24c;
+										background-color:#ff7f50;
 										top:auto;
-									  right:9px;
+									  right:8px;
 									  bottom:8px;
 									  left:auto;
-									  width:9px;
-									  height:9px;
+									  width:10px;
+									  height:10px;
 									  border-style:solid;
 									  border-width:2px;
 									  border-radius:100%;
-									  border-color:#ffffff;
+									  border-color:#23b7e5;
 									}
 								}
 							}
@@ -1379,7 +1379,8 @@ body{
 		}
 	}
 	.y-panel-body{
-		min-height:200px;
+		height:200px;
+		overflow:auto;
 		background-color:#24cbe5;
 		border-bottom-left-radius:4px;
 		border-bottom-right-radius:4px;
@@ -1733,7 +1734,7 @@ body{
 		top:50%;
 		transform:translate(-50%,-50%) rotate(165deg);
 		margin:0;
-		&:before,&:after{
+		&::before,&::after{
 			content:'';
 			position:absolute;
 			top:50%;
@@ -1744,10 +1745,10 @@ body{
 			border-radius:@thickness/2;
 			transform:translate(-50%,-50%);
 		}
-		&:before{
+		&::before{
 			animation:before 1.5s infinite;
 		}
-		&:after{
+		&::after{
 			animation:after 1.5s infinite;
 		}
 	}

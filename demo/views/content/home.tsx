@@ -7,7 +7,7 @@ import {addClass,removeClass} from '../../configs/tools';
 import Ydnd from './ydnd';
 import Ypanel from './ypanel';
 
-let themePkg=['default','theme1','theme2','theme3','theme4'];
+let themePkg=['default-theme','theme1','theme2','theme3','theme4'];
 
 let panel={
   title:'panel标题栏',
@@ -69,7 +69,7 @@ export default class Home extends React.Component<any,any> {
     	<div className="y-items">
     		<div className="y-item">
 	      	<h2>主题</h2>
-	      	<button className="ybtn ybtn-default mr" onClick={this.changeTheme.bind(this,'default')}>默认</button>
+	      	<button className="ybtn ybtn-default mr" onClick={this.changeTheme.bind(this,'default-theme')}>默认</button>
 	      	<button className="ybtn ybtn-success mr" onClick={this.changeTheme.bind(this,'theme1')}>清新</button>
           <button className="ybtn ybtn-warning mr" onClick={this.changeTheme.bind(this,'theme2')}>淡雅</button>
           <button className="ybtn ybtn-danger mr" onClick={this.changeTheme.bind(this,'theme3')}>浅墨</button>

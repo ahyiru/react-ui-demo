@@ -80,9 +80,9 @@ module.exports = {
         removeStyleLinkTypeAttributes: true,
       }
     }),
-    new webpack.ProvidePlugin({
+    /*new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
-    })
+    })*/
   ],
 };

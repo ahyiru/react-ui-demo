@@ -34,5 +34,10 @@ module.exports = merge(webpackConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),
+    /*new webpack.optimize.CommonsChunkPlugin({ //合并公共代码
+      name:'common',
+      filename:'js/common.js',
+      chunks:['index','detail']
+    }),*/
   ],
 });

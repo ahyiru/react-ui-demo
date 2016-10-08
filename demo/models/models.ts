@@ -211,7 +211,7 @@ export const dropList={
     }]
   },{
     name:'profile',
-    icon:'fa fa-user',
+    icon:require('../styles/images/usr.jpg'),
     animate:'fade-in-right',
     msg:'4',
     open:'',

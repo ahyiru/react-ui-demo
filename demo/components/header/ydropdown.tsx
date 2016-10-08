@@ -25,7 +25,7 @@ export default class YdropDown extends React.Component<any,any> {
           name=='profile'?
           <a href="javascript:;">
             <span className="username">admin</span>
-            <img src={require('../../styles/images/usr.jpg')} />
+            <img src={icon} />
           </a>:
           <a href="javascript:;">
             <i className={icon}></i>
