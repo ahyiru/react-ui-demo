@@ -3,6 +3,8 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var appName=require('./package').name;
 
+var src='/demo';
+
 module.exports = {
 
   /*//https://webpack.github.io/docs/webpack-dev-server.html#webpack-dev-server-cli
@@ -16,7 +18,7 @@ module.exports = {
   devtool: 'source-map',*/
 
   entry: {
-    app: [__dirname + '/demo/index']
+    app: [__dirname + src + '/index']
   },
   output: {
     // path.join 路径结合、合并.
@@ -27,7 +29,7 @@ module.exports = {
   },
   resolve: {
     root: [
-      __dirname + '/demo',
+      __dirname + src,
       __dirname + '/node_modules',
       __dirname,
     ],
@@ -67,8 +69,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title:appName,
-      template: __dirname + '/demo/index.html',
-      favicon: __dirname + '/demo/favicon.ico',
+      template: __dirname + src + '/index.html',
+      favicon: __dirname + src + '/favicon.ico',
       inject: false,
       minify: {
         html5: true,

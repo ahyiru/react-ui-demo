@@ -6,6 +6,8 @@ var https=require('https');
 var app = express();
 var compiler = webpack(webpackConfig);
 
+var PORT=8000;
+
 app.use(require('webpack-dev-middleware')(compiler, {
 	// publicPath: webpackConfig.output.publicPath,
   noInfo: true,
@@ -16,7 +18,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.set('port', process.env.PORT || 8001);
+app.set('port', process.env.PORT || PORT);
 
 //test
 /*app.get('/api/test',(req,res)=>{

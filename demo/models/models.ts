@@ -299,23 +299,23 @@ export const tableData={
 
 //projectList
 export const projectList=[{
-  url:'#/',
+  url:'http://localhost:8001/',
   title:'project1',
   icon:'fa fa-user'
 },{
-  url:'#/',
+  url:'http://localhost:8002/',
   title:'project2',
   icon:'fa fa-user'
 },{
-  url:'#/',
+  url:'http://localhost:8003/',
   title:'project3',
   icon:'fa fa-user'
 },{
-  url:'#/',
+  url:'http://localhost:8004/',
   title:'project4',
   icon:'fa fa-user'
 },{
-  url:'#/',
+  url:'http://localhost:8005/',
   title:'project5',
   icon:'fa fa-user'
 }];
