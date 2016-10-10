@@ -1,45 +1,74 @@
 import * as React from 'react';
 
-import {tableData} from '../../../models/models';
+// import {tableData} from '../../../models/models';
 
-const yth:any[]=tableData.thead;
-const ytb:any[]=tableData.tbody;
+/*const yth:any[]=tableData.thead;
+const ytb:any[]=tableData.tbody;*/
 
 const pagination=[];
 for(let i=0;i<10;i++){
 	pagination[i]=i+1;
+};
+
+const arrClone=(arr)=>{
+  let newArr=[];
+  for(let i=0,l=arr.length;i<l;i++){
+    if(arr[i] instanceof Array){
+      newArr[i]=arrClone(arr[i]);
+    }
+    else{
+      newArr[i]=arr[i];
+    }
+  }
+  return newArr;
 }
 
-export default class yTables extends React.Component<any,any> {
-
+export default class Ytables extends React.Component<any,any> {
+  oldTable:any[];
+  newTable:any[];
 	constructor(props){
     super(props);
+    this.oldTable=[];
+    this.newTable=[];
     this.state=({
-    	editable:true,
+      yth:this.props.yth,
+      ytb:this.props.ytb,
+    	editable:this.props.editable,
     	editState:false,
     	selected:false
     })
   }
 
   edit=(v,k)=>{
-  	v.editState=true;
-  	this.setState({
-    	ytb:ytb
-  	})
+  	// v.editState=true;
+    // this.newTable=this.state.ytb.slice(0);
+    this.oldTable=arrClone(this.state.ytb);
+    this.newTable=arrClone(this.state.ytb);
+    this.newTable[k].editState=true;
+    this.setState({
+      ytb:this.newTable
+    })
   }
   save=(v,k)=>{
-  	v.editState=false;
+    v.editState=false;
+    // this.state.ytb=this.newTable.slice(0);
+    // this.state.ytb=arrClone(this.newTable);
+    // this.newTable[k].editState=false;
   	this.setState({
-    	ytb:ytb
+    	ytb:this.newTable
   	})
   }
   delete=(v,k)=>{
-  	alert('sure?');
+  	// alert('sure?');
+    this.state.ytb.splice(k,1);
+    this.setState({
+      ytb:this.state.ytb
+    })
   }
   cancel=(v,k)=>{
   	v.editState=false;
   	this.setState({
-    	ytb:ytb
+    	ytb:this.oldTable
   	})
   }
 
@@ -49,10 +78,28 @@ export default class yTables extends React.Component<any,any> {
   	})
   }
 
+  getVal=(vk,vsk,e)=>{
+    /*console.log(vk);
+    console.log(vsk);
+    console.log(e.target.value);*/
+    var self=this;
+    self.newTable.map(function(v,k){
+      if(vk==k){
+        self.newTable[k].map(function(sv,sk){
+          if(vsk==sk){
+            self.newTable[k][sk]=e.target.value;
+          }
+        })
+      }
+    });
+    this.setState({
+      ytb:this.newTable
+    })
+  }
+
   render() {
   	let that=this;
-  	const {editable,editState,selected}=this.state;
-    console.log('1');
+  	const {yth,ytb,editable,editState,selected}=this.state;
     return (
       <div>
       	<div className="ytable-header">
@@ -83,7 +130,7 @@ export default class yTables extends React.Component<any,any> {
 		      				)
 		      			})
 		      		}
-		      		{editable?<th colSpan={2}>操作</th>:''}
+		      		{editable&&<th colSpan={2}>操作</th>}
 	      		</tr>
 	      	</thead>
 	      	<tbody>
@@ -95,13 +142,13 @@ export default class yTables extends React.Component<any,any> {
 											v.map((sv,sk)=>{
 												return(
 													<td key={`tr${k}-td${sk}`}>
-														{v.editState?<input type="text" placeholder={sv} />:sv}
+														{v.editState?<input type="text" value={sv} onChange={that.getVal.bind(that,k,sk)} placeholder={sv} />:sv}
 													</td>
 												)
 											})
 										}
-										{editable&&v.editState?<td key={`save${k}`} onClick={that.save.bind(that,v,k)} className="edit"><a href="javascript:;" className="bg-success"><i className="fa fa-file-text"></i> 保存</a></td>:<td key={`edit${k}`} onClick={that.edit.bind(that,v,k)} className="edit"><a href="javascript:;"><i className="fa fa-pencil-square-o"></i> 编辑</a></td>}
-										{editable&&v.editState?<td key={`cancel${k}`} onClick={that.cancel.bind(that,v,k)} className="delete"><a href="javascript:;" className="bg-warning"><i className="fa fa-undo"></i> 取消</a></td>:<td key={`delete${k}`} onClick={that.delete.bind(that,v,k)} className="delete"><a href="javascript:;"><i className="fa fa-trash-o"></i> 删除</a></td>}
+										{editable&&(v.editState?<td key={`save${k}`} onClick={that.save.bind(that,v,k)} className="edit"><a href="javascript:;" className="bg-success"><i className="fa fa-file-text"></i> 保存</a></td>:<td key={`edit${k}`} onClick={that.edit.bind(that,v,k)} className="edit"><a href="javascript:;"><i className="fa fa-pencil-square-o"></i> 编辑</a></td>)}
+										{editable&&(v.editState?<td key={`cancel${k}`} onClick={that.cancel.bind(that,v,k)} className="delete"><a href="javascript:;" className="bg-warning"><i className="fa fa-undo"></i> 取消</a></td>:<td key={`delete${k}`} onClick={that.delete.bind(that,v,k)} className="delete"><a href="javascript:;"><i className="fa fa-trash-o"></i> 删除</a></td>)}
 									</tr>
 	      				)
 	      			})

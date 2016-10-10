@@ -9,7 +9,7 @@ import Plugin1 from './plugins/plugin1';
 import Plugin2 from './plugins/plugin2';
 import Plugin3 from './plugins/plugin3';
 import Plugin4 from './plugins/plugin4';
-import yTables from './tables/yTables';
+import Table from './tables/index';
 import Datatables from './tables/datatables';
 import BStables from './tables/bstables';
 import Highcharts from './charts/highcharts';
@@ -32,7 +32,7 @@ export{
   Plugin2,
   Plugin3,
   Plugin4,
-  yTables,
+  Table,
   Datatables,
   BStables,
   Highcharts,

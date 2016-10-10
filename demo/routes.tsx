@@ -15,7 +15,7 @@ import {
   Plugin2,
   Plugin3,
   Plugin4,
-  yTables,
+  Table,
   Datatables,
   BStables,
   Highcharts,
@@ -45,7 +45,7 @@ export default (
     <Route path="plugins/plugin3" component={Plugin3} />
     <Route path="plugins/plugin4" component={Plugin4} />
   
-    <Route path="tables/yTables" component={yTables} />
+    <Route path="tables/yTables" component={Table} />
     <Route path="tables/datatables" component={Datatables} />
     <Route path="tables/bstables" component={BStables} />
   
