@@ -24,7 +24,7 @@ export default class Yform extends React.Component<any,any> {
     return (
       <div>
       	<form className="y-form">
-          <h2>表单测试页面</h2>
+          <h2>表单测试页面--将左边list拖动到右边</h2>
           <div className="y-row">
             <div className="form-left">
               <ul className="draglist">
