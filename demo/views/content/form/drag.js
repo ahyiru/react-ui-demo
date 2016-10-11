@@ -90,7 +90,11 @@ var move=function(ev){
 		var drop_r=ydrop[i].offsetLeft+ydrop[i].offsetWidth;
 		var drop_b=ydrop[i].offsetTop+ydrop[i].offsetHeight;
 		//
-		removeClass(ydrop[i],'candrop');
+		for(var k=0,kl=ydrop.length;k<kl;k++){
+			removeClass(ydrop[k],'candrop');
+			ydrop[k].style.border='1px solid #eee';
+		}
+		//
 		if(drag_r>drop_l&&_x<drop_r&&drag_b>drop_t&&_y<drop_b){
 			ydrop[i].style.border='2px dashed #bbb';
 			addClass(ydrop[i],'candrop');
@@ -99,7 +103,7 @@ var move=function(ev){
 		}
 		else{
 			//
-			ydrop[i].style.border='1px solid #eee';
+			// ydrop[i].style.border='1px solid #eee';
 		}
 	};
 };
