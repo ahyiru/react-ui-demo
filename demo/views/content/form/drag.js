@@ -138,39 +138,41 @@ var mouseup=function(e){
 			canDrop.style.border='1px solid #eee';
 			//
 			var span=document.createElement('span');
-			var i=document.createElement('i');
 			span.innerText=ele.innerText;
-			i.innerText='x';
-			span.appendChild(i);
-			canDrop.appendChild(span);
-			//
-			ele.style.position='relative';
-			ele.style.left=0;
-			ele.style.top=0;
-			ele.style.zIndex='auto';
-			ele.style.backgroundColor='transparent';
-			//
-			/*ele.style.transition='all .3s ease-in-out';// 放在定位top,left上面 y??
-			ele.style.top=droparea.offsetTop+'px';
-			ele.style.left=droparea.offsetLeft+'px';
-			//
-			setTimeout(function(){
-				var newNode=ele.cloneNode(true);
-				droparea.parentNode.replaceChild(newNode,droparea);
+			var isNew=true;
+			var dropList=canDrop.children;
+			if(dropList){
+				for(var i=0,l=dropList.length;i<l;i++){
+					if(dropList[i].innerText.slice(0,dropList[i].innerText.length-1)==span.innerText){
+						isNew=false;
+						break;
+					}
+				}
+			}
+			if(isNew){
+				var i=document.createElement('i');
+				i.innerText='x';
+				span.appendChild(i);
+				canDrop.appendChild(span);
 				//
-				newNode.style.position='relative';
-				newNode.style.left=0;
-				newNode.style.top=0;
-				newNode.style.zIndex='auto';
-				newNode.style.backgroundColor='transparent';
+				ele.style.position='relative';
+				ele.style.left=0;
+				ele.style.top=0;
+				ele.style.zIndex='auto';
+				ele.style.backgroundColor='transparent';
 				//
-				ele.parentNode.removeChild(ele);
-			},308);*/
-			//
-			i.addEventListener('click',function(){
-				var span=this.parentNode;
-				span.parentNode.removeChild(span);
-			},false);
+				i.addEventListener('click',function(){
+					var span=this.parentNode;
+					span.parentNode.removeChild(span);
+				},false);
+			}
+			else{
+				ele.style.position='relative';
+				ele.style.left=0;
+				ele.style.top=0;
+				ele.style.zIndex='auto';
+				ele.style.backgroundColor='transparent';
+			}
 		}
 		else{
 			//
