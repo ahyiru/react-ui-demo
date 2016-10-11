@@ -108,6 +108,17 @@ export const sidebarMenu=[{
     icon:'fa fa-arrow-right',
     title:'EasyPie'
   }]
+},{
+  url:'javascript:;',
+  title:'表单',
+  leftIcon:'fa fa-th-list',
+  rightIcon:'fa fa-angle-right',
+  open:'',
+  subMenu:[{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  }]
 }];
 
 //notifyList

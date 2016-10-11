@@ -22,6 +22,7 @@ import {
   Echarts,
   Recharts,
   Easypie,
+  Yform,
   User,
   About,
   ErrorPage
@@ -53,6 +54,8 @@ export default (
     <Route path="charts/echarts" component={Echarts} />
     <Route path="charts/recharts" component={Recharts} />
     <Route path="charts/easypie" component={Easypie} />
+
+    <Route path="form/yform" component={Yform} />
     
     <Route path="/user" component={User} />
 

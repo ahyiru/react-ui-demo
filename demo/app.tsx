@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.css';
 require('./servers/localStorage.js');
 
 import './styles/y-style.less';
-import './styles/theme.less';
+import './styles/stheme.less';
 
 export default (
   <Router history={hashHistory} routes={routes}/>
