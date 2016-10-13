@@ -119,9 +119,10 @@ export default class Ysidebar extends React.Component<any,any> {
           );
         }
         else{
-          !flag&&(val.subMenu.map((subV,subK)=>{
+          flag&&(val.subMenu.map((subV,subK)=>{
             subV.selected='';
-          }),val.selMenu='');
+          }));
+          val.selMenu='';
         }
       });
       this.setState({

@@ -7,6 +7,8 @@ import {addClass,removeClass} from '../../configs/tools';
 import Ydnd from './ydnd';
 import Ypanel from './ypanel';
 
+import dnd from './ydrag';
+
 let themePkg=['default-theme','theme1','theme2','theme3','theme4','stheme1','stheme2','stheme3','stheme4','stheme5','ltheme1','ltheme2','ltheme3','ltheme4'];
 
 let panel={
@@ -41,7 +43,13 @@ export default class Home extends React.Component<any,any> {
   };
 
   componentDidMount(){
-    
+    dnd.init();
+  	// require('./ydrag');
+    /*let ydnd=require('./ydrag').default;
+    ydnd();*/
+  };
+  componentWillUnmount(){
+  	dnd.distroy();
   };
 
   changeTheme=(theme)=>{

@@ -69,8 +69,10 @@ export const backTop=(st)=>{
 //获取当前页面
 export const getCurrent=(obj,str,data)=>{
   if(str){
+    // 规定url书写规格。1.#/function/function1,2./function/function1
+    // str=str[0].slice(0,str[0].length-1);
     str=str[1];
-    if(str==='/') str='/#/';
+    if(str.split('/').length==2){str='#'+str;}
     obj.map((v,k)=>{
       if(v.subMenu&&v.subMenu.length>0){
         let flag=false;

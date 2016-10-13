@@ -6,7 +6,7 @@ export default class Ydnd extends React.Component<any,any>{
     super(props);
   }
   componentDidMount(){
-    require('./drag.js');
+    
   };
   componentWillUnmount(){
     

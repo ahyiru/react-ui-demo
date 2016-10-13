@@ -1,6 +1,6 @@
 //sidebarMenu
 export const sidebarMenu=[{
-  url:'/#/',
+  url:'#/',
   title:'主页',
   leftIcon:'fa fa-home',
   rightIcon:'fa fa-angle-right',
@@ -119,6 +119,12 @@ export const sidebarMenu=[{
     icon:'fa fa-arrow-right',
     title:'yform'
   }]
+},{
+  url:'#/log',
+  title:'日志',
+  leftIcon:'fa fa-github-alt',
+  rightIcon:'fa fa-angle-right',
+  open:''
 }];
 
 //notifyList

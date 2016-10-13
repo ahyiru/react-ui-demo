@@ -17,6 +17,7 @@ import Echarts from './charts/echarts';
 import Recharts from './charts/recharts';
 import Easypie from './charts/easypie';
 import Yform from './form/yform';
+import Log from './log/log';
 import User from '../user/user';
 import About from '../about/about';
 import ErrorPage from '../404/404';
@@ -41,6 +42,7 @@ export{
   Recharts,
   Easypie,
   Yform,
+  Log,
   User,
   About,
   ErrorPage
