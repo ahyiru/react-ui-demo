@@ -14,7 +14,8 @@ export const removeClass=(target,cname)=>{
   var nameArr=cname.split(' ');
   nameArr.map((v,k)=>{
     if(!!v&&hasClass(target,v)){
-      var reg=new RegExp('(\\s|^)'+v+'(\\s|$)');  
+      // var reg=new RegExp('(\\s|^)'+v+'(\\s|$)');
+      var reg=new RegExp('(\\s|^)'+v);
       target.className=target.className.replace(reg,'');
     }
   });

@@ -35,7 +35,8 @@ var dnd={
 	  var nameArr=cname.split(' ');
 	  nameArr.map((v,k)=>{
 	    if(!!v&&dnd.hasClass(target,v)){
-	      var reg=new RegExp('(\\s|^)'+v+'(\\s|$)');  
+	      // var reg=new RegExp('(\\s|^)'+v+'(\\s|$)');
+      	var reg=new RegExp('(\\s|^)'+v);
 	      target.className=target.className.replace(reg,'');
 	    }
 	  });

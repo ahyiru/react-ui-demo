@@ -37,7 +37,8 @@ var drag={
 	  var nameArr=cname.split(' ');
 	  nameArr.map((v,k)=>{
 	    if(!!v&&drag.hasClass(target,v)){
-	      var reg=new RegExp('(\\s|^)'+v+'(\\s|$)');  
+	      // var reg=new RegExp('(\\s|^)'+v+'(\\s|$)');
+      	var reg=new RegExp('(\\s|^)'+v);
 	      target.className=target.className.replace(reg,'');
 	    }
 	  });
