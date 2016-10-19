@@ -8,7 +8,7 @@ export default class ErrorPage extends React.Component<any,any> {
     return(
     	<div className="ylog">
 	    	<article>
-		    	<h2>最新版本：0.2.1</h2>
+		    	<h2>最新版本：0.2.2</h2>
 		    	<ul>
 		    		<li>新增拖拽效果</li>
 		    		<li>新增日志</li>
