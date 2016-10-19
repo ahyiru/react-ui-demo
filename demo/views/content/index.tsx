@@ -16,6 +16,7 @@ import Highcharts from './charts/highcharts';
 import Echarts from './charts/echarts';
 import Recharts from './charts/recharts';
 import Easypie from './charts/easypie';
+import Yform1 from './form/yform1';
 import Yform from './form/yform';
 import Log from './log/log';
 import User from '../user/user';
@@ -41,6 +42,7 @@ export{
   Echarts,
   Recharts,
   Easypie,
+  Yform1,
   Yform,
   Log,
   User,

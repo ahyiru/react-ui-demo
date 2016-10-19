@@ -55,8 +55,8 @@ export const cloneObj=(obj)=>{
   return newobj;
 };
 
-/*//返回顶部
-export const backTop=(st)=>{
+//返回顶部
+/*export const backTop=(st)=>{
   let timer=setInterval(function(){
     if(st<=0){
       st=0;

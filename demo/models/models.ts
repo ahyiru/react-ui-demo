@@ -115,6 +115,10 @@ export const sidebarMenu=[{
   rightIcon:'fa fa-angle-right',
   open:'',
   subMenu:[{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
     url:'/form/yform',
     icon:'fa fa-arrow-right',
     title:'yform'
