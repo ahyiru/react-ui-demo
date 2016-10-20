@@ -30,6 +30,7 @@ export default class Log extends React.Component<any,any> {
 		    		{/*<li>根据layui完善yrui</li>*/}
 		    		<li>组件的完善和规范化</li>
 		    		<li>使用nodejs和mongodb部署服务</li>
+		    		<li>react-native的学习和开发</li>
 		    	</ul>
 	    	</article>
     	</div>
