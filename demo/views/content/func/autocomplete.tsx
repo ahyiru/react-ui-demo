@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {ysort} from '../../../configs/tools';
+import {ysort,yunique} from '../../../configs/tools';
 
 import './func.less';
 
@@ -10,7 +10,7 @@ export default class Autocomplete extends React.Component<any,any> {
     super(props);
     this.timer=0;
     this.state=({
-    	data:this.props.data,
+    	data:yunique(this.props.data),
     	sv:'',
   		result:[],
   		selected:[]
@@ -36,7 +36,7 @@ export default class Autocomplete extends React.Component<any,any> {
   		if(sv){
 		  	let reg=new RegExp(sv,'i');
 		  	that.state.data.map((v:any,k)=>{
-		  		v+='';
+		  		// v+='';
 		  		if(reg.test(v)){
 		  			newArr.push(v);
 		  		}
@@ -47,7 +47,8 @@ export default class Autocomplete extends React.Component<any,any> {
 		  }
 	  	// console.log(newArr);
 	  	that.setState({
-	  		result:newArr
+	  		result:newArr,
+  			selected:[]
 	  	});
   	},200);
 

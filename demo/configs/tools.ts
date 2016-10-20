@@ -179,6 +179,18 @@ export const ysort=(param1,param2)=>{
   }
 };
 
+//数组去重
+export const yunique=(arr)=>{
+  var result=[],tmp={};
+  for(var i=0,j=arr.length;i<j;i++){
+    if(!tmp[arr[i]]){
+      result.push(arr[i]);
+      tmp[arr[i]]=1;
+    }
+  }
+  return result;
+};
+
 
 
 

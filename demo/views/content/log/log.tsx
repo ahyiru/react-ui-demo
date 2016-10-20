@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './log.less';
 
-export default class ErrorPage extends React.Component<any,any> {
+export default class Log extends React.Component<any,any> {
 
   render() {
     return(
