@@ -122,6 +122,70 @@ export const sidebarMenu=[{
     url:'/form/yform',
     icon:'fa fa-arrow-right',
     title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
+  },{
+    url:'/form/yform1',
+    icon:'fa fa-arrow-right',
+    title:'yform1'
+  },{
+    url:'/form/yform',
+    icon:'fa fa-arrow-right',
+    title:'yform'
   }]
 },{
   url:'#/log',

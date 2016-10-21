@@ -360,11 +360,13 @@ body{
 					// padding:0;
 					.y-collapse-wrap{
 						width:42px;
-						height:100%;
 						background-color:#444;
-						position:absolute;
+						position:fixed;
 						left:0;
-						top:0;
+						top:45px;
+						bottom:0;
+						overflow-x:hidden;
+						overflow-y:auto;
 						z-index:-1;
 					}
 					.y-sidebar-list{
@@ -372,14 +374,14 @@ body{
 							height:auto;
 							width:42px;
 							margin:0;
-							border:0;
+							border:1px solid #f3565d;
 							>h4,>i{
 								display:none;
 							}
 						}
-						&:last-of-type{
+						&:nth-child(2){
 							.y-sidebar-title{
-								border:1px solid #f3565d;
+								border:0;
 							}
 						}
 						.y-sidebar-l1{
