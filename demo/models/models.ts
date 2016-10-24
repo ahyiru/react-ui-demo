@@ -7,6 +7,25 @@ export const sidebarMenu=[{
   open:''
 },{
   url:'javascript:;',
+  title:'测试页面',
+  leftIcon:'fa fa-apple',
+  rightIcon:'fa fa-angle-right',
+  open:'',
+  subMenu:[{
+    url:'/test/test1',
+    icon:'fa fa-arrow-right',
+    title:'demo1'
+  },{
+    url:'/test/test2',
+    icon:'fa fa-arrow-right',
+    title:'deno2'
+  },{
+    url:'/test/test3',
+    icon:'fa fa-arrow-right',
+    title:'demo3'
+  }]
+},{
+  url:'javascript:;',
   title:'功能',
   leftIcon:'fa fa-cogs',
   rightIcon:'fa fa-angle-right',

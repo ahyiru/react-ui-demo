@@ -5,6 +5,9 @@ const Base=require('./components/base').default;
 
 import {
   Home,
+  Demo1,
+  Demo2,
+  Demo3,
   Func1,
   Func2,
   Func3,
@@ -34,6 +37,10 @@ export default (
   <Route path="/" component={Base}>
 
     <IndexRoute component={Home} />
+
+    <Route path="test/test1" component={Demo1} />
+    <Route path="test/test2" component={Demo2} />
+    <Route path="test/test3" component={Demo3} />
 
     <Route path="function/function1" component={Func1} />
     <Route path="function/function2" component={Func2} />

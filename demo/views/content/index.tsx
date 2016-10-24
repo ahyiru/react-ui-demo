@@ -1,4 +1,7 @@
 import Home from './home';
+import Demo1 from './test/demo1';
+import Demo2 from './test/demo2';
+import Demo3 from './test/demo3';
 import Func1 from './func/func1';
 import Func2 from './func/func2';
 import Func3 from './func/func3';
@@ -25,6 +28,9 @@ import ErrorPage from '../404/404';
 
 export{
 	Home,
+  Demo1,
+  Demo2,
+  Demo3,
   Func1,
   Func2,
   Func3,
