@@ -22,8 +22,8 @@ export default class YdropDown extends React.Component<any,any> {
     return (
       <li className={`y-dropdown ${name} ${open}`} onClick={this.toggleDrop}>
         {
-          name=='profile'?
-          <a href="javascript:;">
+          name=='profile'&&icon.split(' ')[0]!='fa'?
+          <a href="javascript:;" className="img">
             <span className="username">admin</span>
             <img src={icon} />
           </a>:

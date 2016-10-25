@@ -149,7 +149,7 @@ body{
 					>ul{
 						>li{
 							float:left;
-							width:48px;
+							min-width:48px;
 							height:45px;
 							text-align:center;
 							position:relative;
@@ -164,13 +164,8 @@ body{
 										transition:transform .2s;
 									}
 								}
-							}
-							&.profile{
-								width:auto;
-								padding-left:10px;
-								// font-size:0;
-								>a{
-									// font-size:14px;
+								&.img{
+									padding:0 10px;
 									height:45px;
 									&:hover{
 										color:#eee;
@@ -195,7 +190,7 @@ body{
 										position:absolute;
 										background-color:#ff7f50;
 										top:auto;
-									  right:8px;
+									  right:18px;
 									  bottom:8px;
 									  left:auto;
 									  width:10px;
