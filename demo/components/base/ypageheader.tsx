@@ -26,7 +26,7 @@ export default class YpageHeader extends React.Component<any,any> {
         <div className="y-page-bar">
           <ul className="y-page-breadcrumb">
             <li>
-              <a href="#"><i className="fa fa-home"></i> {data.title}</a>
+              <a href="#"><i className="fa fa-home"></i> 首页</a>
             </li>
             {setBreadcrumb(data)}
           </ul>
