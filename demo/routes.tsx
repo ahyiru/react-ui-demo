@@ -27,6 +27,7 @@ import {
   Easypie,
   Yform1,
   Yform,
+  Treedrag,
   Log,
   User,
   About,
@@ -66,6 +67,7 @@ export default (
 
     <Route path="form/yform1" component={Yform1} />
     <Route path="form/yform" component={Yform} />
+    <Route path="form/treedrag" component={Treedrag} />
 
     <Route path="/log" component={Log} />
     

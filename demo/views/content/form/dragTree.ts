@@ -7,14 +7,16 @@ var drag={
 
 	init:()=>{
 		var ydrop:any=document.getElementsByClassName('drop');
-		var ydrag:any=document.getElementsByClassName('draglist')[0];
-		ydrag=ydrag.children;
-		/*for(var i=0,l=ydrag.length;i<l;i++){
+		// var ydrag:any=document.getElementsByClassName('draglist')[0];
+		var ydrag:any=document.getElementsByClassName('ant-tree-title');
+		// ydrag=ydrag.children;
+		for(var i=0,l=ydrag.length;i<l;i++){
 			// ydrop[i].style.position='relative';
 			// ydrop[i].style.width='100%';
 			// ydrop[i].style.transition='none';
+			
 			// ydrag[i].style.cursor='move';
-		};*/
+		};
 
 		drag.removeList(ydrop);
 
@@ -88,16 +90,16 @@ var drag={
 		  ele.style.transition='none';
 		  ele.style.width=ele.offsetWidth+'px';
 		  ele.style.height=ele.offsetHeight+'px';
-			ele.style.position='absolute';
+			ele.style.position='fixed';
 			ele.style.zIndex='99999';
-			ele.style.backgroundColor='#bbb';
+			ele.style.backgroundColor='#d5f1fd';
 			//
-			var _x=ev.pageX-drag.mouseEvent.x,
-					_y=ev.pageY-drag.mouseEvent.y;
+			var _x=ev.clientX-drag.mouseEvent.x,
+					_y=ev.clientY-drag.mouseEvent.y;
 			// var w=document.body.clientWidth-ele.offsetWidth,
-		 //      h=document.body.clientHeight-ele.offsetHeight;
-		 //  _x=_x<0?0:_x>w?w:_x;
-		 //  _y=_y<0?0:_y>h?h:_y;
+		  //     h=document.body.clientHeight-ele.offsetHeight;
+		  // _x=_x<0?0:_x>w?w:_x;
+		  // _y=_y<0?0:_y>h?h:_y;
 		  ele.style.left=_x+'px';
 			ele.style.top=_y+'px';
 			
@@ -109,10 +111,10 @@ var drag={
 			for(var i=0,l=drop.length;i<l;i++){
 				//
 				if(drag.hasClass(drop[i],'ydragging')){continue;}
-				var drop_l=drop[i].offsetLeft;
-				var drop_t=drop[i].offsetTop;
-				var drop_r=drop[i].offsetLeft+drop[i].offsetWidth;
-				var drop_b=drop[i].offsetTop+drop[i].offsetHeight;
+				var drop_l=drop[i].getBoundingClientRect().left;
+				var drop_t=drop[i].getBoundingClientRect().top;
+				var drop_r=drop[i].getBoundingClientRect().left+drop[i].offsetWidth;
+				var drop_b=drop[i].getBoundingClientRect().top+drop[i].offsetHeight;
 				//
 				for(var k=0,kl=drop.length;k<kl;k++){
 					drag.removeClass(drop[k],'candrop');
@@ -156,11 +158,13 @@ var drag={
 					//
 					var span=document.createElement('span');
 					span.innerText=ele.innerText;
+					span.title=ele.parentNode.title;
 					var isNew=true;
 					var dropList=canDrop.children;
 					if(dropList){
 						for(var i=0,l=dropList.length;i<l;i++){
-							if(dropList[i].innerText.slice(0,dropList[i].innerText.length-1)==span.innerText){
+							// if(dropList[i].innerText.slice(0,dropList[i].innerText.length-1)==span.innerText){
+							if(dropList[i].innerText==span.innerText){
 								isNew=false;
 								break;
 							}
@@ -168,7 +172,8 @@ var drag={
 					}
 					if(isNew){
 						var ix=document.createElement('i');
-						ix.innerText='x';
+						// ix.innerText='x';
+						ix.className='fa fa-times-circle';
 						span.appendChild(ix);
 						canDrop.appendChild(span);
 						//
@@ -208,18 +213,26 @@ var drag={
 			var ele=drag.mouseEvent.ele=e.target||e.srcElement;
 			// console.log(e.target);
 			if(e.button==0){//阻止右键点击 or e.which==1;
-				if(drag.hasClass(ele.parentNode,'draglist')){
+				if(drag.hasClass(ele,'ant-tree-title')&&!ele.parentNode.nextSibling){
 					// e.preventDefault();//阻止默认事件
 				  // e.stopPropagation();//阻止事件冒泡
 				  //
 				  // ele=drag.mouseEvent.ele=ele.parentNode;
 				  // 数据缓存
 				  // var dropData;
+
+				  // console.log(ele.offsetLeft+','+ele.offsetTop);
+				  // getBoundingClientRect().left相对于浏览器定位。
+				  // console.log(ele.getBoundingClientRect().left+','+ele.getBoundingClientRect().top);
+
 				  //
 				  ele.style.cursor='move';
 
-					drag.mouseEvent.x=e.pageX-ele.offsetLeft;
-					drag.mouseEvent.y=e.pageY-ele.offsetTop;
+				  //	pageX相对于文档定位，clientX相对于可视区域定位。
+					drag.mouseEvent.x=e.pageX-ele.getBoundingClientRect().left;
+					drag.mouseEvent.y=e.pageY-ele.getBoundingClientRect().top;
+					// drag.mouseEvent.x=e.clientX-ele.getBoundingClientRect().left;
+					// drag.mouseEvent.y=e.clientY-ele.getBoundingClientRect().top;
 
 					document.addEventListener('mousemove',drag.mouseEvent.move,false);
 				}

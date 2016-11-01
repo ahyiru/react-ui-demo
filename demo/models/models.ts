@@ -141,6 +141,10 @@ export const sidebarMenu=[{
     url:'/form/yform',
     icon:'fa fa-arrow-right',
     title:'yform'
+  },{
+    url:'/form/treedrag',
+    icon:'fa fa-arrow-right',
+    title:'TreeDrag'
   }]
 },{
   url:'#/log',

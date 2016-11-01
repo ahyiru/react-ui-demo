@@ -1,0 +1,87 @@
+/*
+**	form
+**	20161011 __yiru
+*/
+.y-dragtree {
+  width: 100%;
+  padding: 15px;
+  background-color: #f8f8f8;
+  overflow: auto;
+}
+.y-dragtree h2 {
+  margin-bottom: 15px;
+}
+.y-dragtree .y-row {
+  /*margin-left:-15px;
+		margin-right:-15px;*/
+  overflow: auto;
+}
+.y-dragtree .y-row .form-left {
+  float: left;
+  padding: 15px;
+  width: 40%;
+  min-height: 200px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  /*>ul{
+				>li{
+					padding:10px;
+					border:1px solid #eee;
+					width:250px;
+				}
+			}*/
+}
+.y-dragtree .y-row .form-right {
+  float: left;
+  padding: 15px;
+  width: 60%;
+  min-height: 200px;
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+.y-dragtree .y-row .form-right > .droplist {
+  padding: 10px;
+  overflow: auto;
+}
+.y-dragtree .y-row .form-right > .droplist > span {
+  display: inline-block;
+  width: 100px;
+  height: 42px;
+  line-height: 42px;
+  float: left;
+}
+.y-dragtree .y-row .form-right > .droplist > div {
+  min-width: 300px;
+  min-height: 42px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  float: left;
+  padding: 5px;
+}
+.y-dragtree .y-row .form-right > .droplist > div > span {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+  margin: 3px;
+  border-radius: 8px;
+  background-color: #45b6af;
+  color: #fff;
+  /*&::after{
+							content:'x';
+							padding:0 2px;
+							margin-left:5px;
+							border:1px dotted #999;
+							color:#ff0033;
+							cursor:pointer;
+						}*/
+}
+.y-dragtree .y-row .form-right > .droplist > div > span > i {
+  padding: 0 2px;
+  margin-left: 5px;
+  color: #fff;
+  font-size: 13px;
+  /*border:1px dotted #999;
+							color:#ff0033;*/
+  cursor: pointer;
+}

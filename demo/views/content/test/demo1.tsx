@@ -49,7 +49,7 @@ export default class Demo1 extends React.Component<any,any> {
   render() {
     var that=this;
     return (
-      <div className="demo1">
+      <div className="demo d1">
       {
         cards.map((v,k)=>{
           return (

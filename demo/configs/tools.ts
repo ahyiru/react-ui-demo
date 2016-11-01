@@ -70,7 +70,7 @@ export const cloneObj=(obj)=>{
 //获取当前页面
 export const getCurrent=(obj,str,data)=>{
   if(str){
-    // 规定url书写规格。1.#/function/function1,2./function/function1
+    // 规定url书写规格。#/function/function1
     // str=str[0].slice(0,str[0].length-1);
     str=str[1];
     if(str.split('/').length==2){str='#'+str;}
@@ -79,6 +79,7 @@ export const getCurrent=(obj,str,data)=>{
         let flag=false;
         v.subMenu.map((sv,sk)=>{
           if(sv.url==str){
+            data.url='#'+sv.url;
             data.subTitle=sv.title;
             flag=true;
             data.level=2;
@@ -106,6 +107,7 @@ export const getCurrent=(obj,str,data)=>{
       }
       else{
         if(v.url==str){
+          data.url=v.url;
           data.title=v.title;
           data.subTitle='';
           data.level=1;

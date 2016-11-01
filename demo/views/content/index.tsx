@@ -21,6 +21,7 @@ import Recharts from './charts/recharts';
 import Easypie from './charts/easypie';
 import Yform1 from './form/yform1';
 import Yform from './form/yform';
+import Treedrag from './form/treeDrag';
 import Log from './log/log';
 import User from '../user/user';
 import About from '../about/about';
@@ -50,6 +51,7 @@ export{
   Easypie,
   Yform1,
   Yform,
+  Treedrag,
   Log,
   User,
   About,

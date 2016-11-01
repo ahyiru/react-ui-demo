@@ -54,7 +54,7 @@ module.exports = {
       include: /components/,
     }, {
       test: /\.(jpe?g|png|gif|svg|ico)/i,
-      loader: 'file?name=img_[hash:8].[ext]',
+      loader: 'file?name=img/img_[hash:8].[ext]',
     }, /*,{
       test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=8192' //小于8K的图片将直接以base64的形式内联在代码中

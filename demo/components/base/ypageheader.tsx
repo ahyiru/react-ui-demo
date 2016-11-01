@@ -8,20 +8,27 @@ export default class YpageHeader extends React.Component<any,any> {
 
   render() {
   	const {data}=this.props;
+    let setBreadcrumb=(d)=>{
+      // let breadcrumb=`<li><a href="javascript:;">${data.subTitle}</a></li>`;
+      /*for(let i=1;i<d.level;i++){
+        return <li><a href={d.url}>{d.subTitle}</a></li>;
+      }*/
+      if(d.level>1){
+        let sub=d;
+        sub.level=d.level-1;
+        setBreadcrumb(sub);
+        return <li><a href={d.url}>{d.subTitle}</a></li>;
+      }
+    };
     return (
       <div className="y-pageheader">
         <h2>{data.title} <span> {data.subTitle}</span></h2>
         <div className="y-page-bar">
           <ul className="y-page-breadcrumb">
             <li>
-              <a href="javascript:;"><i className="fa fa-home"></i> {data.title}</a>
+              <a href="#"><i className="fa fa-home"></i> {data.title}</a>
             </li>
-            <li className={data.level<2?'y-hide':''}>
-              <a href="javascript:;">{data.subTitle}</a>
-            </li>
-            <li className={data.level<3?'y-hide':''}>
-              <a href="javascript:;">{data.subTitle}</a>
-            </li>
+            {setBreadcrumb(data)}
           </ul>
           <article className="y-timer"></article>
         </div>
