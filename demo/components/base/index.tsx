@@ -27,6 +27,32 @@ export default class Yframe extends React.Component<any,any> {
     auth:'yiru'
   };
 
+  // breadcrumb多级显示
+  /*componentDidMount=()=>{
+    window.addEventListener('hashchange',()=>{
+      var uri=location.hash.match(/#(\S+)\?/)[1];
+      var ul=document.getElementsByClassName('y-page-breadcrumb')[0];
+      while(ul.children.length>2){
+        ul.removeChild(ul.lastChild);
+      };
+      breadcrumb.map((v,k)=>{
+        if(v.curUrl==uri){
+          while(ul.children.length>1){
+            ul.removeChild(ul.lastChild);
+          };
+          v.data.url.map((sv,sk)=>{
+            var li=document.createElement('li');
+            var a=document.createElement('a');
+            a.href=sv;
+            a.innerHTML=v.data.txt[sk];
+            li.appendChild(a);
+            ul.appendChild(li);
+          })
+        }
+      })
+    },false)
+  };*/
+
 	constructor(props){
     super(props);
     this.str=location.hash.match(/#(\S+)\?/);
