@@ -6,25 +6,27 @@
 }
 
 *,*::after,*::before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-text-size-adjust:auto !important;
+  -ms-text-size-adjust:auto !important;
   -webkit-font-smoothing:antialiased;
 }
 
 html{
 	font-family:Arial,微软雅黑,Helvetica,sans-serif,黑体,宋体;
   font-size:62.5%;
-	-webkit-text-size-adjust:100%;
-  -ms-text-size-adjust:100%;
   overflow:auto;
   width:100%;
+  height:100%;
   min-height:100%;
+  -webkit-text-size-adjust:none;
 }
 body{
 	margin:0;
 	width:100%;
+  height:100%;
 	min-height:100%;
   line-height:1;
 	font-size:1.2rem;
@@ -54,6 +56,10 @@ input[disabled],button[disabled]{
   cursor:not-allowed;
   opacity:.6;
 }
+button,input[type=button],input[type=submit]{
+  -webkit-appearance:button;
+  cursor:pointer;
+}
 
 /* textarea */
 textarea{resize:none;}
@@ -63,6 +69,38 @@ ul{list-style:none;padding:0;margin:0;}
 
 /*table*/
 table{border-spacing:0;border-collapse:collapse;}
+
+/*span 除掉空隙*/
+span{
+  font-size:13px;
+  letter-spacing:normal;
+  word-spacing:normal;
+  vertical-align:middle;
+}
+
+/* 文本溢出显示省略号 */
+.p-overflow{  //单行文本溢出显示省略号
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.p-more{  //多行文本溢出显示省略号
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+/*自动换行*/
+div,p,span{
+  /*white-space:normal;
+  word-break:break-all;
+  word-wrap:break-word;*/
+}
+/*img*/
+img{
+  vertical-align:bottom;
+}
 
 /*color*/
 .bg-white{background-color:#fff !important;}

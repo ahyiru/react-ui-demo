@@ -1,22 +1,28 @@
 var express = require('express');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.development');
-var https=require('https');
+// var https=require('https');
+
+var webpackDevMiddleware=require('webpack-dev-middleware');
+var webpackHotMiddleware=require('webpack-hot-middleware');
 
 var app = express();
 var compiler = webpack(webpackConfig);
 
-var PORT=8000;
+var PORT=8086;
 
-app.use(require('webpack-dev-middleware')(compiler, {
+app.use(webpackDevMiddleware(compiler, {
 	// publicPath: webpackConfig.output.publicPath,
+  hot: true,
+  historyApiFallback: false,
+  compress: true, 
   noInfo: true,
   stats: {
     colors: true,
   },
 }));
 
-app.use(require('webpack-hot-middleware')(compiler));
+app.use(webpackHotMiddleware(compiler));
 
 app.set('port', process.env.PORT || PORT);
 

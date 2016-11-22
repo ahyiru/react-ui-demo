@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Tree } from 'antd';
+/*import { Tree } from 'antd';
 
 import './treeDrag.less';
 
@@ -35,22 +35,22 @@ const generateData:any = (_level, _preKey, _tns) => {
   });
 };
 generateData(z);
-
+*/
 export default class Treedrag extends React.Component<any,any> {
 
 	constructor(props){
     super(props);
-    this.state=({
+    /*this.state=({
     	tData:tData,
       expandedKeys:['0-0', '0-0-0', '0-0-0-0']
-    });
+    });*/
   };
 
   componentDidMount=()=>{
-    drag.init();
+    // drag.init();
   };
   componentWillUnmount=()=>{
-    drag.distroy();
+    // drag.distroy();
   };
 
   /*onDragEnter=(info)=>{
@@ -103,40 +103,40 @@ export default class Treedrag extends React.Component<any,any> {
 
 
   render() {
-    const {expandedKeys,tData}=this.state;
+    /*const {expandedKeys,tData}=this.state;
     const loop=data=>data.map((v,k)=>{
       if(v.children&&v.children.length){
         return <TreeNode key={v.key} title={v.key}>{loop(v.children)}</TreeNode>;
       }
       return <TreeNode key={v.key} title={v.key} />;
-    });
+    });*/
     return (
       <div>
-      	<form className="y-dragtree">
-          <h2>tree drag</h2>
-          <div className="y-row">
-            <div className="form-left">
-              <Tree defaultExpandedKeys={expandedKeys}>
-                {loop(tData)}
-              </Tree>
-            </div>
-            <div className="form-right">
-              <div className="droplist">
-                <span>111</span>
-                <div className="drop">
-                  <span>111<i className="fa fa-times-circle"></i></span>
-                  <span>222<i className="fa fa-times-circle"></i></span>
-                </div>
-              </div>
-              <div className="droplist">
-                <span>222</span>
-                <div className="drop">
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+      	{/*<form className="y-dragtree">
+                  <h2>tree drag</h2>
+                  <div className="y-row">
+                    <div className="form-left">
+                      <Tree defaultExpandedKeys={expandedKeys}>
+                        {loop(tData)}
+                      </Tree>
+                    </div>
+                    <div className="form-right">
+                      <div className="droplist">
+                        <span>111</span>
+                        <div className="drop">
+                          <span>111<i className="fa fa-times-circle"></i></span>
+                          <span>222<i className="fa fa-times-circle"></i></span>
+                        </div>
+                      </div>
+                      <div className="droplist">
+                        <span>222</span>
+                        <div className="drop">
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>*/}
       </div>
     )
   };

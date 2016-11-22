@@ -46,10 +46,12 @@ Thumbs.db
 # yiru
 y_dist
 js_demo
+
 jsDemo.js
 ecosystem.json
 
 start-server.js
+webpack.test.js
 test
 
 *.zip

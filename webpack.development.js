@@ -24,7 +24,10 @@ module.exports = merge(webpackConfig, {
     }],
   },
   plugins: [
+    // Webpack 1.0
     new webpack.optimize.OccurenceOrderPlugin(),
+    // Webpack 2.0 fixed this mispelling 
+    // new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({ // 设置环境变量来压缩代码

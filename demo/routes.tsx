@@ -28,50 +28,64 @@ import {
   Yform1,
   Yform,
   Treedrag,
+  Card1,
   Log,
+  Info,
   User,
+  Login,
+  Signup,
   About,
   ErrorPage
 } from './views/content';
 
 export default (
-  <Route path="/" component={Base}>
+  <Route>
+    <Route path="/" component={Base}>
 
-    <IndexRoute component={Home} />
+      <IndexRoute component={Home} />
 
-    <Route path="test/test1" component={Demo1} />
-    <Route path="test/test2" component={Demo2} />
-    <Route path="test/test3" component={Demo3} />
+      <Route path="test/test1" component={Demo1} />
+      <Route path="test/test2" component={Demo2} />
+      <Route path="test/test3" component={Demo3} />
 
-    <Route path="function/function1" component={Func1} />
-    <Route path="function/function2" component={Func2} />
-    <Route path="function/function3" component={Func3} />
-  
-    <Route path="ui/ui1" component={UI1} />
-    <Route path="ui/ui2" component={UI2} />
-    <Route path="ui/ui3" component={UI3} />
-  
-    <Route path="plugins/plugin1" component={Plugin1} />
-    <Route path="plugins/plugin2" component={Plugin2} />
-    <Route path="plugins/plugin3" component={Plugin3} />
-    <Route path="plugins/plugin4" component={Plugin4} />
-  
-    <Route path="tables/yTables" component={Table} />
-    <Route path="tables/datatables" component={Datatables} />
-    <Route path="tables/bstables" component={BStables} />
-  
-    <Route path="charts/highcharts" component={Highcharts} />
-    <Route path="charts/echarts" component={Echarts} />
-    <Route path="charts/recharts" component={Recharts} />
-    <Route path="charts/easypie" component={Easypie} />
-
-    <Route path="form/yform1" component={Yform1} />
-    <Route path="form/yform" component={Yform} />
-    <Route path="form/treedrag" component={Treedrag} />
-
-    <Route path="/log" component={Log} />
+      <Route path="function/function1" component={Func1} />
+      <Route path="function/function2" component={Func2} />
+      <Route path="function/function3" component={Func3} />
     
-    <Route path="/user" component={User} />
+      <Route path="ui/ui1" component={UI1} />
+      <Route path="ui/ui2" component={UI2} />
+      <Route path="ui/ui3" component={UI3} />
+
+      <Route path="cards/card1" component={Card1} />
+    
+      <Route path="plugins/plugin1" component={Plugin1} />
+      <Route path="plugins/plugin2" component={Plugin2} />
+      <Route path="plugins/plugin3" component={Plugin3} />
+      <Route path="plugins/plugin4" component={Plugin4} />
+    
+      <Route path="tables/yTables" component={Table} />
+      <Route path="tables/datatables" component={Datatables} />
+      <Route path="tables/bstables" component={BStables} />
+    
+      <Route path="charts/highcharts" component={Highcharts} />
+      <Route path="charts/echarts" component={Echarts} />
+      <Route path="charts/recharts" component={Recharts} />
+      <Route path="charts/easypie" component={Easypie} />
+
+      <Route path="form/yform1" component={Yform1} />
+      <Route path="form/yform" component={Yform} />
+      <Route path="form/treedrag" component={Treedrag} />
+
+      <Route path="/info" component={Info} />
+
+      <Route path="/log" component={Log} />
+
+    </Route>
+
+    <Route path="/user" component={User}>
+      <Route path="login" component={Login} />
+      <Route path="signup" component={Signup} />
+    </Route>
 
     <Route path="/404" component={ErrorPage} />
 

@@ -112,10 +112,12 @@ export default class Ynav extends React.Component<any,any> {
                 )
               })
             }
-            
-            <li className="toggle-right-sidebar" onClick={this.rightBar}>
-              <a href="javascript:;"><i className="fa fa-hand-o-right"></i></a>
-            </li>
+            {
+              !this.props.hideRightTogbar&&
+              <li className="toggle-right-sidebar" onClick={this.rightBar}>
+                <a href="javascript:;"><i className="fa fa-hand-o-right"></i></a>
+              </li>
+            }
           </ul> 
         </article>
       </nav>

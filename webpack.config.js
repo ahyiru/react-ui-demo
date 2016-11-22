@@ -12,7 +12,10 @@ module.exports = {
     contentBase: './dist', //Content base
     inline: true, //Enable watch and live reload
     host: 'localhost',
-    port: 8080
+    port: 8080,
+    hot:true,
+    historyApiFallback:true,
+    progress:true
   },
   // http://webpack.github.io/docs/configuration.html#devtool
   devtool: 'source-map',*/
@@ -34,6 +37,10 @@ module.exports = {
       __dirname,
     ],
     extensions: ['', '.js', '.jsx','.ts','.tsx'],
+  },
+  externals:{
+    "AMap":"AMap",
+    "BMap":"BMap"
   },
   module: {
     loaders: [{

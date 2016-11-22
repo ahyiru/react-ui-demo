@@ -214,7 +214,7 @@ export default class Ysidebar extends React.Component<any,any> {
   };
 
   render() {
-    const {projectList}=this.props;
+    const {projectList,userInfo}=this.props;
     
     const {menu}=this.state;
 
@@ -223,6 +223,14 @@ export default class Ysidebar extends React.Component<any,any> {
     return (
       <section className="y-sidebar">
         <div className="y-sidebar-wrap">
+          {
+            userInfo&&
+            <div className="y-user-logo">
+              <img src={userInfo.logo} alt="userLogo" />
+              <h4>{userInfo.name}</h4>
+              <p>{userInfo.email}</p>
+            </div>
+          }
           <div className="y-collapse-wrap"></div>
           <div className="y-sidebar-list">
             <div className="y-sidebar-title" onClick={this.collapseList.bind(this,'1')}>

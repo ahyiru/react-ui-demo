@@ -19,7 +19,7 @@ export default class Header extends React.Component<any,any> {
               {/*<h4 className="logo"></h4>*/} <span><b>React</b> UI Demo</span>   
             </a>
           </section>
-          <Ynav className="y-nav" dropList={dropList} />
+          <Ynav className="y-nav" dropList={dropList} hideRightTogbar={false} />
         </div>
       </header>
     );

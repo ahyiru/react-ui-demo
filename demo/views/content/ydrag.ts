@@ -137,7 +137,7 @@ var dnd={
 			};
 
 			//
-			document.addEventListener('mouseup',dnd.mouseEvent.mouseup,false);
+			// document.addEventListener('mouseup',dnd.mouseEvent.mouseup,false);
 		},
 		//mouseup
 		mouseup:function(e){
@@ -196,6 +196,7 @@ var dnd={
 					document.addEventListener('mousemove',dnd.mouseEvent.move,false);
 				}
 			}
+			document.addEventListener('mouseup',dnd.mouseEvent.mouseup,false);
 		}
 	},
 

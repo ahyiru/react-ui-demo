@@ -147,6 +147,25 @@ export const sidebarMenu=[{
     title:'TreeDrag'
   }]
 },{
+  url:'javascript:;',
+  title:'卡片',
+  leftIcon:'fa fa-id-card',
+  rightIcon:'fa fa-angle-right',
+  open:'',
+  subMenu:[{
+    url:'/cards/card1',
+    icon:'fa fa-arrow-right',
+    title:'card1'
+  },{
+    url:'/cards/card2',
+    icon:'fa fa-arrow-right',
+    title:'card2'
+  },{
+    url:'/cards/card3',
+    icon:'fa fa-arrow-right',
+    title:'card3'
+  }]
+},{
   url:'#/log',
   title:'日志',
   leftIcon:'fa fa-github-alt',

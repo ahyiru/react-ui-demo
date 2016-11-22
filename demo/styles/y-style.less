@@ -4,6 +4,49 @@
 */
 @import "./mystyle.css";
 
+/*栅格*/
+.ycol-1,.ycol-2,.ycol-3,.ycol-4,.ycol-5,.ycol-6,.ycol-7,.ycol-8,.ycol-9,.ycol-10,.ycol-11,.ycol-12{
+	float:left;
+	padding:10px;
+}
+.ycol-1{
+	width:8.33333333%;
+}
+.ycol-2{
+	width:16.66666667%;
+}
+.ycol-3{
+	width:25%;
+}
+.ycol-4{
+	width:33.33333333%;
+}
+.ycol-5{
+	width:41.66666667%;
+}
+.ycol-6{
+	width:50%;
+}
+.ycol-7{
+	width:58.33333333%;
+}
+.ycol-8{
+	width:66.66666667%;
+}
+.ycol-9{
+	width:75%;
+}
+.ycol-10{
+	width:83.33333333%;
+}
+.ycol-11{
+	width:91.66666667%;
+}
+.ycol-12{
+	width:100%;
+}
+/*end*/
+
 @keyframes scaleout{
   0%{
     transform:scale(1.0);
@@ -88,7 +131,7 @@ body{
 			}
 			//brand
 			.y-brand{
-				width:250px;
+				width:220px;
 				height:45px;
 				float:left;
 				background-color:#24cbe5;
@@ -129,7 +172,7 @@ body{
 			}
 			//nav
 			.y-nav{
-				width:calc(~"100% - 250px");
+				width:calc(~"100% - 220px");
 				height:45px;
 				float:left;
 				background-color:#23b7e5;
@@ -190,8 +233,8 @@ body{
 										position:absolute;
 										background-color:#ff7f50;
 										top:auto;
-									  right:18px;
-									  bottom:8px;
+									  right:20px;
+									  bottom:6px;
 									  left:auto;
 									  width:10px;
 									  height:10px;
@@ -353,6 +396,9 @@ body{
 				}
 				.y-sidebar-wrap{
 					// padding:0;
+					.y-user-logo{
+						display:none;
+					}
 					.y-collapse-wrap{
 						width:42px;
 						background-color:#444;
@@ -450,7 +496,7 @@ body{
 			top:45px;
 			left:0;
 			bottom:0;
-			width:250px;
+			width:220px;
 			background-color:#444;
 			z-index:11;
 			.y-sidebar-wrap{
@@ -463,6 +509,40 @@ body{
 				position:relative;
 				a{
 					display:block;
+				}
+				.y-user-logo{
+					display:block;
+					position:relative;
+					width:100%;
+					height:168px;
+					margin:0 auto;
+					text-align:center;
+					color:#fff;
+					background-color:#333;
+					>img{
+						position:absolute;
+						width:100px;
+						height:100px;
+						border-radius:50%;
+						top:12px;
+						left:50%;
+						transform:translateX(-50%);
+					}
+					>h4{
+						position:absolute;
+						bottom:32px;
+						left:50%;
+						transform:translateX(-50%);
+						font-size:18px;
+					}
+					>p{
+						position:absolute;
+						bottom:15px;
+						left:50%;
+						transform:translateX(-50%);
+						font-size:13px;
+						color:#eee;
+					}
 				}
 				.y-sidebar-list{
 					.y-sidebar-title{
@@ -715,12 +795,12 @@ body{
 	main{
 		.y-main{
 			/*position:absolute;
-		  left:250px;
+		  left:220px;
 		  right:0;
 		  top:45px;*/
 		  // bottom:0;
 		  margin-top:45px;
-		  margin-left:250px;
+		  margin-left:220px;
 		  // padding:10px 15px;
 		  background-color:#fff;
 		  z-index:1;

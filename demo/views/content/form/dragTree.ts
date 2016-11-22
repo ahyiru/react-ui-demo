@@ -134,7 +134,7 @@ var drag={
 			};
 
 			//
-			document.addEventListener('mouseup',drag.mouseEvent.mouseup,false);
+			// document.addEventListener('mouseup',drag.mouseEvent.mouseup,false);
 		},
 		//mouseup
 		mouseup:function(e){
@@ -164,7 +164,7 @@ var drag={
 					if(dropList){
 						for(var i=0,l=dropList.length;i<l;i++){
 							// if(dropList[i].innerText.slice(0,dropList[i].innerText.length-1)==span.innerText){
-							if(dropList[i].innerText==span.innerText){
+							if(dropList[i].innerText.replace(/^\s+|\s+$/g,'')==span.innerText.replace(/^\s+|\s+$/g,'')){
 								isNew=false;
 								break;
 							}
@@ -237,6 +237,7 @@ var drag={
 					document.addEventListener('mousemove',drag.mouseEvent.move,false);
 				}
 			}
+			document.addEventListener('mouseup',drag.mouseEvent.mouseup,false);
 		}
 	},
 
