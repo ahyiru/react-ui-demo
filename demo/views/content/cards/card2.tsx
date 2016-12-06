@@ -3,7 +3,7 @@ import * as React from 'react';
 import Circle from './circle';
 import './card1.less';
 
-export default class Card1 extends React.Component<any,any> {
+export default class Card2 extends React.Component<any,any> {
 
   render() {
     return (

@@ -13,22 +13,27 @@ export default class Ynav extends React.Component<any,any> {
       rightList:this.props.dropList.rightList,
       searchFlag:this.props.dropList.searchFlag
     });
+    window.addEventListener('click',this.hideNav,false);
+  };
 
-    window.addEventListener('click',(e)=>{
-      e.stopPropagation();
-      let leftList=this.state.leftList;
-      let rightList=this.state.rightList;
-      leftList.map((v,k)=>{
-        v.open='';
-      });
-      rightList.map((v,k)=>{
-        v.open='';
-      });
-      this.setState({
-        leftList:leftList,
-        rightList:rightList
-      });
+  hideNav=(e)=>{
+    e.stopPropagation();
+    let leftList=this.state.leftList;
+    let rightList=this.state.rightList;
+    leftList.map((v,k)=>{
+      v.open='';
     });
+    rightList.map((v,k)=>{
+      v.open='';
+    });
+    this.setState({
+      leftList:leftList,
+      rightList:rightList
+    });
+  };
+
+  componentWillUnmount=()=>{
+    window.removeEventListener('click',this.hideNav,false);
   };
 
   dropDown=(cur)=>{
@@ -64,6 +69,12 @@ export default class Ynav extends React.Component<any,any> {
     });
     let body=document.body;
     toggleClass(body,'y-collapse');
+    let collapse=localStorage.getItem('collapse')||'';
+    if(collapse){
+      localStorage.setItem('collapse','');
+    }else{
+      localStorage.setItem('collapse','y-collapse');
+    }
   };
 
   rightBar=()=>{
@@ -75,6 +86,7 @@ export default class Ynav extends React.Component<any,any> {
 
   render() {
     const {leftList,rightList,searchFlag}=this.state;
+    const {login}=this.props;
     let that=this;
     return (
       <nav className="y-nav">
@@ -103,22 +115,27 @@ export default class Ynav extends React.Component<any,any> {
           }
         </article>
         <article className="y-nav-wrap y-nav-right">
-          <ul>
-
-            {
-              rightList.map((v,k)=>{
-                return(
-                  <YdropDown key={`rightList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
-                )
-              })
-            }
-            {
-              !this.props.hideRightTogbar&&
-              <li className="toggle-right-sidebar" onClick={this.rightBar}>
-                <a href="javascript:;"><i className="fa fa-hand-o-right"></i></a>
-              </li>
-            }
-          </ul> 
+          {
+            !login?<ul>
+              {
+                rightList.map((v,k)=>{
+                  return(
+                    <YdropDown key={`rightList${k}`} name={v.name} icon={v.icon} animate={v.animate} msg={v.msg} open={v.open} items={v.items} getCur={that.dropDown} />
+                  )
+                })
+              }
+              {
+                !this.props.hideRightTogbar&&
+                <li className="toggle-right-sidebar" onClick={this.rightBar}>
+                  <a href="javascript:;"><i className="fa fa-hand-o-right"></i></a>
+                </li>
+              }
+            </ul>:
+            <ul className="unlogin">
+              <li><a href={login.loginUrl}>登录</a></li>
+              <li><a href={login.signupUrl}>注册</a></li>
+            </ul>
+          }
         </article>
       </nav>
     );

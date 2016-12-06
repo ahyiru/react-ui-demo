@@ -38,7 +38,7 @@ export const resetObj=(obj)=>{
 };
 
 //对象赋值 深拷贝
-export const cloneObj=(obj)=>{
+export const cloneObj=(obj):any=>{
   var str='',newobj=obj.constructor===Array?[]:{};
   if(typeof obj!=='object'){
     return;
@@ -67,31 +67,36 @@ export const cloneObj=(obj)=>{
   },1);
 };*/
 
-//获取当前页面
-export const getCurrent=(obj,str,data)=>{
+//获取当前页面--menu
+export const getCurrent=(menu,str)=>{
   if(str){
     // 规定url书写规格。#/function/function1
     // str=str[0].slice(0,str[0].length-1);
     str=str[1];
     if(str.split('/').length==2){str='#'+str;}
-    obj.map((v,k)=>{
+    menu.map((v,k)=>{
       if(v.subMenu&&v.subMenu.length>0){
         let flag=false;
         v.subMenu.map((sv,sk)=>{
           if(sv.url==str){
-            data.url='#'+sv.url;
+            /*data.url='#'+sv.url;
             data.subTitle=sv.title;
+            data.level=2;*/
             flag=true;
-            data.level=2;
             sv.selected='active';
           }
           else{
             sv.selected='';
+            let a=str.split('/');
+            let url='/'+a[a.length-2];
+            if(url==sv.url&&!flag){
+              sv.selected='active';
+              flag=true;
+            }
           }
         });
         flag?(
-          data.title=v.title,
-
+          // data.title=v.title,
           v.selMenu='active',
           v.open='open',
           v.toggleSlide={
@@ -107,11 +112,10 @@ export const getCurrent=(obj,str,data)=>{
       }
       else{
         if(v.url==str){
-          data.url=v.url;
+          /*data.url=v.url;
           data.title=v.title;
           data.subTitle='';
-          data.level=1;
-
+          data.level=1;*/
           v.selMenu='active';
         }
         else{
@@ -120,11 +124,51 @@ export const getCurrent=(obj,str,data)=>{
             sv.selected='';
           });
         }
-        
       }
     });
   }
-  return obj;
+  return menu;
+};
+//获取当前页面--breadcrumb
+export const getBreadcrumb=(menu,str)=>{
+  if(str){
+    str=str[1];
+    if(str.split('/').length==2){str='#'+str;}
+    let data=[],tmp=[],level=-1,f=false;
+    //获取当前页面--title
+    const getTitle=(menu,str)=>{
+      level++;
+      menu.map((v,k):any=>{
+        if(f) return false;
+        if(v.url==str){
+          let d={
+            title:v.title,
+            url:'#'+v.url
+          };
+          tmp.push(d);
+          f=true;
+          data=cloneObj(tmp);
+          return data;
+        }
+        else{
+          let ff=false;
+          if(v.subMenu&&v.subMenu.length>0){
+            let d={
+              title:v.title,
+              url:'#'+v.url
+            };
+            tmp.push(d);
+            ff=true;
+            getTitle(v.subMenu,str);
+          }
+          // console.log(ff);
+          if(ff) tmp=[];
+        }
+      });
+      return data;
+    };
+    return getTitle(menu,str);
+  }
 };
 
 //fullscreen
@@ -184,10 +228,10 @@ export const ysort=(param1,param2)=>{
 //数组去重
 export const yunique=(arr)=>{
   var result=[],tmp={};
-  for(var i=0,j=arr.length;i<j;i++){
-    if(!tmp[arr[i]]){
-      result.push(arr[i]);
-      tmp[arr[i]]=1;
+  for(var i=0,ele;(ele=arr[i])!=null;i++){
+    if(!tmp[ele]){
+      result.push(ele);
+      tmp[ele]=true;
     }
   }
   return result;

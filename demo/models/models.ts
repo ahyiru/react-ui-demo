@@ -129,6 +129,32 @@ export const sidebarMenu=[{
   }]
 },{
   url:'javascript:;',
+  title:'卡片',
+  leftIcon:'fa fa-id-card',
+  rightIcon:'fa fa-angle-right',
+  open:'',
+  subMenu:[{
+    url:'/cards/card2',
+    icon:'fa fa-arrow-right',
+    title:'card2'
+  },{
+    url:'/cards',
+    icon:'fa fa-arrow-right',
+    title:'card1',
+    subMenu:[{
+      url:'/cards/card11',
+      title:'card11',
+    },{
+      url:'/cards/card12',
+      title:'card12',
+    }]
+  },{
+    url:'/cards/card3',
+    icon:'fa fa-arrow-right',
+    title:'card3'
+  }]
+},{
+  url:'javascript:;',
   title:'表单',
   leftIcon:'fa fa-th-list',
   rightIcon:'fa fa-angle-right',
@@ -145,25 +171,6 @@ export const sidebarMenu=[{
     url:'/form/treedrag',
     icon:'fa fa-arrow-right',
     title:'TreeDrag'
-  }]
-},{
-  url:'javascript:;',
-  title:'卡片',
-  leftIcon:'fa fa-id-card',
-  rightIcon:'fa fa-angle-right',
-  open:'',
-  subMenu:[{
-    url:'/cards/card1',
-    icon:'fa fa-arrow-right',
-    title:'card1'
-  },{
-    url:'/cards/card2',
-    icon:'fa fa-arrow-right',
-    title:'card2'
-  },{
-    url:'/cards/card3',
-    icon:'fa fa-arrow-right',
-    title:'card3'
   }]
 },{
   url:'#/log',
@@ -293,7 +300,8 @@ export const dropList={
     },{
       pic:'退',
       h4:'退出',
-      p:''
+      p:'',
+      url:'user/login'
     }]
   }]
 };

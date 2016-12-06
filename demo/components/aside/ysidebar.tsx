@@ -18,11 +18,16 @@ import {hasClass,addClass,removeClass} from '../../configs/tools';
 //根据屏幕大小控制collapse
 let smallScreen=()=>{
   clearTimeout(timer);
-  if(document.body.clientWidth<992){
-    addClass(document.body,'y-sidebar-sm y-collapse');
-  }
-   else{
-    removeClass(document.body,'y-sidebar-sm y-collapse');
+  let collapse=localStorage.getItem('collapse')||'';
+  if(!collapse){
+    if(document.body.clientWidth<992){
+      // addClass(document.body,'y-sidebar-sm y-collapse');
+      addClass(document.body,'y-collapse');
+    }
+     else{
+      // removeClass(document.body,'y-sidebar-sm y-collapse');
+      removeClass(document.body,'y-collapse');
+    }
   }
 
   // mouse

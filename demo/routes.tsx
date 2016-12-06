@@ -28,7 +28,10 @@ import {
   Yform1,
   Yform,
   Treedrag,
+  Card2,
   Card1,
+  Card11,
+  Card12,
   Log,
   Info,
   User,
@@ -56,7 +59,12 @@ export default (
       <Route path="ui/ui2" component={UI2} />
       <Route path="ui/ui3" component={UI3} />
 
-      <Route path="cards/card1" component={Card1} />
+      <Route path="cards/card2" component={Card2} />
+      <Route path="cards" component={Card1} >
+        <IndexRedirect to="/cards/card11" />
+        <Route path="card11" component={Card11} />
+        <Route path="card12" component={Card12} />
+      </Route>
     
       <Route path="plugins/plugin1" component={Plugin1} />
       <Route path="plugins/plugin2" component={Plugin2} />

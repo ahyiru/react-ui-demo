@@ -6,7 +6,7 @@ import YpageHeader from './ypageheader';
 import YbackTop from './ybacktop';
 import Ynotify from './ynotify';
 
-import {getCurrent} from '../../configs/tools';
+import {getCurrent,getBreadcrumb} from '../../configs/tools';
 
 import {sidebarMenu,notifyList} from '../../models/models';
 
@@ -72,37 +72,38 @@ export default class Yframe extends React.Component<any,any> {
 
 	constructor(props){
     super(props);
-    // this.str=location.hash.match(/#(\S+)\?/);
-    this.str=location.hash.match(/#(\S+)/);
-    this.data={
-      title:'',
-      subTitle:'',
-      level:1
-    };
-    let obj=getCurrent(sidebarMenu,this.str,this.data);
+    this.str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
+
+    let menu=getCurrent(sidebarMenu,this.str);
+    let breadcrumb=getBreadcrumb(sidebarMenu,this.str);
     this.state=({
-    	menu:obj,
-    	data:this.data,
+    	menu:menu,
+    	breadcrumb:breadcrumb,
       notify:notifyList
     });
 
-    const that=this;
-    //hashchange
-    window.addEventListener('hashchange',()=>{
-      document.documentElement.scrollTop?(document.documentElement.scrollTop=0):(document.body.scrollTop=0);
-    	// let str=location.hash.match(/#(\S+)\?/);
-      let str=location.hash.match(/#(\S+)/);
-    	let obj=getCurrent(sidebarMenu,str,this.data);
-    	that.setState({
-    		menu:obj,
-    		data:this.data
-    	});
-    },false);
+    window.addEventListener('hashchange',this.hashChg,false);
+  };
+
+  //hashchange
+  hashChg=()=>{
+    document.documentElement.scrollTop?(document.documentElement.scrollTop=0):(document.body.scrollTop=0);
+    let str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
+    let menu=getCurrent(sidebarMenu,str);
+    let breadcrumb=getBreadcrumb(sidebarMenu,str);
+    this.setState({
+      menu:menu,
+      breadcrumb:breadcrumb
+    });
+  }
+
+  componentWillUnmount=()=>{
+    window.removeEventListener('hashchange',this.hashChg,false);
   };
 
   render() {
   	const {children}=this.props;
-  	const {data,menu,notify}=this.state;
+  	const {breadcrumb,menu,notify}=this.state;
     return (
       <div>
         <Yheader />
@@ -112,7 +113,7 @@ export default class Yframe extends React.Component<any,any> {
 	        <section className="y-main">
 	          <div className="y-container">
 	            
-              <YpageHeader data={data} hidePagetitle={false} />
+              <YpageHeader breadcrumb={breadcrumb} hidePagetitle={false} />
 
 	            <div className="y-pagecontent">
 	              <div>{children}</div>

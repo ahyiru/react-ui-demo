@@ -1,0 +1,15 @@
+{
+  "name": "imagemin",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "gulp"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "del": "2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-imagemin": "^3.1.1",
+    "imagemin-pngquant": "^5.0.0"
+  },
+  "dependencies": {}
+}

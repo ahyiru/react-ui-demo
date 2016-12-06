@@ -11,7 +11,6 @@ export default class User extends React.Component<any,any> {
 
   componentDidMount=()=>{
   	var h=document.body.offsetHeight;
-  	console.log(h);
   	var user:any=document.getElementsByClassName('user')[0];
   	user.style.height=h+'px';
   };
@@ -19,8 +18,14 @@ export default class User extends React.Component<any,any> {
   render() {
     return(
     	<div className="user">
-    		<h4>login test</h4>
-    		<div>{this.props.children}</div>
+    		<div className="log-panel">
+          <div className="log-left">
+            <img src={require('./logo.png')} />
+          </div>
+          <div className="log-right">
+            {this.props.children}
+          </div>
+        </div>
     	</div>
     )
   }

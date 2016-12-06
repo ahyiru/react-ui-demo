@@ -4,6 +4,11 @@ import Ynav from './ynav';
 
 import {dropList} from '../../models/models';
 
+let loginInfo={
+  loginUrl:'#/user/login',
+  signupUrl:'#/user/signup'
+}
+
 export default class Header extends React.Component<any,any> {
 
   constructor(props){
@@ -11,6 +16,13 @@ export default class Header extends React.Component<any,any> {
   };
 
   render() {
+    let loginFlag=localStorage.getItem('login'),login;
+    if(loginFlag){
+      login=false;
+    }else{
+      login=loginInfo;
+    }
+
     return (
       <header>
         <div className="y-header">
@@ -19,7 +31,7 @@ export default class Header extends React.Component<any,any> {
               {/*<h4 className="logo"></h4>*/} <span><b>React</b> UI Demo</span>   
             </a>
           </section>
-          <Ynav className="y-nav" dropList={dropList} hideRightTogbar={false} />
+          <Ynav className="y-nav" dropList={dropList} hideRightTogbar={false} login={login} />
         </div>
       </header>
     );

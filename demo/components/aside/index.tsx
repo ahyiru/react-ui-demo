@@ -21,7 +21,7 @@ export default class Yaside extends React.Component<any,any> {
 
     return (
       <aside>
-        <YsideBar menu={this.props.sideBarMenu} projectList={projectList} userInfo={userInfo} />
+        <YsideBar menu={this.props.sideBarMenu} projectList={projectList} userInfo={false} />
         <YrightBar tabs={rightbarTabs} tabList={rightbarTabLists} />
       </aside>
     );

@@ -22,7 +22,10 @@ import Easypie from './charts/easypie';
 import Yform1 from './form/yform1';
 import Yform from './form/yform';
 import Treedrag from './form/treeDrag';
+import Card2 from './cards/card2';
 import Card1 from './cards/card1';
+import Card11 from './cards/card11';
+import Card12 from './cards/card12';
 import Log from './log/log';
 import Info from '../user/info';
 import User from '../user/user';
@@ -56,7 +59,10 @@ export{
   Yform1,
   Yform,
   Treedrag,
+  Card2,
   Card1,
+  Card11,
+  Card12,
   Log,
   Info,
   User,

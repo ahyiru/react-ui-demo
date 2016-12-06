@@ -11,6 +11,9 @@
   "exclude":[
     "node_modules",
     "y_dist",
-    "js_demo"
+    "js_demo",
+    "builder",
+    "test",
+    "project"
   ]
 }
