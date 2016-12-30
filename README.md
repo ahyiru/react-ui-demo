@@ -27,7 +27,6 @@ $ npm start 		//默认端口8000
 5. 打开浏览器，访问: [http://localhost:8000/](http://localhost:8000/)
 
 #### 持续更新中...
-#### charts
-![charts](doc/charts.png)
-#### tables
-![tables](doc/tables.png)
+
+![2016回顾](doc/2016.png)
+
