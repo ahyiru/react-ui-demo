@@ -11,9 +11,12 @@ export default class YdropDown extends React.Component<any,any> {
     super(props);
     this.path='/';
     if(this.props.name=='profile'){
-      this.path=this.props.items[3].url;
+      this.props.items.map((v,k)=>{
+        if(v.h4==='退出'){
+          this.path=v.url;
+        }
+      });
     }
-    
     /*this.state=({
       open:''
     });*/

@@ -1,6 +1,7 @@
 import Home from './home';
 import Demo1 from './test/demo1';
 import Demo2 from './test/demo2';
+import DataUI from './test/dataUI';
 import Demo3 from './test/demo3';
 import Func1 from './func/func1';
 import Func2 from './func/func2';
@@ -27,17 +28,20 @@ import Card1 from './cards/card1';
 import Card11 from './cards/card11';
 import Card12 from './cards/card12';
 import Log from './log/log';
+import Fontend from './log/fontend';
 import Info from '../user/info';
 import User from '../user/user';
 import Login from '../user/login';
 import Signup from '../user/signup';
 import About from '../about/about';
+import API from '../api/api';
 import ErrorPage from '../404/404';
 
 export{
 	Home,
   Demo1,
   Demo2,
+  DataUI,
   Demo3,
   Func1,
   Func2,
@@ -64,10 +68,12 @@ export{
   Card11,
   Card12,
   Log,
+  Fontend,
   Info,
   User,
   Login,
   Signup,
   About,
+  API,
   ErrorPage
 }

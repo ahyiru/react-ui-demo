@@ -117,6 +117,9 @@ export default class Ynav extends React.Component<any,any> {
         <article className="y-nav-wrap y-nav-right">
           {
             !login?<ul>
+              <li className="">
+                <a href="#/api"><i className="fa fa-book"></i> API</a>
+              </li>
               {
                 rightList.map((v,k)=>{
                   return(
@@ -131,7 +134,7 @@ export default class Ynav extends React.Component<any,any> {
                 </li>
               }
             </ul>:
-            <ul className="unlogin">
+            <ul className="nodrop">
               <li><a href={login.loginUrl}>登录</a></li>
               <li><a href={login.signupUrl}>注册</a></li>
             </ul>

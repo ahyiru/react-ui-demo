@@ -2,6 +2,8 @@ import * as React from 'react';
 
 // import {tableData} from '../../../models/models';
 
+import {cloneObj} from '../../../configs/tools';
+
 /*const yth:any[]=tableData.thead;
 const ytb:any[]=tableData.tbody;*/
 
@@ -41,9 +43,9 @@ export default class Ytables extends React.Component<any,any> {
 
   edit=(v,k)=>{
   	// v.editState=true;
-    // this.newTable=this.state.ytb.slice(0);
-    this.oldTable=arrClone(this.state.ytb);
-    this.newTable=arrClone(this.state.ytb);
+    // this.oldTable=this.state.ytb.slice(0);
+    this.oldTable=cloneObj(this.state.ytb);
+    this.newTable=cloneObj(this.state.ytb);
     this.newTable[k].editState=true;
     this.setState({
       ytb:this.newTable

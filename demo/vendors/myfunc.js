@@ -203,8 +203,8 @@ $(function(){
 			else if(element.msRequestFullscreen){
 				element.msRequestFullscreen();
 			}
-			else if(element.mozRequestFullscreen){
-				element.mozRequestFullscreen();
+			else if(element.mozRequestFullScreen){
+				element.mozRequestFullScreen();
 			}
 			else if(element.webkitRequestFullscreen){
 				element.webkitRequestFullscreen();
@@ -228,6 +228,9 @@ $(function(){
 		}
 	};
 	$('.fs').on('click',function(){
+		console.log(document.documentElement);
+		console.log(document.documentElement.mozRequestFullScreen);
+		console.log(document.mozFullscreenElement);
 		fs(document.documentElement); //整个页面
 		// fs(document.getElementById('element'));
 	});

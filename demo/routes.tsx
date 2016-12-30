@@ -7,6 +7,7 @@ import {
   Home,
   Demo1,
   Demo2,
+  DataUI,
   Demo3,
   Func1,
   Func2,
@@ -33,11 +34,13 @@ import {
   Card11,
   Card12,
   Log,
+  Fontend,
   Info,
   User,
   Login,
   Signup,
   About,
+  API,
   ErrorPage
 } from './views/content';
 
@@ -49,6 +52,7 @@ export default (
 
       <Route path="test/test1" component={Demo1} />
       <Route path="test/test2" component={Demo2} />
+      <Route path="test/dataUI" component={DataUI} />
       <Route path="test/test3" component={Demo3} />
 
       <Route path="function/function1" component={Func1} />
@@ -88,12 +92,16 @@ export default (
 
       <Route path="/log" component={Log} />
 
+      <Route path="/fontend" component={Fontend} />
+
     </Route>
 
     <Route path="/user" component={User}>
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
     </Route>
+
+    <Route path="/api" component={API} />
 
     <Route path="/404" component={ErrorPage} />
 

@@ -76,7 +76,7 @@ export const getCurrent=(menu,str)=>{
     if(str.split('/').length==2){str='#'+str;}
     menu.map((v,k)=>{
       if(v.subMenu&&v.subMenu.length>0){
-        let flag=false;
+        let flag=false,ls=v.subMenu.length;
         v.subMenu.map((sv,sk)=>{
           if(sv.url==str){
             /*data.url='#'+sv.url;
@@ -100,7 +100,7 @@ export const getCurrent=(menu,str)=>{
           v.selMenu='active',
           v.open='open',
           v.toggleSlide={
-            height:v.subMenu.length*32+16
+            height:ls*32+16
           }
         ):(
           v.selMenu='',
@@ -171,7 +171,7 @@ export const getBreadcrumb=(menu,str)=>{
   }
 };
 
-//fullscreen
+// fullscreen
 export const fs=(element)=>{
   if(!document.fullscreenElement&&/*!document.msFullscreenElement&&!document.mozFullScreenElement&&*/!document.webkitFullscreenElement){
     if(element.requestFullscreen){
@@ -180,8 +180,8 @@ export const fs=(element)=>{
     else if(element.msRequestFullscreen){
       element.msRequestFullscreen();
     }
-    else if(element.mozRequestFullscreen){
-      element.mozRequestFullscreen();
+    else if(element.mozRequestFullScreen){
+      element.mozRequestFullScreen();
     }
     else if(element.webkitRequestFullscreen){
       element.webkitRequestFullscreen();
@@ -194,8 +194,8 @@ export const fs=(element)=>{
     /*else if(document.msExitFullscreen){
       document.msExitFullscreen();
     }
-    else if(document.mozCanselFullscreen){
-      document.mozCanselFullscreen();
+    else if(document.mozCancelFullScreen){
+      document.mozCancelFullScreen();
     }*/
     else if(document.webkitExitFullscreen){
       document.webkitExitFullscreen();
@@ -236,6 +236,38 @@ export const yunique=(arr)=>{
   }
   return result;
 };
+
+// loading
+export const loading:any=(ele)=>{
+  let hasLoad=document.getElementsByClassName('y-loader')[0];
+  if(!hasLoad){
+    var div=document.createElement('div');
+    var figure=document.createElement('figure');
+    // obj.setAttribute('style','display:block;position:absolute;top:0;left:0;height:100%;width:100%;overflow:hidden;pointer-events:none;z-index:-1;opacity:0;');
+    div.setAttribute('class','y-loader');
+    figure.setAttribute('class','y-loading');
+    div.appendChild(figure);
+
+    ele.appendChild(div);
+    ele.style.overflow='hidden';
+  }else{
+    ele.removeChild(hasLoad);
+    ele.style.overflow='visible';
+  }
+  
+  /*return {
+    create:function(){
+      ele.appendChild(div);
+      ele.style.overflow='hidden';
+    },
+    remove:function(){
+      ele.removeChild(hasLoad);
+      ele.style.overflow='visible';
+    }
+  };*/
+};
+
+
 
 
 

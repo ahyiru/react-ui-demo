@@ -20,6 +20,10 @@ export const sidebarMenu=[{
     icon:'fa fa-arrow-right',
     title:'deno2'
   },{
+    url:'/test/dataUI',
+    icon:'fa fa-arrow-right',
+    title:'数据可视化管理界面'
+  },{
     url:'/test/test3',
     icon:'fa fa-arrow-right',
     title:'demo3'
@@ -176,6 +180,12 @@ export const sidebarMenu=[{
   url:'#/log',
   title:'日志',
   leftIcon:'fa fa-github-alt',
+  rightIcon:'fa fa-angle-right',
+  open:''
+},{
+  url:'#/fontend',
+  title:'前端知识点',
+  leftIcon:'fa fa-html5',
   rightIcon:'fa fa-angle-right',
   open:''
 }];

@@ -1,0 +1,321 @@
+css tips
+
+  1.使用:not()属性为导航添加或者去除边框
+    传统的方法是首先为每个li标签添加标签：
+    /* add border */
+    .nav li {
+      border-right: 1px solid #666;
+    }
+    然后用last-child伪属性作用于最后一个元素上：
+    /* remove border */
+    .nav li:last-child {
+      border-right: none;
+    }
+    代替的方法应该是使用not伪类去设置仅作用于部分元素的属性：
+    .nav li:not(:last-child) {
+      border-right: 1px solid #666;
+    }
+  2.为空的Links添加默认内容
+    a[href^="http"]:empty::before {
+      content: attr(href);
+    }
+  3.防止iOS设备上输入失焦
+    在iOS设备中，有时候如果弹出了键盘会导致输入框失焦，即键盘上的内容无法显示在输入框内，需要进行以下覆盖：
+    * {
+      -webkit-user-select: none; /* prevent copy paste */
+    }
+    变为
+    input[type="text"] {
+        -webkit-user-select: text;
+    }
+has()伪类
+.container:has(> input:focus) {}
+
+clip-path
+
+table{ 
+  overflow:hidden; 
+} 
+tr:hover{ 
+  background-color:#ffa; 
+}  
+td:hover::after, 
+th:hover::after{ 
+  content:""; 
+  position:absolute;  
+  width:100%;  
+  height:10000px;  
+  left:0; 
+  top:-5000px; 
+  background-color:currentColor;  
+  z-index:-1; 
+}
+
+clip-path: <clip-source> | [ <basic-shape> || <geometry-box> ] | none
+
+
+p:first-letter {
+  margin-right: 5px;
+  font-size: xx-large;
+  vertical-align: -2px;
+}
+
+
+CSS Shapes使网页设计师能更好的实现自己的创意，除了简单的长方形和正方形，还可以实现任何几何图形布局。改规范提供了两个新的CSS属性：shape-outside和shape-margin
+
+shape-outside: circle();
+
+circle()函数可以定义圆的半径和圆心位置：circle(r at x y)。默认情况，半径值来源于元素容器大小，如果元素宽度是300px，那么圆的半径就是其宽度的一半150px。
+
+同样，x和y坐标也是相对于元素尺寸。默认的坐标是50% 50%，也就是元素的正中间
+
+改变图形盒型只需要给shape-outside属性上添加盒模型的关键字：content-box、margin-box、border-box或padding-box
+
+flex弹性盒子
+
+perspective（视角）
+
+height: 100vh;
+
+transform-style:preserve-3d;
+backface-visibility: hidden;
+clip-path: polygon(100% 50%, 0 0, 0 100%);
+filter: hue-rotate($angle);
+
+即使在场景中设置了preserve-3d，只要设置了overflow的值，就算是visible也会使效果变得像transform-style设置了flat（压平）一样。因此，多添加一个容器可能会让我写更多一点代码，但能让我们绕开这些麻烦。
+
+animation-delay CSS 属性定义动画于何时开始，即从动画应用在元素上到动画开始的这段时间的长度。
+
+该属性值默认为 0s，可为正值，也可为负值。
+
+@for $i from 1 to 6 {
+  .list__item:nth-child(#{$i}) {
+    animation-delay: (-1+$i)*0.1s; /*计算每个元素的 animation-delay */
+  }
+}
+
+
+animation-fill-mode 这个 CSS 属性用来指定在动画执行之前和之后如何给动画的目标应用样式。
+
+.ani-area__item--forwards {
+    animation: ani 1s ease;
+    animation-fill-mode: forwards;
+}
+将 animation-fill-mode 设置为 forwards，动画执行结束后保持最后一帧的样式。
+backwards：在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。
+
+
+animation-direction CSS 属性指示动画是否反向播放。
+
+animation-direction 的 reverse 属性值可简单实现反向动画。
+reverse：反向运行动画，每周期结束动画由尾到头运行。
+
+animation-play-state CSS 属性定义一个动画是否运行或者暂停。
+.ani { 
+    animation: ani1 1s ease;
+    animation-play-state: paused; /* animation-play-state 默认设置为 paused */
+}
+.active .ani {
+    animation-play-state: running; /* 进入当前屏，animation-play-state 设置为 running */
+}
+
+在前文介绍 animation-delay 时，提到了一个轮播的例子，当用户 hover 时，轮播动画应该暂停，用 animation-play-state 属性便可轻松实现交互：
+
+.slider:hover .slider__item{ 
+    animation-play-state: paused;
+}
+
+CSS animation-timing-function 属性定义 CSS 动画在每一动画周期中执行的节奏。
+animation-timing-function 最让人感到惊（beng）艳（kui）的莫过于 steps() 属性值。利用 steps()，可以轻松实现逐帧动画（又称“精灵动画”），从而告别不可控的 gif 时代。
+
+
+
+在实现 CSS3 3D 全景之前，我们先理清部分 CSS3 Transform 属性：
+
+transform-origin：元素变形的原点（默认值为 50% 50% 0，该数值和后续提及的百分比均默认基于元素自身的宽高算出具体数值）；
+perspective: 指定了观察者与 z=0 平面的距离，使具有三维位置变换的元素产生透视效果。（默认值：none，值只能是绝对长度，即负数是非法值）；
+transform-style：用于指定其为子元素提供 2D 还是 3D 的场景。另外，该属性是非继承的；
+transform：该属性能让你修改 CSS 可视化模型的坐标空间，其中包括 平移（translate）、旋转（rotate）、缩放（scale） 和 扭曲（skew）。
+
+对于 perspective，该属性指定了“眼睛”与元素的 perspective-origin （默认值是 50% 50%）点的距离。那么问题来了：“当我们应用 px 作为衡量单位时，那它的实际距离该如何量化呢（即如何得到我们熟悉且易于表达的距离）？”
+答：当我们的屏幕的分辨率是 1080P（1920*1080px），且该元素或祖先元素的 perspective 值是 1920px 时，该应用了 CSS3 3D Transform 的元素的立体效果就相当于我们在距离一个屏幕宽度（1920px）的屏幕前观看该元素的真实效果。尽管如此，目前我也不清楚如何准确地为元素设置一个合适的 perspective 值，只能猜测个大概值，然后再动态修改值，以达到满意的呈现效果。
+
+
+可以使用 will-change 来确保浏览器知道您打算改变元素的属性。 这使浏览器能够在您做出更改之前，进行最合适的优化。 但是必须注意，不要过度使用will-change，因为它可能导致浏览器浪费资源，从而导致更多性能问题。
+
+一般经验法则是，如果动画可能在接下来的 200ms内触发（由用户交互触发或由应用的状态触发），则对动画元素使用 will-change 是个好主意。 对于大多数情况，在应用的当前视图中您打算设置动画的任何元素都应启用will-change，无论您打算改变哪个属性。 在我们在之前的指南中一直使用的方框示例中，为变形和透明度加上will-change属性将产生如下结果：
+
+.box {
+    will-change: transform, opacity;
+}
+
+
+1vh等于当前viewport高度（即打开浏览器窗口高度）的1%，而1vw则是当前viewport宽度的1%。vmin和vmax也使用相同的单位，但响应于特定的规则：
+
+vim使用最小那边的比例。也就是说，如果浏览器窗口的高度小于他的宽时，1vmin将等价于1vh；如果浏览器的宽度小于他的高度时，1vmin等价于1vw。
+vmax则相反：它使用最大的那一边。因此当viewport的宽大于高时，1vmax等价于1vw；如果浏览器的高大于宽时，1max将等价于1vh。
+
+
+结合em和rem
+本文主要使用的是em单位。我们已经确认过，em值是建立在font-size之上的，并且会产生层叠。em还有一个兄弟单位：rem。rem值也是相对的，不过，是相对于根节点的字体大小（e.g.html{}或:root{}）。所以，rem不会和em值一样发生层叠，不过，如果你改变根节点的font-size，rem的值也会相应改变。 结合em和rem，我们可以使一些尺寸固定，而让另一些动态变化。例如，你可能希望一些组件中的文字仅仅相对根节点变化，而另一些元素随着更直接的字体大小变化。
+
+
+简单的两句代码就让图片在容器中水平垂直居中了：
+.box {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+纯CSS实现Scroll Indicator(滚动指示器)
+body{
+  background: linear-gradient(to right top, #0089f2 50%, #DDD 50%);
+  background-size: 100% calc(100% - 100vh);
+  
+  &:before {
+      content: '';
+      position: fixed;
+      top: 5px;
+      bottom: 0;
+      width: 100%;
+      z-index: -1;
+      background: white;
+    }
+}
+
+
+10 个原则让动画带你飞
+
+1.除了透明度（opacity）和切换（transform），不要改变任何属性！
+
+2.用非常清楚的方式隐藏内容
+使用 pointer-events 属性：仅仅利用透明度隐藏元素
+
+3.不要一次给所有内容都设置动画
+用动作编排加以替代
+
+4.适当增加切换延时能够更简单地编排动作
+
+5.在慢动作中使用增量设计
+过后再加快动画的速度
+
+6.给你的用户界面录个像，并且在重复播放中得到一个有价值的第三人视角的看法。
+
+7.网络活动可能会造成延迟。
+你应该预加载或者延迟处理非常大的 HTTP 请求
+
+8.不要直接绑定滚动事件。
+貌似是个好主意，其实不然
+
+9.尽早并且经常地在移动设备上的测试。
+
+10.经常在不同的设备上测试
+不同屏幕尺寸、分辨率，或者有着各种样式的设备
+
+
+
+
+animation-duration动画持续播放时长
+animation-delay动画延迟播放的时长
+animation-directoin动画播放方向
+animation-timing-function动画播放函数功能
+animation-fill-mode动画停留状态
+animation-iteration-count动画播放次数
+animation-play-state动画播放状态
+
+
+@keyframes anime {
+  0% {
+    transform: none;
+  }
+
+  25% {
+    transform: translate(200px, 0);
+  }
+
+  50% {
+    transform: translate(200px, 200px);
+  }
+
+  75% {
+    transform: translate(0, 200px);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+animation: anime 1000ms cubic-bezier(.6, 0, 1, .6) 500ms 50 normal both running;
+
+
+table{
+  page-break-inside:auto;
+}
+tr{
+  page-break-inside:avoid;
+  page-break-after:auto;
+}
+thead{
+  display:table-header-group;
+}
+tfoot{
+  display:table-footer-group;
+}
+
+
+flex
+
+flex-grow 与 flex-shrink
+
+如果所有元素的 flex-grow/shrink 之和大于等于 1，则所有子元素的尺寸一定会被调整到适应父元素的尺寸（在不考虑 max/min-width/height 的前提下），而如果 flex-grow/shrink 之和小于 1，则只会 grow 或 shrink 所有元素 flex-grow/shrink 之和相对于 1 的比例。grow 时的每个元素的权重即为元素的 flex-grow 的值；shrink 时每个元素的权重则为元素 flex-shrink 乘以 width 后的值。
+
+https://www.w3.org/TR/css-flexbox-1/#valdef-flex-flex-shrink
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

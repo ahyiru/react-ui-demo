@@ -74,6 +74,9 @@ module.exports = {
     }, {
       test: /\.(swf|xap)/,
       loader: 'file',
+    }, {
+      test: /\.json/,
+      loader: 'file',
     }],
   },
   plugins: [

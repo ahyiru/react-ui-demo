@@ -1,11 +1,15 @@
 import * as React from 'react';
 const echarts=require('echarts');
 
+import {yresize} from '../../../configs/resize';
+
+
 export default class Yecharts extends React.Component<any,any> {
   refs:any;
-  yresize:any;
   static propTypes={
     option: React.PropTypes.object.isRequired,
+    notMerge: React.PropTypes.bool,
+    lazyUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     className: React.PropTypes.string,
     theme: React.PropTypes.string,
@@ -15,40 +19,47 @@ export default class Yecharts extends React.Component<any,any> {
   };
   constructor(props){
     super(props);
-    this.yresize;
-  }
+  };
   componentDidMount(){
     let echartObj=this.renderEchartDom();
-    let onEvents=this.props.onEvents||[];
-    for(let eventName in onEvents){
-      if(typeof eventName==='string'&&typeof onEvents[eventName]==='function'){
-        echartObj.on(eventName,function(param){
-          onEvents[eventName](param,echartObj);
-        });
-      }
-    }
+    let onEvents=this.props.onEvents||{};
+    this.bindEvents(echartObj,onEvents);
     if(typeof this.props.onChartReady==='function'){
       this.props.onChartReady(echartObj);
     }
-    this.yresize=()=>{
+    yresize(this.refs.echartsDom,()=>{
       echartObj.resize();
-    }
-    window.addEventListener('resize',this.yresize,false);
+    });
   };
   componentDidUpdate() {
     this.renderEchartDom();
+    this.bindEvents(this.getEchartsInstance(),this.props.onEvents||[]);
   };
   componentWillUnmount() {
     echarts.dispose(this.refs.echartsDom);
-    window.removeEventListener('resize',this.yresize,false);
+    yresize(this.refs.echartsDom,()=>{
+      this.renderEchartDom().resize();
+    }).unbind();
+  };
+  bindEvents(instance,events) {
+    var _loop=function _loop(eventName) {
+      if (typeof eventName==='string'&&typeof events[eventName]==='function'){
+        instance.off(eventName);
+        instance.on(eventName,function(param){
+          events[eventName](param,instance);
+        });
+      }
+    };
+    for (var eventName in events){
+      _loop(eventName);
+    }
   };
   renderEchartDom=()=>{
     let echartObj=this.getEchartsInstance();
-    echartObj.setOption(this.props.option);
+    echartObj.setOption(this.props.option,this.props.notMerge||false,this.props.lazyUpdate||false);
     if(this.props.showLoading){
       echartObj.showLoading();
-    }
-    else{
+    }else{
       echartObj.hideLoading();
     }
     return echartObj;

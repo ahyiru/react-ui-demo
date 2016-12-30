@@ -31,7 +31,7 @@ export default class YbackTop extends React.Component<any,any> {
           clearInterval(timer);
           return true;
         }
-        document.documentElement.scrollTop-=30;
+        document.documentElement.scrollTop-=100;
       },1);
     }
     else{
@@ -41,7 +41,7 @@ export default class YbackTop extends React.Component<any,any> {
           clearInterval(timer);
           return true;
         }
-        document.body.scrollTop-=30;
+        document.body.scrollTop-=100;
       },1);
     }
   };
