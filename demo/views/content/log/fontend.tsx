@@ -4,12 +4,12 @@ import './fontend.less';
 
 var data={
 	'ui':['UI','UX','UED','Material Design'],
-	'canvas':['css3','webGL','canvas','SVG'],
-	'css':['css','less','sass'],
+	'canvas':['css3','webGL','canvas','SVG','threejs'],
+	'css':['css','less','sass','PostCSS'],
 	'html5':['html5','localStorage','service Worker','web RTC','web VR'],
 	'javascript':['ECMAScript6','ECMAScript7','typescript','babel','WebAssembly'],
 	'MV*':['angular','react','vue','polymer','ember'],
-	'SAM':['SAM','Rxjs','Redux'],
+	'SAM':['SAM','Redux','Mobx','Rxjs'],
 	'nodejs':['nodejs','express','mongodb','PM2','socket.IO'],
 	'http':['http/2','restful','fetch','json'],
 	'manage':['npm','yarn','git','GitHub','Docker'],

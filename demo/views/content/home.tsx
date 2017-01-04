@@ -40,6 +40,9 @@ let dragPanel={
 export default class Home extends React.Component<any,any> {
 	constructor(props){
     super(props);
+    this.state=({
+      size:1
+    })
   };
 
   componentDidMount(){
@@ -68,21 +71,73 @@ export default class Home extends React.Component<any,any> {
   	});
   };
 
+  largeSize=()=>{
+    // document.body.style.fontSize='2.0rem';
+    let main:any=document.getElementsByClassName('y-main')[0];
+    let size=this.state.size;
+    size+=.1;
+    size=size.toFixed(1)-0;
+    main.style.transform=`scale(${size})`;
+    this.setState({
+      size:size
+    })
+  };
+  smallSize=()=>{
+    // document.body.style.fontSize='1.0rem';
+    let main:any=document.getElementsByClassName('y-main')[0];
+    let size=this.state.size;
+    size-=.1;
+    size=size.toFixed(1)-0;
+    main.style.transform=`scale(${size})`;
+    this.setState({
+      size:size
+    })
+  };
+  resetSize=()=>{
+    // document.body.style.fontSize='1.0rem';
+    let main:any=document.getElementsByClassName('y-main')[0];
+    let size=this.state.size;
+    size=1;
+    main.style.transform=`scale(${size})`;
+    this.setState({
+      size:size
+    })
+  };
+  getSize=(e)=>{
+    let size=e.target.value-0;
+    let main:any=document.getElementsByClassName('y-main')[0];
+    main.style.transform=`scale(${size})`;
+    this.setState({
+      size:size
+    })
+  };
+
   showNotify=(direction)=>{
   	EventEmitter.dispatch('subNotify',direction);
   };
 
   render() {
+    const {size}=this.state;
     return (
     	<div className="y-items">
     		<div className="y-item">
-	      	<h2>主题</h2>
-	      	<button className="ybtn ybtn-default mr" onClick={this.changeTheme.bind(this,'default-theme')}>默认</button>
-	      	<button className="ybtn ybtn-success mr" onClick={this.changeTheme.bind(this,'theme1')}>清新</button>
+          <h2>缩放</h2>
+          <div>
+            <input type="range" value={size} step=".1" min=".6" max="2.0" onChange={this.getSize} disabled />
+            <span>{size}</span>
+          </div>
+          <button className="ybtn ybtn-warning mr" onClick={this.largeSize}>放大</button>
+          <button className="ybtn ybtn-danger mr" onClick={this.smallSize}>缩小</button>
+          <button className="ybtn ybtn-success mr" onClick={this.resetSize}>重置</button>
+        </div>
+        <div className="y-item">
+          <h2>主题</h2>
+          <button className="ybtn ybtn-default mr" onClick={this.changeTheme.bind(this,'default-theme')}>默认</button>
+          <button className="ybtn ybtn-success mr" onClick={this.changeTheme.bind(this,'theme1')}>清新</button>
           <button className="ybtn ybtn-warning mr" onClick={this.changeTheme.bind(this,'theme2')}>淡雅</button>
           <button className="ybtn ybtn-danger mr" onClick={this.changeTheme.bind(this,'theme3')}>浅墨</button>
           <button className="ybtn ybtn-info" onClick={this.changeTheme.bind(this,'theme4')}>中国风</button>
-	      </div>
+        </div>
 	      <div className="y-item">
 	      	<h2>主题2</h2>
           <button className="ybtn ybtn-default mr" onClick={this.changeTheme.bind(this,'stheme1')}>stheme1</button>

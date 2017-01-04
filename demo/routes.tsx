@@ -36,6 +36,7 @@ import {
   Log,
   Fontend,
   Info,
+  MobxDemo,
   User,
   Login,
   Signup,
@@ -89,6 +90,8 @@ export default (
       <Route path="form/treedrag" component={Treedrag} />
 
       <Route path="/info" component={Info} />
+
+      <Route path="/mobx-demo" component={MobxDemo} />
 
       <Route path="/log" component={Log} />
 

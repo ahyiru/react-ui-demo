@@ -72,7 +72,7 @@ table{border-spacing:0;border-collapse:collapse;}
 
 /*span 除掉空隙*/
 span{
-  font-size:13px;
+  font-size:1.3rem;
   letter-spacing:normal;
   word-spacing:normal;
   vertical-align:middle;

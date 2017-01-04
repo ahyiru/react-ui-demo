@@ -30,6 +30,7 @@ import Card12 from './cards/card12';
 import Log from './log/log';
 import Fontend from './log/fontend';
 import Info from '../user/info';
+import MobxDemo from './mobx/index';
 import User from '../user/user';
 import Login from '../user/login';
 import Signup from '../user/signup';
@@ -70,6 +71,7 @@ export{
   Log,
   Fontend,
   Info,
+  MobxDemo,
   User,
   Login,
   Signup,

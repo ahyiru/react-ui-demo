@@ -188,6 +188,12 @@ export const sidebarMenu=[{
   leftIcon:'fa fa-html5',
   rightIcon:'fa fa-angle-right',
   open:''
+},{
+  url:'#/mobx-demo',
+  title:'mobx-demo',
+  leftIcon:'fa fa-hourglass-start',
+  rightIcon:'fa fa-angle-right',
+  open:''
 }];
 
 //notifyList
