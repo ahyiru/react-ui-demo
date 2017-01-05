@@ -61,5 +61,7 @@ webpack.build.js
 node
 test
 
+.happypack
+
 *.zip
 *.json
