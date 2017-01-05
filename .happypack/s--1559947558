@@ -1,0 +1,550 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _eventEmitter = require('../../configs/eventEmitter');
+
+var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
+
+var _tools = require('../../configs/tools');
+
+var _ydnd = require('./ydnd');
+
+var _ydnd2 = _interopRequireDefault(_ydnd);
+
+var _ypanel = require('./ypanel');
+
+var _ypanel2 = _interopRequireDefault(_ypanel);
+
+var _ydrag = require('./ydrag');
+
+var _ydrag2 = _interopRequireDefault(_ydrag);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  Home: {
+    displayName: 'Home'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/home.tsx',
+  components: _components,
+  locals: [module],
+  imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/home.tsx',
+  components: _components,
+  locals: [],
+  imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+var themePkg = ['default-theme', 'theme1', 'theme2', 'theme3', 'theme4', 'stheme1', 'stheme2', 'stheme3', 'stheme4', 'stheme5', 'ltheme1', 'ltheme2', 'ltheme3', 'ltheme4'];
+
+var panel = {
+  title: 'panel标题栏',
+  defaultTheme: '',
+  plugins: {
+    pCheckbox: true,
+    pSelTheme: true,
+    pRefrash: true,
+    pCollapse: true,
+    pFullscreen: true,
+    pClose: true
+  }
+};
+var dragPanel = {
+  title1: '可拖放panel1',
+  title2: '可拖放panel2',
+  defaultTheme: '',
+  plugins: {
+    pCheckbox: false,
+    pSelTheme: false,
+    pRefrash: false,
+    pCollapse: false,
+    pFullscreen: false,
+    pClose: false
+  }
+};
+
+var Home = _wrapComponent('Home')(function (_React$Component) {
+  (0, _inherits3.default)(Home, _React$Component);
+
+  function Home(props) {
+    (0, _classCallCheck3.default)(this, Home);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Home.__proto__ || (0, _getPrototypeOf2.default)(Home)).call(this, props));
+
+    _this.changeTheme = function (theme) {
+      themePkg.map(function (v, k) {
+        (0, _tools.removeClass)(document.body, v);
+        if (theme == v) {
+          (0, _tools.addClass)(document.body, v);
+          try {
+            localStorage.setItem('theme', v);
+          } catch (e) {
+            console.log('你处于无痕模式!');
+            return false;
+          }
+        }
+      });
+    };
+
+    _this.largeSize = function () {
+      // document.body.style.fontSize='2.0rem';
+      var main = document.getElementsByClassName('y-main')[0];
+      var size = _this.state.size;
+      size += .1;
+      size = size.toFixed(1) - 0;
+      main.style.transform = 'scale(' + size + ')';
+      _this.setState({
+        size: size
+      });
+    };
+
+    _this.smallSize = function () {
+      // document.body.style.fontSize='1.0rem';
+      var main = document.getElementsByClassName('y-main')[0];
+      var size = _this.state.size;
+      size -= .1;
+      size = size.toFixed(1) - 0;
+      main.style.transform = 'scale(' + size + ')';
+      _this.setState({
+        size: size
+      });
+    };
+
+    _this.resetSize = function () {
+      // document.body.style.fontSize='1.0rem';
+      var main = document.getElementsByClassName('y-main')[0];
+      var size = _this.state.size;
+      size = 1;
+      main.style.transform = 'scale(' + size + ')';
+      _this.setState({
+        size: size
+      });
+    };
+
+    _this.getSize = function (e) {
+      var size = e.target.value - 0;
+      var main = document.getElementsByClassName('y-main')[0];
+      main.style.transform = 'scale(' + size + ')';
+      _this.setState({
+        size: size
+      });
+    };
+
+    _this.showNotify = function (direction) {
+      _eventEmitter2.default.dispatch('subNotify', direction);
+    };
+
+    _this.state = {
+      size: 1
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Home, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      _ydrag2.default.init();
+      // require('./ydrag');
+      /*let ydnd=require('./ydrag').default;
+      ydnd();*/
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      _ydrag2.default.distroy();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var size = this.state.size;
+
+      return React.createElement(
+        'div',
+        { className: 'y-items' },
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            '\u7F29\u653E'
+          ),
+          React.createElement(
+            'div',
+            null,
+            React.createElement('input', { type: 'range', value: size, step: '.1', min: '.6', max: '2.0', onChange: this.getSize, disabled: true }),
+            React.createElement(
+              'span',
+              null,
+              size
+            )
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-warning mr', onClick: this.largeSize },
+            '\u653E\u5927'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-danger mr', onClick: this.smallSize },
+            '\u7F29\u5C0F'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-success mr', onClick: this.resetSize },
+            '\u91CD\u7F6E'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            '\u4E3B\u9898'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-default mr', onClick: this.changeTheme.bind(this, 'default-theme') },
+            '\u9ED8\u8BA4'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-success mr', onClick: this.changeTheme.bind(this, 'theme1') },
+            '\u6E05\u65B0'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-warning mr', onClick: this.changeTheme.bind(this, 'theme2') },
+            '\u6DE1\u96C5'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-danger mr', onClick: this.changeTheme.bind(this, 'theme3') },
+            '\u6D45\u58A8'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-info', onClick: this.changeTheme.bind(this, 'theme4') },
+            '\u4E2D\u56FD\u98CE'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            '\u4E3B\u98982'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-default mr', onClick: this.changeTheme.bind(this, 'stheme1') },
+            'stheme1'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-success mr', onClick: this.changeTheme.bind(this, 'stheme2') },
+            'stheme2'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-info mr', onClick: this.changeTheme.bind(this, 'stheme3') },
+            'stheme3'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-warning mr', onClick: this.changeTheme.bind(this, 'stheme4') },
+            'stheme4'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-danger', onClick: this.changeTheme.bind(this, 'stheme5') },
+            'stheme5'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            '\u4E3B\u98983'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-default mr', onClick: this.changeTheme.bind(this, 'ltheme1') },
+            'ltheme1'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-success mr', onClick: this.changeTheme.bind(this, 'ltheme2') },
+            'ltheme2'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-info mr', onClick: this.changeTheme.bind(this, 'ltheme3') },
+            'ltheme3'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-warning mr', onClick: this.changeTheme.bind(this, 'ltheme4') },
+            'ltheme4'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            'button'
+          ),
+          React.createElement(
+            'div',
+            { className: 'y-items' },
+            React.createElement(
+              'div',
+              { className: 'y-item' },
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-default mr' },
+                'default'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-success mr' },
+                'success'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-info mr' },
+                'info'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-warning mr' },
+                'warning'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-danger' },
+                'danger'
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'y-item' },
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-default ybtn-sm mr' },
+                'default samll'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-success ybtn-sm mr' },
+                'success samll'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-info ybtn-sm mr' },
+                'info samll'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-warning ybtn-lg mr' },
+                'warning large'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-danger ybtn-lg' },
+                'danger large'
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'y-item' },
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-info ybtn-block mb' },
+                'info block'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-warning ybtn-block mb' },
+                'warning block'
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-danger ybtn-block' },
+                'danger block'
+              )
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            'panel'
+          ),
+          React.createElement(
+            _ydnd2.default,
+            null,
+            React.createElement(_ypanel2.default, (0, _extends3.default)({ canDrag: false, panelTitle: panel.title, defaultTheme: panel.defaultTheme }, panel.plugins))
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            '\u53EF\u62D6\u653Epanel'
+          ),
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              _ydnd2.default,
+              null,
+              React.createElement(_ypanel2.default, (0, _extends3.default)({ canDrag: true, panelTitle: dragPanel.title1, defaultTheme: dragPanel.defaultTheme }, dragPanel.plugins))
+            ),
+            React.createElement(
+              _ydnd2.default,
+              null,
+              React.createElement(_ypanel2.default, (0, _extends3.default)({ canDrag: true, panelTitle: dragPanel.title2, defaultTheme: dragPanel.defaultTheme }, dragPanel.plugins))
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            'notification'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-success mr', onClick: this.showNotify.bind(this, 'top-left') },
+            '\u5DE6\u4E0A'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-warning mr', onClick: this.showNotify.bind(this, 'top-middle') },
+            '\u4E2D\u4E0A'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-danger mr', onClick: this.showNotify.bind(this, 'top-right') },
+            '\u53F3\u4E0A'
+          ),
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-info', onClick: this.showNotify.bind(this, 'bottom-right') },
+            '\u53F3\u4E0B'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            'list'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            'table'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            'carousel'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'y-item' },
+          React.createElement(
+            'h2',
+            null,
+            'form'
+          )
+        )
+      );
+    }
+  }]);
+  return Home;
+}(React.Component));
+
+exports.default = Home;

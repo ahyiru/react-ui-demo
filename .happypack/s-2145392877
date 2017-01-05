@@ -1,0 +1,666 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  Ytables: {
+    displayName: 'Ytables'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/test/yTables.tsx',
+  components: _components,
+  locals: [module],
+  imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/test/yTables.tsx',
+  components: _components,
+  locals: [],
+  imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+require('es6-promise').polyfill();
+var fetch = require('isomorphic-fetch');
+
+// import {tableData} from '../../../models/models';
+
+/*const yth:any[]=tableData.thead;
+const ytb:any[]=tableData.tbody;*/
+
+// download
+
+var dlJson = function dlJson(url, name) {
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  a.parentNode.removeChild(a);
+};
+
+//对象赋值 深拷贝
+var cloneObj = function cloneObj(obj) {
+  var str = '',
+      newobj = obj.constructor === Array ? [] : {};
+  if ((typeof obj === 'undefined' ? 'undefined' : (0, _typeof3.default)(obj)) !== 'object') {
+    return;
+  } else {
+    for (var i in obj) {
+      newobj[i] = (0, _typeof3.default)(obj[i]) === 'object' ? cloneObj(obj[i]) : obj[i];
+    }
+  }
+  return newobj;
+};
+
+// check value
+var chkVal = function chkVal(val) {
+  var reg = /^[\u4E00-\u9FA5A-Za-z0-9_]{2,20}$/;
+  return reg.test(val);
+};
+
+var pagination = [];
+for (var i = 0; i < 10; i++) {
+  pagination[i] = i + 1;
+};
+
+var arrClone = function arrClone(arr) {
+  var newArr = [];
+  for (var _i = 0, l = arr.length; _i < l; _i++) {
+    if (arr[_i] instanceof Array) {
+      newArr[_i] = arrClone(arr[_i]);
+    } else {
+      newArr[_i] = arr[_i];
+    }
+  }
+  return newArr;
+};
+
+var obj2arr = function obj2arr(obj) {
+  var arr = [];
+  obj.map(function (v, k) {
+    arr[k] = [];
+    var keys = (0, _keys2.default)(v),
+        id = '';
+    for (var i = 0, j = keys.length; i < j; i++) {
+      if (keys[i] != '__v') {
+        if (keys[i] === '_id') {
+          id = v[keys[i]];
+        } else {
+          arr[k].push(v[keys[i]]);
+        }
+      }
+    }
+    arr[k].splice(0, 0, id);
+  });
+
+  return arr;
+};
+
+var info = {};
+
+var Ytables = _wrapComponent('Ytables')(function (_React$Component) {
+  (0, _inherits3.default)(Ytables, _React$Component);
+
+  function Ytables(props) {
+    (0, _classCallCheck3.default)(this, Ytables);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Ytables.__proto__ || (0, _getPrototypeOf2.default)(Ytables)).call(this, props));
+
+    _this.componentWillReceiveProps = function (nextProps) {
+      // console.log(nextProps);
+      _this.setState({
+        yth: nextProps.yth,
+        tbArr: obj2arr(nextProps.ytb)
+      });
+    };
+
+    _this.edit = function (v, k) {
+      // v.editState=true;
+      // this.newTable=this.state.ytb.slice(0);
+      var tbArr = _this.state.tbArr;
+
+      tbArr[k].editState = true;
+      _this.setState({
+        tbArr: tbArr
+      });
+    };
+
+    _this.save = function (v, k) {
+
+      var val = {},
+          th = _this.props.yth;
+      for (var _i2 = 1, l = v.length; _i2 < l; _i2++) {
+        if (!chkVal(v[_i2])) {
+          alert('2-20个有效字符.');
+          return false;
+        }
+        val[th[_i2]] = v[_i2];
+      }
+      // console.log(val);
+      var data = {
+        _id: v[0],
+        tr: val
+      };
+      v.editState = false;
+      // this.state.ytb=this.newTable.slice(0);
+      // this.state.ytb=arrClone(this.newTable);
+      // this.newTable[k].editState=false;
+      /*this.setState({
+       	tbArr:this.state.tbArr
+      });*/
+      var url = '/table/' + _this.props.tableName + '/update';
+      var that = _this;
+      fetch(url, {
+        method: 'POST',
+        body: (0, _stringify2.default)(data),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log(data);
+        that.props.moreInfo(_this.props.tableName);
+        /*fetch(url+'/info').then(response => response.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              tbArr:obj2arr(data.tbody)
+            })
+          })
+          .catch(e => console.log("error", e));*/
+      }).catch(function (e) {
+        return console.log("删除失败," + e);
+      });
+    };
+
+    _this.delete = function (v, k) {
+      // var that=this;
+      var url = '/table/' + _this.props.tableName + '/delete';
+      var that = _this;
+      fetch(url, {
+        method: 'POST',
+        body: (0, _stringify2.default)({ _id: v[0] }),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log(data);
+        that.props.moreInfo(_this.props.tableName);
+        /*fetch(url+'/info').then(response => response.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              tbArr:obj2arr(data.tbody)
+            })
+          })
+          .catch(e => console.log("error", e));*/
+      }).catch(function (e) {
+        return console.log("删除失败," + e);
+      });
+    };
+
+    _this.cancel = function (v, k) {
+      v.editState = false;
+      /*this.setState({
+       	tbArr:this.state.tbArr
+      });*/
+      _this.props.moreInfo(_this.props.tableName);
+    };
+
+    _this.select = function () {
+      _this.setState({
+        selected: !_this.state.selected
+      });
+    };
+
+    _this.getVal = function (vk, vsk, e) {
+      var self = _this;
+      var tbArr = _this.state.tbArr;
+      tbArr.map(function (v, k) {
+        if (vk == k) {
+          tbArr[k].map(function (sv, sk) {
+            if (vsk == sk) {
+              tbArr[k][sk] = e.target.value;
+            }
+          });
+        }
+      });
+      _this.setState({
+        tbArr: tbArr
+      });
+    };
+
+    _this.addRow = function () {
+      var rows = _this.state.rows;
+
+      var l = rows.length;
+      rows.splice(l, 0, info);
+      _this.setState({
+        rows: rows
+      });
+    };
+
+    _this.saveRow = function (k) {
+      var addList = document.getElementsByClassName('addtable')[k];
+      addList = addList.children;
+      var data = {
+        username: addList[0].value,
+        password: addList[1].value
+      };
+      fetch('/add', {
+        method: 'POST',
+        body: (0, _stringify2.default)(data),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log(data);
+        fetch('/info').then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          console.log(data);
+          _this.setState({
+            tbArr: obj2arr(data)
+          });
+        }).catch(function (e) {
+          return console.log("error", e);
+        });
+      }).catch(function (e) {
+        return console.log("添加失败," + e);
+      });
+
+      var rows = _this.state.rows;
+
+      rows.splice(k, 1);
+      _this.setState({
+        rows: rows
+      });
+    };
+
+    _this.addCancel = function (k) {
+      var rows = _this.state.rows;
+
+      rows.splice(k, 1);
+      _this.setState({
+        rows: rows
+      });
+    };
+
+    _this.setVal = function (k, e) {
+      // console.log(e.target.value);
+      var rows = cloneObj(_this.state.rows);
+      var name = e.target.name;
+      switch (name) {
+        case 'name':
+          rows[k].name = e.target.value;
+          _this.setState({
+            rows: rows
+          });
+          break;
+        case 'password':
+          rows[k].password = e.target.value;
+          _this.setState({
+            rows: rows
+          });
+          break;
+      }
+    };
+
+    _this.toJson = function () {
+      var name = _this.props.tableName;
+      fetch('/table/' + name + '/toJson').then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log(data);
+        if (data.result === 'OK') {
+          var url = require('../../../models/' + name + '.json');
+          console.log(url);
+          dlJson(url, name);
+          // window.open(url);
+          // location.href=url;
+        }
+      }).catch(function (e) {
+        return console.log("error", e);
+      });
+    };
+
+    _this.state = {
+      yth: _this.props.yth,
+      tbArr: obj2arr(_this.props.ytb),
+      editState: false,
+      selected: false,
+
+      rows: []
+    };
+    return _this;
+  }
+
+  /*componentWillMount(){
+    fetch('/info').then(response => response.json())
+      .then(data => {
+        this.setState({
+          tbArr:obj2arr(data)
+        })
+      })
+      .catch(e => console.log("error", e));
+  };*/
+
+  /*componentDidUpdate=()=>{
+    // console.log(this.props.yth);
+  };*/
+
+  (0, _createClass3.default)(Ytables, [{
+    key: 'render',
+    value: function render() {
+      var that = this;
+      // this.state.tbArr.length==0&&(this.state.tbArr=obj2arr(this.props.ytb));
+      var _state = this.state,
+          rows = _state.rows,
+          tbArr = _state.tbArr,
+          yth = _state.yth,
+          editState = _state.editState,
+          selected = _state.selected;
+      var _props = this.props,
+          editable = _props.editable,
+          showTbar = _props.showTbar;
+
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'div',
+          { className: 'ytable-toolbar' },
+          React.createElement(
+            'div',
+            { className: 'yttb' },
+            showTbar && React.createElement(
+              'button',
+              { className: 'ybtn ybtn-success y-left', onClick: this.addRow },
+              '\u6DFB\u52A0 ',
+              React.createElement('i', { className: 'fa fa-plus' })
+            ),
+            React.createElement(
+              'button',
+              { className: 'ybtn ybtn-info y-right', onClick: this.toJson },
+              '\u5BFC\u51FA\u4E3Ajson ',
+              React.createElement('i', { className: 'fa fa-download' })
+            )
+          ),
+          rows.map(function (v, k) {
+            return React.createElement(
+              'div',
+              { key: 'add-' + k, className: 'addtable' },
+              React.createElement('input', { type: 'text', className: 'y-input', name: 'name', placeholder: 'username', value: v.name, onChange: that.setVal.bind(that, k) }),
+              React.createElement('input', { type: 'password', className: 'y-input', name: 'password', placeholder: 'password', value: v.password, onChange: that.setVal.bind(that, k) }),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-info', onClick: that.saveRow.bind(that, k) },
+                '\u4FDD\u5B58 ',
+                React.createElement('i', { className: 'fa fa-file-text' })
+              ),
+              React.createElement(
+                'button',
+                { className: 'ybtn ybtn-warning', onClick: that.addCancel.bind(that, k) },
+                '\u53D6\u6D88 ',
+                React.createElement('i', { className: 'fa fa-undo' })
+              )
+            );
+          })
+        ),
+        React.createElement(
+          'div',
+          { className: 'ytable-header' },
+          React.createElement(
+            'div',
+            { className: 'y-select sm y-left' },
+            React.createElement('input', { type: 'text', className: 'y-input', defaultValue: '5' }),
+            React.createElement(
+              'span',
+              { className: 'select-icon', onClick: this.select },
+              React.createElement('i', { className: 'fa fa-caret-down' })
+            ),
+            React.createElement(
+              'span',
+              { className: 'select-tip' },
+              '5 \u6761/\u9875'
+            ),
+            React.createElement(
+              'ul',
+              { className: 'fade-in-up ' + (selected ? 'y-show' : '') },
+              React.createElement(
+                'li',
+                null,
+                '5'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '10'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '15'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '20'
+              ),
+              React.createElement(
+                'li',
+                null,
+                'all'
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'y-search y-right' },
+            React.createElement('input', { type: 'text', className: 'y-input', placeholder: '\u641C\u7D22...' }),
+            React.createElement(
+              'span',
+              { className: 'select-icon' },
+              React.createElement('i', { className: 'fa fa-search' })
+            )
+          )
+        ),
+        React.createElement(
+          'table',
+          { className: 'ytable ytable-bordered ytable-striped' },
+          React.createElement(
+            'thead',
+            null,
+            React.createElement(
+              'tr',
+              null,
+              yth.map(function (v, k) {
+                return k > 0 && React.createElement(
+                  'th',
+                  { key: 'th' + k },
+                  v
+                );
+              }),
+              editable && React.createElement(
+                'th',
+                { colSpan: 2 },
+                '\u64CD\u4F5C'
+              )
+            )
+          ),
+          React.createElement(
+            'tbody',
+            null,
+            tbArr.map(function (v, k) {
+              return React.createElement(
+                'tr',
+                { key: 'tr' + k },
+                v.map(function (sv, sk) {
+                  return sk > 0 && React.createElement(
+                    'td',
+                    { key: 'tr' + k + '-td' + sk },
+                    v.editState ? React.createElement('input', { type: 'text', value: sv, onChange: that.getVal.bind(that, k, sk), placeholder: sv }) : sv
+                  );
+                }),
+                editable && (v.editState ? React.createElement(
+                  'td',
+                  { key: 'save' + k, onClick: that.save.bind(that, v, k), className: 'edit' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;', className: 'bg-success' },
+                    React.createElement('i', { className: 'fa fa-file-text' }),
+                    ' \u4FDD\u5B58'
+                  )
+                ) : React.createElement(
+                  'td',
+                  { key: 'edit' + k, onClick: that.edit.bind(that, v, k), className: 'edit' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;' },
+                    React.createElement('i', { className: 'fa fa-pencil-square-o' }),
+                    ' \u7F16\u8F91'
+                  )
+                )),
+                editable && (v.editState ? React.createElement(
+                  'td',
+                  { key: 'cancel' + k, onClick: that.cancel.bind(that, v, k), className: 'delete' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;', className: 'bg-warning' },
+                    React.createElement('i', { className: 'fa fa-undo' }),
+                    ' \u53D6\u6D88'
+                  )
+                ) : React.createElement(
+                  'td',
+                  { key: 'delete' + k, onClick: that.delete.bind(that, v, k), className: 'delete' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;' },
+                    React.createElement('i', { className: 'fa fa-trash-o' }),
+                    ' \u5220\u9664'
+                  )
+                ))
+              );
+            })
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'ytable-footer' },
+          React.createElement(
+            'div',
+            { className: 'pagination' },
+            React.createElement(
+              'span',
+              null,
+              '\u5F53\u524D\u663E\u793A\u4E3A 1-5 \u9879\uFF0C\u517150\u9879\u3002'
+            ),
+            React.createElement(
+              'ul',
+              { className: 'y-right' },
+              React.createElement(
+                'li',
+                { className: 'disabled' },
+                '\u9996\u9875'
+              ),
+              React.createElement(
+                'li',
+                { className: 'disabled' },
+                '\u4E0A\u4E00\u9875'
+              ),
+              pagination.length > 5 ? pagination.map(function (v, k) {
+                return (k < 3 || k > pagination.length - 3) && React.createElement(
+                  'li',
+                  { key: 'page' + k, className: k == 0 && 'active' || k == 2 && 'more' },
+                  k == 2 ? '...' : k + 1
+                );
+              }) : pagination.map(function (v, k) {
+                return React.createElement(
+                  'li',
+                  { key: 'page' + k },
+                  k + 1
+                );
+              }),
+              React.createElement(
+                'li',
+                null,
+                '\u4E0B\u4E00\u9875'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '\u5C3E\u9875'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return Ytables;
+}(React.Component));
+
+exports.default = Ytables;

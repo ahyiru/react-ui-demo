@@ -1,0 +1,239 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _tools = require('../../configs/tools');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  Ypanel: {
+    displayName: 'Ypanel'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/ypanel.tsx',
+  components: _components,
+  locals: [module],
+  imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/ypanel.tsx',
+  components: _components,
+  locals: [],
+  imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+var Ypanel = _wrapComponent('Ypanel')(function (_React$Component) {
+  (0, _inherits3.default)(Ypanel, _React$Component);
+
+  function Ypanel(props) {
+    (0, _classCallCheck3.default)(this, Ypanel);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Ypanel.__proto__ || (0, _getPrototypeOf2.default)(Ypanel)).call(this, props));
+
+    _this.selectTheme = function () {
+      _this.setState({
+        current: _this.state.current ? '' : 'y-show'
+      });
+    };
+
+    _this.changeTheme = function (color) {
+      _this.setState({
+        current: _this.state.current ? '' : 'y-show',
+        changeTo: color
+      });
+    };
+
+    _this.collapse = function () {
+      _this.setState({
+        collapse: _this.state.collapse ? 0 : 200,
+        collapseIcon: _this.state.collapseIcon == 'minus' ? 'plus' : 'minus'
+      });
+    };
+
+    _this.fullScreen = function () {
+      (0, _tools.fs)(_this.refs.fs);
+      _this.setState({
+        fsIcon: _this.state.fsIcon == 'expand' ? 'compress' : 'expand'
+      });
+    };
+
+    _this.closeItem = function () {
+      _this.setState({});
+    };
+
+    _this.switchChk = function () {
+      _this.setState({
+        checkBox: !_this.state.checkBox
+      });
+    };
+
+    _this.loading = function () {
+      var load = 0,
+          that = _this;
+      clearTimeout(load);
+      _this.setState({
+        isLoading: true
+      });
+      load = setTimeout(function () {
+        that.setState({
+          isLoading: false
+        });
+      }, 3000);
+    };
+
+    _this.state = {
+      current: '',
+      changeTo: _this.props.defaultTheme || 'default',
+      collapse: 200,
+      collapseIcon: 'minus',
+      fsIcon: 'expand',
+      loadingIcon: 'refresh',
+      checkBox: true,
+      canDrag: _this.props.canDrag ? 'ydrag' : ''
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Ypanel, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state = this.state,
+          current = _state.current,
+          changeTo = _state.changeTo,
+          collapse = _state.collapse,
+          collapseIcon = _state.collapseIcon,
+          fsIcon = _state.fsIcon,
+          loadingIcon = _state.loadingIcon,
+          isLoading = _state.isLoading,
+          checkBox = _state.checkBox,
+          canDrag = _state.canDrag;
+      var _props = this.props,
+          panelTitle = _props.panelTitle,
+          pCheckbox = _props.pCheckbox,
+          pSelTheme = _props.pSelTheme,
+          pRefrash = _props.pRefrash,
+          pCollapse = _props.pCollapse,
+          pFullscreen = _props.pFullscreen,
+          pClose = _props.pClose;
+
+      return React.createElement(
+        'div',
+        { ref: 'fs', className: 'y-panel ydrop ' + changeTo },
+        React.createElement(
+          'div',
+          { className: 'y-panel-header ' + canDrag },
+          React.createElement(
+            'h4',
+            null,
+            panelTitle
+          ),
+          React.createElement(
+            'div',
+            { className: 'plugins' },
+            pCheckbox ? React.createElement(
+              'div',
+              null,
+              React.createElement('input', { type: 'checkbox', className: 'y-switch', checked: checkBox, onChange: this.switchChk })
+            ) : '',
+            pSelTheme ? React.createElement(
+              'div',
+              { className: 'select-theme' },
+              React.createElement('i', { onClick: this.selectTheme }),
+              React.createElement(
+                'ul',
+                { className: 'fade-in-down ' + current },
+                React.createElement('li', { className: 'bg-default', onClick: this.changeTheme.bind(this, 'default') }),
+                React.createElement('li', { className: 'bg-success', onClick: this.changeTheme.bind(this, 'success') }),
+                React.createElement('li', { className: 'bg-info', onClick: this.changeTheme.bind(this, 'info') }),
+                React.createElement('li', { className: 'bg-warning', onClick: this.changeTheme.bind(this, 'warning') }),
+                React.createElement('li', { className: 'bg-danger', onClick: this.changeTheme.bind(this, 'danger') })
+              )
+            ) : '',
+            pRefrash ? React.createElement(
+              'div',
+              null,
+              React.createElement('i', { className: 'fa fa-' + loadingIcon, onClick: this.loading })
+            ) : '',
+            pCollapse ? React.createElement(
+              'div',
+              null,
+              React.createElement('i', { className: 'fa fa-' + collapseIcon, onClick: this.collapse })
+            ) : '',
+            pFullscreen ? React.createElement(
+              'div',
+              null,
+              React.createElement('i', { className: 'fa fa-' + fsIcon, onClick: this.fullScreen })
+            ) : '',
+            pClose ? React.createElement(
+              'div',
+              null,
+              React.createElement('i', { className: 'fa fa-times', onClick: this.closeItem })
+            ) : ''
+          )
+        ),
+        React.createElement('div', { className: 'y-panel-body ' + (checkBox ? 'bg-info' : 'bg-default'), style: { height: collapse } }),
+        isLoading ? React.createElement(
+          'div',
+          { className: 'y-loader' },
+          React.createElement('figure', { className: 'y-loading' })
+        ) : ''
+      );
+    }
+  }]);
+  return Ypanel;
+}(React.Component));
+
+exports.default = Ypanel;

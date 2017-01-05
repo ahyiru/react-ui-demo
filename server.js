@@ -133,7 +133,254 @@ app.get('/api',function(request,response,next){
 // });
 // end md2html
 
+  /*
+  **  20161229
+  **  yiru
+  **  server.js
+  */
   
+  // start mongodb
+  var mongoose=require("mongoose");
+  mongoose.Promise = require('bluebird');
+  // 数据库名称
+  var baseUrl='mongodb://localhost:27017/';
+  var dataNmae='dataUI';
+  var dataUrl=baseUrl+dataNmae;
+  // 建立连接
+  var dataCom=mongoose.createConnection(dataUrl);
+  dataCom.on('error',function(err) {
+    console.log('数据库连接失败！'.red);
+  });
+  dataCom.once('open',function(err) {
+    console.log('数据库连接成功！'.green);
+  });
+  var t={
+    name:String,
+    schemaList:String,
+    role:{type:Number,max:5}
+  };
+  var dataUISchema = new mongoose.Schema(t);
+  // 创建表
+  var dataUI=dataCom.model('dataUIs',dataUISchema);
+  // add table
+  let addTable=(name,sch)=>{
+    function getType(type){
+      if(type=='Boolean'){
+        type=Boolean;
+      }else if(type=='Number'){
+        type=Number;
+      }else if(type=='String'){
+        type=String;
+      }
+      else{
+        type=String;
+      }
+      return type;
+    };
+    var schema={},head=[];
+    Object.keys(sch).forEach((v,k)=>{
+      head.push(v);
+      schema[v]=getType(sch[v]);
+    });
+    global[name+'Schema']=new mongoose.Schema(schema);
+    !global[name]&&(global[name]=dataCom.model(name+'s',global[name+'Schema']));
+    return head;
+  };
+  //获取数据
+  app.get('/table/info',function(req,res){
+    var tables=[];
+    dataUI.find(function(err,data){
+      if(err){
+        console.log(err);
+        return false;
+      }
+      data.forEach((v,k)=>{
+        var d=JSON.parse(JSON.stringify(v));
+        tables.push(d.name);
+        var sl=JSON.parse(d.schemaList);
+        // console.log(d);
+        var head=addTable(d.name,sl);
+        // global[d.name]=dataCom.model(d.name+'s',new mongoose.Schema({name:String,type:String}));
+        /*global[d.name].find((err,d)=>{
+          console.log(d);
+        });*/
+      });
+      res.send(tables);
+    });
+  });
+  //添加数据表
+  app.post('/table/add',function(req,res){
+    var table=req.body;
+    if (!table) {
+      console.log(table);
+      return;
+    }
+    var name=table.name;
+    var sch=table.schemaList;
+    table.schemaList=JSON.stringify(table.schemaList);
+
+    dataUI.findOne({name:name},function(err,data){
+      if(err){
+        console.log(err);
+        return false;
+      }
+      if(data){
+        return res.send({result:'该表名已存在！'});
+      }else{
+        var add = new dataUI(table);
+        add.save(function(err){
+          if (err){
+            console.log('添加失败！');
+            return res.send({result:'添加失败!'+err.message});
+          }
+          console.log('添加成功！');
+          res.send({result:'添加成功！'});
+        });
+      }
+    });
+  });
+  //删除数据表
+  app.post('/table/delete',function(req,res){
+    var name=req.body.name;
+    if(name){
+      global[name].remove({},function(err){
+        if(err){
+          console.log(err);
+          return;
+        }
+        dataUI.remove({
+          name:name
+        },function(err){
+          if(err){
+            console.log(err);
+            return;
+          }
+          // dataCom.disconnect();
+          // dataCom.close();
+          // dataCom.collections[name+'s'].drop();
+          // delete dataCom.collections[name+'s'];
+          // delete dataCom.base.modelSchemas[name+'s'];
+          // 清空model
+          delete dataCom.models[name+'s'];
+          global[name]=null;
+
+          console.log('删除成功！');
+          res.send({result:'删除成功！'});
+        })
+      });
+    }
+  });
+  //获取表数据
+  app.get('/table/:name/info',function(req,res){
+    var name=req.params.name;
+    dataUI.findOne({name:name},function(err,data){
+      if(err){
+        console.log(err);
+        return false;
+      }
+      var sch=JSON.parse(data.schemaList),head=[];
+      Object.keys(sch).forEach((v,k)=>{
+        head.push(v);
+      });
+      console.log('获取表成功！');
+      global[name].find((err,d)=>{
+        if(err){
+          console.log(err);
+          return;
+        }
+        res.send({head:head,tbody:d});
+      });
+    });
+  });
+  //添加表数据
+  app.post('/table/:name/add',function(req,res){
+    var name=req.params.name;
+    var tbody=req.body;
+
+    if (!tbody) {
+      console.log(tbody);
+      return;
+    }
+    var add = new (global[name])(tbody);
+    add.save(function(err){
+      if (err){
+        console.log('添加失败！');
+        return res.send({result:'添加失败!'+err.message});
+      }
+      console.log('添加成功！');
+      // res.send({result:'添加成功！'});
+      (global[name]).find((err,d)=>{
+        if(err){
+          console.log(err);
+          return;
+        }
+        res.send({tbody:d});
+      });
+    });
+  });
+  //更新表数据
+  app.post('/table/:name/update',function(req,res){
+    var name=req.params.name;
+    var data=req.body;
+
+    if(!data){
+      console.log(data);
+      return;
+    }
+
+    (global[name]).update({_id:data._id},{
+      $set:data.tr
+    },function(err){
+      if(err){
+        console.log(err);
+        return res.send(err.message);
+      }
+      console.log('更新成功！');
+      // console.log(res.statusCode);
+      res.status(res.statusCode).send({result:'添加成功！'});
+    });
+  });
+  //删除表数据
+  app.post('/table/:name/delete',function(req,res){
+    var name=req.params.name;
+
+    var id=req.body._id;
+    if(id){
+      (global[name]).remove({
+        _id:id
+      },function(err){
+        if(err){
+          console.log(err);
+          return;
+        }
+        console.log('删除成功！');
+        res.send({result:'删除成功！'});
+      });
+    }
+  });
+  // 将table导出为json文件
+  app.get('/table/:name/toJson',function(req,res){
+    var name=req.params.name;
+
+    (global[name]).find(function(err,data){
+      if(err){
+        console.log(err);
+        return false;
+      }
+      data=JSON.stringify(data);
+      // data='export const '+name+'='+data;
+      // console.log(data);
+      var filename=path.join(__dirname,'../demo/models/'+name+'.json');
+      fs.writeFile(filename,data,function(err){
+        if(err){
+          console.log(err);
+          return false;
+        }
+        res.send({result:'OK'});
+      });
+    });
+  });
+  // end
 
 app.listen(app.get('port'),(err)=>{
   if (err) {

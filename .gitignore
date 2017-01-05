@@ -49,10 +49,13 @@ js_demo
 builder
 database
 tools
+project
 
 jsdemo.js
 ecosystem.json
+yarn.lock
 
+server.js
 start-server.js
 webpack.build.js
 node

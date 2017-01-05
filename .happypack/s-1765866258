@@ -1,0 +1,540 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+		value: true
+});
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _yTables = require('./yTables');
+
+var _yTables2 = _interopRequireDefault(_yTables);
+
+require('./data-ui.less');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+		DataUI: {
+				displayName: 'DataUI'
+		}
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+		filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/test/dataUI.tsx',
+		components: _components,
+		locals: [module],
+		imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+		filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/test/dataUI.tsx',
+		components: _components,
+		locals: [],
+		imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+		return function (Component) {
+				return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+		};
+}
+
+require('es6-promise').polyfill();
+var fetch = require('isomorphic-fetch');
+
+var cloneObj = function cloneObj(obj) {
+		var str = '',
+		    newobj = obj.constructor === Array ? [] : {};
+		if ((typeof obj === 'undefined' ? 'undefined' : (0, _typeof3.default)(obj)) !== 'object') {
+				return;
+		} else {
+				for (var i in obj) {
+						newobj[i] = (0, _typeof3.default)(obj[i]) === 'object' ? cloneObj(obj[i]) : obj[i];
+				}
+		}
+		return newobj;
+};
+
+var obj2arr = function obj2arr(obj) {
+		var arr = [];
+		var keys = (0, _keys2.default)(obj);
+		for (var i = 0, j = keys.length; i < j; i++) {
+				if (keys[i] != '__v') {
+						arr.push(obj[keys[i]]);
+				}
+		}
+		return arr;
+};
+
+// check value
+var chkVal = function chkVal(val) {
+		var reg = /^[\u4E00-\u9FA5A-Za-z0-9_]{2,20}$/;
+		return reg.test(val);
+};
+
+var sthead = ['id', '用户名', '密码'];
+
+var DataUI = _wrapComponent('DataUI')(function (_React$Component) {
+		(0, _inherits3.default)(DataUI, _React$Component);
+
+		function DataUI(props) {
+				(0, _classCallCheck3.default)(this, DataUI);
+
+				var _this = (0, _possibleConstructorReturn3.default)(this, (DataUI.__proto__ || (0, _getPrototypeOf2.default)(DataUI)).call(this, props));
+
+				_this.addTable = function () {
+						/*var data={
+      	username:this.state.info.name,
+      	password:this.state.info.pwd
+      };*/
+						var div = document.getElementById('addTable');
+						var input = div.getElementsByTagName('input'),
+						    val = {};
+						var name = input[0].value;
+						if (name && input.length > 1) {
+								for (var i = 1, l = input.length; i < l; i++) {
+										// if(input[i].getAttribute('disabled')==null){
+										if (!chkVal(input[i].value)) {
+												alert('2-20个有效字符.请填写完整！');
+												return false;
+										}
+										val[input[i].value] = 'String';
+										// }
+								}
+								var data = {
+										name: name,
+										schemaList: val
+								};
+								fetch('/table/add', {
+										method: 'POST',
+										body: (0, _stringify2.default)(data),
+										headers: { 'Content-Type': 'application/json' }
+								}).then(function (response) {
+										return response.json();
+								}).then(function (data) {
+										console.log(data);
+										fetch('/table/info').then(function (response) {
+												return response.json();
+										}).then(function (data) {
+												console.log(data);
+												_this.setState({
+														data: data
+												});
+										}).catch(function (e) {
+												return console.log("error", e);
+										});
+								}).catch(function (e) {
+										return console.log("添加失败," + e);
+								});
+						}
+				};
+
+				_this.moreInfo = function (name) {
+						fetch('/table/' + name + '/info', {
+								method: 'GET',
+								headers: { 'Content-Type': 'application/json' }
+						}).then(function (response) {
+								return response.json();
+						}).then(function (data) {
+								console.log(data);
+								data.head.splice(0, 0, 'ID');
+								_this.setState({ head: data.head, tbody: data.tbody, tableName: name });
+						}).catch(function (e) {
+								return console.log("失败," + e);
+						});
+				};
+
+				_this.addTableData = function () {
+						var head = _this.state.head.slice(0);
+						head.splice(0, 1);
+						var div = document.getElementById('addData');
+						var input = div.getElementsByTagName('input'),
+						    val = {};
+						for (var i = 0, l = head.length; i < l; i++) {
+								if (!chkVal(input[i].value)) {
+										alert('2-20个有效字符.请填写完整！');
+										return false;
+								}
+								val[head[i]] = input[i].value;
+						}
+						var name = _this.state.tableName;
+						fetch('/table/' + name + '/add', {
+								method: 'POST',
+								body: (0, _stringify2.default)(val),
+								headers: { 'Content-Type': 'application/json' }
+						}).then(function (response) {
+								return response.json();
+						}).then(function (data) {
+								console.log(data);
+								_this.setState({ tbody: data.tbody });
+						}).catch(function (e) {
+								return console.log("失败," + e);
+						});
+				};
+
+				_this.delTable = function (name) {
+						fetch('/table/delete', {
+								method: 'POST',
+								body: (0, _stringify2.default)({ name: name }),
+								headers: { 'Content-Type': 'application/json' }
+						}).then(function (response) {
+								return response.json();
+						}).then(function (data) {
+								console.log(data);
+								fetch('/table/info').then(function (response) {
+										return response.json();
+								}).then(function (data) {
+										console.log(data);
+										_this.setState({
+												data: data,
+												head: []
+										});
+								}).catch(function (e) {
+										return console.log("error", e);
+								});
+						}).catch(function (e) {
+								return console.log("删除失败," + e);
+						});
+				};
+
+				_this.addThead = function () {
+						var thead = _this.state.thead;
+
+						var l = thead.length;
+						thead.splice(l, 0, {});
+						_this.setState({
+								thead: thead
+						});
+				};
+
+				_this.removeThead = function (k) {
+						var thead = _this.state.thead;
+
+						thead.splice(k, 1);
+						_this.setState({
+								thead: thead
+						});
+				};
+
+				_this.getThead = function (k, e) {
+						var thead = cloneObj(_this.state.thead);
+						thead[k].val = e.target.value;
+						_this.setState({
+								thead: thead
+						});
+				};
+
+				_this.del = function (id) {
+						// var that=this;
+						fetch('/delete', {
+								method: 'POST',
+								body: (0, _stringify2.default)({ _id: id }),
+								headers: { 'Content-Type': 'application/json' }
+						}).then(function (response) {
+								return response.json();
+						}).then(function (data) {
+								console.log(data);
+								fetch('/info').then(function (response) {
+										return response.json();
+								}).then(function (data) {
+										console.log(data);
+										_this.setState({
+												data: data
+										});
+								}).catch(function (e) {
+										return console.log("error", e);
+								});
+						}).catch(function (e) {
+								return console.log("删除失败," + e);
+						});
+				};
+
+				_this.getVal = function (e) {
+						/*this.setState({
+      	info:{
+      		name:e.target.value,
+      		pwd:this.state.info.pwd
+      	}
+      });*/
+				};
+
+				_this.state = {
+						data: [],
+						head: [],
+						tableName: '',
+						tbody: [],
+						thead: [{}, {}],
+						info: {}
+				};
+				return _this;
+		}
+
+		(0, _createClass3.default)(DataUI, [{
+				key: 'componentWillMount',
+				value: function componentWillMount() {
+						var that = this;
+						fetch('/table/info').then(function (response) {
+								return response.json();
+						}).then(function (data) {
+								console.log(data);
+								that.setState({
+										data: data
+								});
+						}).catch(function (e) {
+								return console.log("error", e);
+						});
+				}
+		}, {
+				key: 'componentDidMount',
+				value: function componentDidMount() {}
+		}, {
+				key: 'componentWillUnmount',
+				value: function componentWillUnmount() {}
+		}, {
+				key: 'render',
+				value: function render() {
+						// const {data}=this.state;
+						var _state = this.state,
+						    head = _state.head,
+						    tbody = _state.tbody,
+						    thead = _state.thead;
+
+						var that = this;
+						return React.createElement(
+								'div',
+								{ className: 'data-ui' },
+								React.createElement(
+										'div',
+										{ className: 'y-clearfloat' },
+										React.createElement(
+												'div',
+												{ id: 'addTable', className: 'ycol-6' },
+												React.createElement(
+														'form',
+														{ className: 'y-form' },
+														React.createElement(
+																'div',
+																{ className: 'yform-group' },
+																React.createElement(
+																		'label',
+																		null,
+																		'\u8868\u540D'
+																),
+																React.createElement('input', { type: 'text', placeholder: '\u5FC5\u586B' })
+														),
+														React.createElement(
+																'div',
+																{ className: 'add-list' },
+																React.createElement(
+																		'h4',
+																		null,
+																		'\u8868\u5934',
+																		React.createElement('i', { className: 'fa fa-plus', onClick: this.addThead })
+																),
+																thead.map(function (v, k) {
+																		return React.createElement(
+																				'div',
+																				{ key: 'thead-' + k, className: 'yform-group' },
+																				React.createElement(
+																						'div',
+																						{ className: 'input-plugin' },
+																						React.createElement('input', { type: 'text', value: v.val || '', onChange: that.getThead.bind(that, k) }),
+																						React.createElement(
+																								'span',
+																								null,
+																								'String'
+																						),
+																						React.createElement('i', { className: 'fa fa-minus', onClick: that.removeThead.bind(that, k) })
+																				)
+																		);
+																})
+														),
+														React.createElement(
+																'button',
+																{ className: 'ybtn ybtn-success y-right', onClick: this.addTable },
+																'\u6DFB\u52A0\u8868'
+														)
+												)
+										),
+										React.createElement(
+												'div',
+												{ className: 'ycol-6' },
+												React.createElement(
+														'div',
+														null,
+														React.createElement(
+																'h2',
+																null,
+																'\u8868\u96C6\u5408'
+														)
+												),
+												React.createElement(
+														'table',
+														{ className: 'ytable ytable-bordered ytable-striped' },
+														React.createElement(
+																'thead',
+																null,
+																React.createElement(
+																		'tr',
+																		null,
+																		React.createElement(
+																				'th',
+																				null,
+																				'\u8868\u540D'
+																		),
+																		React.createElement(
+																				'th',
+																				null,
+																				'\u8BE6\u60C5'
+																		),
+																		React.createElement(
+																				'th',
+																				null,
+																				'\u5220\u9664'
+																		)
+																)
+														),
+														React.createElement(
+																'tbody',
+																null,
+																this.state.data.map(function (v, k) {
+																		return React.createElement(
+																				'tr',
+																				{ key: 'test' + k },
+																				React.createElement(
+																						'td',
+																						null,
+																						v
+																				),
+																				React.createElement(
+																						'td',
+																						{ className: 'edit' },
+																						React.createElement(
+																								'a',
+																								{ href: 'javascript:;', onClick: that.moreInfo.bind(that, v) },
+																								React.createElement(
+																										'i',
+																										{ className: 'fa fa-info-circle' },
+																										' \u8BE6\u60C5'
+																								)
+																						)
+																				),
+																				React.createElement(
+																						'td',
+																						{ className: 'delete' },
+																						React.createElement(
+																								'a',
+																								{ href: 'javascript:;', onClick: that.delTable.bind(that, v) },
+																								React.createElement(
+																										'i',
+																										{ className: 'fa fa-trash-o' },
+																										' \u5220\u9664'
+																								)
+																						)
+																				)
+																		);
+																})
+														)
+												)
+										)
+								),
+								head && head.length > 1 && React.createElement(
+										'div',
+										{ className: 'y-clearfloat' },
+										React.createElement(
+												'div',
+												{ className: 'ycol-6', id: 'addData' },
+												React.createElement(
+														'h2',
+														null,
+														'\u8868: ',
+														React.createElement(
+																'i',
+																null,
+																this.state.tableName
+														)
+												),
+												React.createElement(
+														'form',
+														{ className: 'y-form yfv' },
+														head.map(function (v, k) {
+																return k > 0 && React.createElement(
+																		'div',
+																		{ key: 'tt-' + k, className: 'yform-group' },
+																		React.createElement(
+																				'label',
+																				null,
+																				v
+																		),
+																		React.createElement('input', { type: 'text' })
+																);
+														}),
+														React.createElement(
+																'button',
+																{ className: 'ybtn ybtn-info y-right', onClick: this.addTableData },
+																'\u6DFB\u52A0\u6570\u636E'
+														)
+												)
+										),
+										React.createElement(
+												'div',
+												{ className: 'ycol-6' },
+												React.createElement(_yTables2.default, { yth: head, ytb: tbody, editable: true, showTbar: false, tableName: this.state.tableName, moreInfo: this.moreInfo })
+										)
+								)
+						);
+				}
+		}]);
+		return DataUI;
+}(React.Component));
+
+exports.default = DataUI;

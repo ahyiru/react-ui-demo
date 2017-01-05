@@ -3,8 +3,14 @@
   "version": "0.0.1",
   "main": "server.js",
   "description": {
-    "name": "注释",
-    "typings install": "typings install dt~react dt~react-dom dt~react-router -SG"
+    "tips": [
+      "preinstall:npm install --save @types/react @types/react-dom @types/react-router",
+      "test: node test/all.js",
+      "lint: eslint yourJsFiles.js",
+      "precommit: npm run test && npm run lint",
+      "prepush: npm test",
+      "publishpatch: npm run deploy; git add --all; git commit -m 'c'; npm version patch; git push origin master:master; npm publish; npm publish --registry='https://registry.npmjs.org'; cnpm sync react-mgm; npm version;"
+    ]
   },
   "scripts": {
     "start": "nodemon server.js",
@@ -18,8 +24,7 @@
     "pkgdemo": "cd builder && NODE_ENV=production webpack --config webpack.build.js",
     "publish": "cd builder/ybuild && npm version patch && npm publish",
     "imgmin": "gulp",
-    "transJs": "cd tools && rm -rf ./*.js && babel ../server.js -o server.es5.js && uglifyjs server.es5.js -c -m -e -o server.min.js",
-    "preinstall": "typings install dt~react dt~react-dom dt~react-router -SG"
+    "transJs": "cd tools && rm -rf ./*.js && babel ../server.js -o server.es5.js && uglifyjs server.es5.js -c -m -e -o server.min.js"
   },
   "repository": {
     "type": "git",
@@ -57,6 +62,7 @@
     "file-loader": "^0.9.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-imagemin": "^3.1.1",
+    "happypack": "^3.0.2",
     "html-webpack-plugin": "^2.24.1",
     "husky": "^0.12.0",
     "imagemin-pngquant": "^5.0.0",
@@ -84,6 +90,9 @@
     "webpack-hot-middleware": "^2.13.2"
   },
   "dependencies": {
+    "@types/react": "^0.14.55",
+    "@types/react-dom": "^0.14.20",
+    "@types/react-router": "^2.0.41",
     "echarts": "^3.3.2",
     "font-awesome": "^4.7.0",
     "highlight.js": "^9.9.0",

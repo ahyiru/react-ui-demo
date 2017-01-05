@@ -1,0 +1,151 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  About: {
+    displayName: 'About'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/about/about.tsx',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/about/about.tsx',
+  components: _components,
+  locals: [],
+  imports: [_react3.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+var About = _wrapComponent('About')(function (_Component) {
+  (0, _inherits3.default)(About, _Component);
+
+  function About() {
+    (0, _classCallCheck3.default)(this, About);
+    return (0, _possibleConstructorReturn3.default)(this, (About.__proto__ || (0, _getPrototypeOf2.default)(About)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(About, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'p',
+          null,
+          React.createElement(
+            'span',
+            null,
+            '\u56E2\u961F\u4FE1\u606F:'
+          ),
+          ' ',
+          React.createElement(
+            'b',
+            null,
+            'test'
+          )
+        ),
+        React.createElement(
+          'p',
+          null,
+          React.createElement(
+            'span',
+            null,
+            '\u4E3B\u9875:'
+          ),
+          ' ',
+          React.createElement(
+            'b',
+            null,
+            'test.com'
+          )
+        ),
+        React.createElement(
+          'p',
+          null,
+          React.createElement(
+            'span',
+            null,
+            '\u5730\u5740:'
+          ),
+          ' ',
+          React.createElement(
+            'b',
+            null,
+            'test'
+          )
+        ),
+        React.createElement(
+          'p',
+          null,
+          React.createElement(
+            'span',
+            null,
+            '\u8054\u7CFB\u65B9\u5F0F:'
+          ),
+          ' ',
+          React.createElement(
+            'b',
+            null,
+            '111'
+          )
+        )
+      );
+    }
+  }]);
+  return About;
+}(_react2.Component));
+
+exports.default = About;

@@ -1,0 +1,408 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _reactRouter = require('react-router');
+
+var _tools = require('../../configs/tools');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  Ysidebar: {
+    displayName: 'Ysidebar'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/components/aside/ysidebar.tsx',
+  components: _components,
+  locals: [module],
+  imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/components/aside/ysidebar.tsx',
+  components: _components,
+  locals: [],
+  imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+/*const slideStyle={
+  height:0,
+  // transitionProperty:'height',
+  // transitionDuration:'.3s',
+  // transitionTimingFunction:'ease-in-out'
+};*/
+
+/*menu.map(function(v,k){
+  !!v.subMenu&&(v.toggleSlide=slideStyle);
+});*/
+
+//根据屏幕大小控制collapse
+var smallScreen = function smallScreen() {
+  clearTimeout(timer);
+  var collapse = localStorage.getItem('collapse') || '';
+  if (!collapse) {
+    if (document.body.clientWidth < 992) {
+      // addClass(document.body,'y-sidebar-sm y-collapse');
+      (0, _tools.addClass)(document.body, 'y-collapse');
+    } else {
+      // removeClass(document.body,'y-sidebar-sm y-collapse');
+      (0, _tools.removeClass)(document.body, 'y-collapse');
+    }
+  }
+
+  // mouse
+  // var subMenuItem=document.getElementsByClassName('y-sidebar-l1')[0].childNodes;
+  /*for(var i=0,l=subMenuItem.length;i<l;i++){
+    console.log(subMenuItem[i]);
+  }*/
+  /*subMenuItem[0].addEventListener('mouseenter',()=>{
+    addClass(document.getElementsByClassName('y-sidebar')[0],'open');
+    console.log(this);
+  });
+  subMenuItem[0].addEventListener('mouseleave',()=>{
+    removeClass(document.getElementsByClassName('y-sidebar')[0],'open');
+  });*/
+},
+    timer = 0;
+//...
+timer = setTimeout(smallScreen, 350);
+//...
+//resize
+window.addEventListener('resize', function () {
+  timer = setTimeout(smallScreen, 350);
+});
+
+// console.log(menu);
+
+var Ysidebar = _wrapComponent('Ysidebar')(function (_React$Component) {
+  (0, _inherits3.default)(Ysidebar, _React$Component);
+
+  function Ysidebar(props) {
+    (0, _classCallCheck3.default)(this, Ysidebar);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Ysidebar.__proto__ || (0, _getPrototypeOf2.default)(Ysidebar)).call(this, props));
+
+    _this.firstMenuClick = function (v, k) {
+      var newMenu = _this.state.menu;
+      var flag = !!v.subMenu;
+      if (!(0, _tools.hasClass)(document.body, 'y-collapse')) {
+        newMenu.map(function (val, key) {
+          if (k == key) {
+            flag ? (val.open = val.open ? '' : 'open', val.toggleSlide = {
+              height: val.open ? val.subMenu.length * 32 + 16 : 0
+            }) : val.selMenu = 'active';
+          } else {
+            flag ? (val.open = '', val.toggleSlide = {
+              height: 0
+            }) : (!!val.subMenu && val.subMenu.map(function (subV, subK) {
+              subV.selected = '';
+            }), val.selMenu = '');
+          }
+          // val.toggleSlide=cloneObj(val.toggleSlide);
+        });
+        _this.setState({
+          menu: newMenu
+        });
+      } else {
+        newMenu.map(function (val, key) {
+          if (k == key) {
+            !flag && (val.selMenu = 'active');
+          } else {
+            flag && val.subMenu.map(function (subV, subK) {
+              subV.selected = '';
+            });
+            val.selMenu = '';
+          }
+        });
+        _this.setState({
+          menu: newMenu
+        });
+      }
+    };
+
+    _this.subMenuClick = function (k, subKey) {
+      var newMenu = _this.state.menu;
+      newMenu.map(function (val, key) {
+        if (k == key) {
+          val.selMenu = 'active';
+          val.subMenu.map(function (sv, sk) {
+            if (subKey == sk) {
+              sv.selected = 'active';
+            } else {
+              sv.selected = '';
+            }
+          });
+        } else {
+          val.selMenu = '';
+          if (val.subMenu) {
+            val.subMenu.map(function (sv, sk) {
+              sv.selected = '';
+            });
+          }
+        }
+      });
+      _this.setState({
+        menu: newMenu
+      });
+    };
+
+    _this.menuMouseEnter = function (v, k) {
+      if ((0, _tools.hasClass)(document.body, 'y-collapse')) {
+        _this.timer = setTimeout(function () {
+          (0, _tools.addClass)(document.getElementsByClassName('y-sidebar')[0], 'open');
+          var newMenu = _this.state.menu;
+          newMenu.map(function (val, key) {
+            if (k == key) {
+              val.hover = 'hover';
+            } else {
+              val.hover = '';
+            }
+          });
+          _this.setState({
+            menu: newMenu
+          });
+        }, 200);
+      }
+    };
+
+    _this.menuMouseLeave = function (v, k) {
+      if ((0, _tools.hasClass)(document.body, 'y-collapse')) {
+        clearTimeout(_this.timer);
+        (0, _tools.removeClass)(document.getElementsByClassName('y-sidebar')[0], 'open');
+        var newMenu = _this.state.menu;
+        newMenu.map(function (val, key) {
+          if (k == key) {
+            val.hover = '';
+          }
+        });
+        _this.setState({
+          menu: newMenu
+        });
+      }
+    };
+
+    _this.gotoProject = function (k) {};
+
+    _this.collapseList = function (id) {
+      if (id == 1) {
+        _this.setState({
+          collapsed1: _this.state.collapsed1 ? '' : 'collapsed',
+          icon1: _this.state.icon1 == 'plus' ? 'minus' : 'plus'
+        });
+      } else if (id == 2) {
+        _this.setState({
+          collapsed2: _this.state.collapsed2 ? '' : 'collapsed',
+          icon2: _this.state.icon2 == 'plus' ? 'minus' : 'plus'
+        });
+      }
+    };
+
+    var menu = _this.props.menu;
+
+    _this.timer = 0;
+    _this.state = {
+      menu: menu,
+      icon1: 'minus',
+      icon2: 'minus'
+    };
+
+    //resize
+    /*window.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      var dropList=this.state.dropList;
+      var theme=this.state.theme;
+      dropList.map(function(v,k){
+        v.sel=false;
+        v.open='';
+      });
+      theme.sel=false;
+      theme.open='';
+      this.setState({
+        dropList:dropList,
+        theme:theme
+      });
+    });*/
+    //
+    return _this;
+  }
+
+  (0, _createClass3.default)(Ysidebar, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          projectList = _props.projectList,
+          userInfo = _props.userInfo;
+      var menu = this.state.menu;
+
+
+      var that = this;
+
+      return React.createElement(
+        'section',
+        { className: 'y-sidebar' },
+        React.createElement(
+          'div',
+          { className: 'y-sidebar-wrap' },
+          userInfo && React.createElement(
+            'div',
+            { className: 'y-user-logo' },
+            React.createElement('img', { src: userInfo.logo, alt: 'userLogo' }),
+            React.createElement(
+              'h4',
+              null,
+              userInfo.name
+            ),
+            React.createElement(
+              'p',
+              null,
+              userInfo.email
+            )
+          ),
+          React.createElement('div', { className: 'y-collapse-wrap' }),
+          React.createElement(
+            'div',
+            { className: 'y-sidebar-list' },
+            React.createElement(
+              'div',
+              { className: 'y-sidebar-title', onClick: this.collapseList.bind(this, '1') },
+              React.createElement('i', { className: 'fa fa-' + this.state.icon1 }),
+              React.createElement(
+                'h4',
+                null,
+                '\u5BFC\u822A\u680F'
+              )
+            ),
+            React.createElement(
+              'ul',
+              { className: 'y-sidebar-l1 ' + this.state.collapsed1 },
+              menu.map(function (v, k) {
+                return React.createElement(
+                  'li',
+                  { key: 'firstMenu' + k, className: v.open, onMouseEnter: that.menuMouseEnter.bind(that, v, k), onMouseLeave: that.menuMouseLeave.bind(that, v, k) },
+                  React.createElement(
+                    'a',
+                    { href: v.url, className: v.selMenu, onClick: that.firstMenuClick.bind(that, v, k) },
+                    React.createElement('i', { className: v.leftIcon }),
+                    React.createElement(
+                      'p',
+                      null,
+                      v.title
+                    ),
+                    !!v.subMenu ? React.createElement('i', { className: v.rightIcon }) : React.createElement('span', null)
+                  ),
+                  !!v.subMenu && v.subMenu.length > 0 ? React.createElement(
+                    'ul',
+                    { className: v.hover, style: v.toggleSlide },
+                    v.subMenu.map(function (sv, sk) {
+                      return React.createElement(
+                        'li',
+                        { key: 'subMenu' + sk, onClick: that.subMenuClick.bind(that, k, sk) },
+                        React.createElement(
+                          _reactRouter.Link,
+                          { to: sv.url, className: sv.selected },
+                          React.createElement('i', { className: sv.icon }),
+                          React.createElement(
+                            'span',
+                            null,
+                            sv.title
+                          )
+                        )
+                      );
+                    })
+                  ) : ''
+                );
+              })
+            )
+          ),
+          !!projectList && projectList.length > 0 ? React.createElement(
+            'div',
+            { className: 'y-sidebar-list' },
+            React.createElement(
+              'div',
+              { className: 'y-sidebar-title', onClick: this.collapseList.bind(this, '2') },
+              React.createElement('i', { className: 'fa fa-' + this.state.icon2 }),
+              React.createElement(
+                'h4',
+                null,
+                '\u9879\u76EE\u5217\u8868'
+              )
+            ),
+            React.createElement(
+              'ul',
+              { className: 'y-sidebar-l1 ' + this.state.collapsed2 },
+              projectList.map(function (v, k) {
+                return React.createElement(
+                  'li',
+                  { key: 'project' + k },
+                  React.createElement(
+                    'a',
+                    { href: v.url, onClick: that.gotoProject.bind(that, k) },
+                    React.createElement('i', { className: v.icon }),
+                    React.createElement(
+                      'p',
+                      null,
+                      v.title
+                    ),
+                    React.createElement('span', null)
+                  )
+                );
+              })
+            )
+          ) : ''
+        )
+      );
+    }
+  }]);
+  return Ysidebar;
+}(React.Component));
+
+exports.default = Ysidebar;

@@ -1,0 +1,193 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+require('./form.less');
+
+var _drag = require('./drag');
+
+var _drag2 = _interopRequireDefault(_drag);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  DragList: {
+    displayName: 'DragList'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/form/dragList.tsx',
+  components: _components,
+  locals: [module],
+  imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/form/dragList.tsx',
+  components: _components,
+  locals: [],
+  imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+var DragList = _wrapComponent('DragList')(function (_React$Component) {
+  (0, _inherits3.default)(DragList, _React$Component);
+
+  function DragList(props) {
+    (0, _classCallCheck3.default)(this, DragList);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (DragList.__proto__ || (0, _getPrototypeOf2.default)(DragList)).call(this, props));
+
+    _this.componentDidMount = function () {
+      // require('./drag');
+      // let drag=require('./drag').default;
+      _drag2.default.init();
+    };
+
+    _this.componentWillUnmount = function () {
+      _drag2.default.distroy();
+    };
+
+    _this.state = {};
+    return _this;
+  }
+
+  (0, _createClass3.default)(DragList, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          title = _props.title,
+          dragList = _props.dragList,
+          dropTitle = _props.dropTitle;
+
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'form',
+          { className: 'y-form1' },
+          React.createElement(
+            'h2',
+            null,
+            title
+          ),
+          React.createElement(
+            'div',
+            { className: 'y-row' },
+            React.createElement(
+              'div',
+              { className: 'form-left' },
+              React.createElement(
+                'ul',
+                { className: 'draglist' },
+                dragList.map(function (v, k) {
+                  return React.createElement(
+                    'li',
+                    { key: 'list-' + k },
+                    v.title
+                  );
+                })
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'form-right' },
+              React.createElement(
+                'div',
+                { className: 'droplist' },
+                React.createElement(
+                  'span',
+                  null,
+                  dropTitle[0]
+                ),
+                React.createElement(
+                  'div',
+                  { className: 'drop' },
+                  React.createElement(
+                    'span',
+                    null,
+                    '111',
+                    React.createElement(
+                      'i',
+                      null,
+                      'x'
+                    )
+                  ),
+                  React.createElement(
+                    'span',
+                    null,
+                    '222',
+                    React.createElement(
+                      'i',
+                      null,
+                      'x'
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'droplist' },
+                React.createElement(
+                  'span',
+                  null,
+                  dropTitle[1]
+                ),
+                React.createElement('div', { className: 'drop' })
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return DragList;
+}(React.Component));
+
+exports.default = DragList;

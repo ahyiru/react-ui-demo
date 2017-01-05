@@ -1,0 +1,164 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _defineProperty = require('babel-runtime/core-js/object/define-property');
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+var _getOwnPropertyDescriptor = require('babel-runtime/core-js/object/get-own-property-descriptor');
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _desc, _value, _class, _descriptor; // import * as React from 'react';
+
+var _mobx = require('mobx');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  (0, _defineProperty2.default)(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
+// import {observer} from 'mobx-react';
+// import DevTools from 'mobx-react-devtools';
+
+// import './mobx.less';
+
+// 如果使用useStrictapi开启了严格模式，就必须通过action才能修改状态(state)，直接修改值会报错。
+// useStrict(true);
+
+var Store = (_class = function () {
+  (0, _createClass3.default)(Store, [{
+    key: 'doSomething',
+    value: function doSomething(index, title) {
+      this.todos[index].title = title;
+      console.log('action:', this.todos[0].count);
+    }
+  }, {
+    key: 'someValue',
+    get: function get() {
+      console.log('computed:', this.todos[0].title);
+      return this.todos[0].title;
+    }
+  }]);
+
+  // autorun(()=>console.log(this.todos[0].count));
+  function Store(name) {
+    var _this = this;
+
+    (0, _classCallCheck3.default)(this, Store);
+
+    _initDefineProp(this, 'todos', _descriptor, this);
+
+    this.fun1 = function () {
+      console.log('fun1:', _this.todos[0].count);
+      _this.todos[0].count++;
+    };
+
+    this.fun2 = function () {
+      (0, _mobx.autorun)(function () {
+        return console.log('autorun:', _this.todos[0].count);
+      });
+      (0, _mobx.reaction)(function () {
+        return _this.todos.length;
+      }, function (length) {
+        return console.log('reaction:', _this.todos.map(function (todo) {
+          return todo.title;
+        }).join(', '));
+      });
+      console.log('fun2:', _this.todos[0].count);
+    };
+
+    this.todos[0].title = name;
+  }
+
+  return Store;
+}(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'todos', [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return [{
+      title: 'test',
+      count: 0,
+      done: false
+    }];
+  }
+}), _applyDecoratedDescriptor(_class.prototype, 'doSomething', [_mobx.action], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'doSomething'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'someValue', [_mobx.computed], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'someValue'), _class.prototype)), _class);
+exports.default = Store;
+;
+
+/*const store=new Store('huy');
+
+@observer
+export default class MobxDemo extends React.Component<any,any> {
+  constructor(props){
+    super(props);
+  };
+
+  onTest=()=>{
+    store.autorun();
+  };
+
+  render() {
+    console.log(store.todos[0].count);
+    return (
+      <div>
+        <span>MobxDemo</span>
+        <button onClick={this.onTest}>
+          测试: {store.todos[0].count}
+        </button>
+        <DevTools />
+      </div>
+    )
+  };
+};*/

@@ -1,0 +1,227 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _class, _temp;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  Login: {
+    displayName: 'Login'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/user/login.tsx',
+  components: _components,
+  locals: [module],
+  imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/user/login.tsx',
+  components: _components,
+  locals: [],
+  imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+var Login = _wrapComponent('Login')((_temp = _class = function (_React$Component) {
+  (0, _inherits3.default)(Login, _React$Component);
+
+  function Login(props) {
+    (0, _classCallCheck3.default)(this, Login);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Login.__proto__ || (0, _getPrototypeOf2.default)(Login)).call(this, props));
+
+    _this.componentDidMount = function () {};
+
+    _this.login = function () {
+      /*var name=document.getElementById('username').value;
+        var password=document.getElementById('password').value;
+        var data={
+          name:name,
+          password:password
+        };
+        var path='/';
+        let users=JSON.parse(localStorage.getItem('users'));
+        if(users){
+          var f=true;
+          users.map((v,k)=>{
+            if(v.name==name&&v.password==password){
+              localStorage.setItem('curUser',name);
+              this.context.router.push(path);
+              f=false;
+              return false;
+            }
+          })
+          if(f) alert('用户名或密码错误！');
+        }
+        else{
+          this.context.router.push('info/signup');
+          return true;
+        }
+        console.log('err');*/
+      localStorage.setItem('login', 'admin');
+      _this.context.router.push('/');
+    };
+
+    _this.getEmail = function (e) {
+      _this.setState({
+        mval: e.target.value
+      });
+    };
+
+    _this.getPasswd = function (e) {
+      _this.setState({
+        pval: e.target.value
+      });
+    };
+
+    _this.changeType = function () {
+      _this.setState({
+        passwdType: _this.state.passwdType == 'password' ? 'text' : 'password'
+      });
+    };
+
+    _this.resetVal = function () {
+      _this.setState({
+        mval: ''
+      });
+    };
+
+    _this.state = {
+      title: '登录',
+      mval: '',
+      pval: '',
+      passwdType: 'password'
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Login, [{
+    key: 'render',
+    value: function render() {
+      var _state = this.state,
+          mval = _state.mval,
+          pval = _state.pval,
+          passwdType = _state.passwdType;
+
+      return React.createElement(
+        'form',
+        null,
+        React.createElement(
+          'h4',
+          null,
+          this.state.title
+        ),
+        React.createElement(
+          'div',
+          { className: 'log-input' },
+          React.createElement('input', { type: 'text', placeholder: '\u90AE\u7BB1', value: mval, onChange: this.getEmail }),
+          mval ? React.createElement('i', { className: 'fa fa-times-circle', onClick: this.resetVal }) : ''
+        ),
+        React.createElement(
+          'div',
+          { className: 'log-input' },
+          React.createElement('input', { type: passwdType, placeholder: '\u5BC6\u7801', value: pval, onChange: this.getPasswd }),
+          pval ? React.createElement('i', { className: 'fa fa-eye', onClick: this.changeType }) : ''
+        ),
+        React.createElement(
+          'div',
+          { className: 'log-input' },
+          React.createElement(
+            'button',
+            { className: 'ybtn ybtn-success ybtn-block', onClick: this.login },
+            '\u767B\u5F55'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'log-input' },
+          React.createElement(
+            'a',
+            { className: 'find-pwd', href: '#/user/signup' },
+            '\u5FD8\u8BB0\u5BC6\u7801'
+          ),
+          React.createElement(
+            'a',
+            { className: 'reg-user', href: '#/user/signup' },
+            '\u514D\u8D39\u6CE8\u518C'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'other-log' },
+          React.createElement(
+            'div',
+            { className: 'other-txt' },
+            React.createElement(
+              'span',
+              null,
+              '\u7B2C\u4E09\u65B9\u767B\u5F55'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'other-ico' },
+            React.createElement('i', { className: 'fa fa-qq' }),
+            React.createElement('i', { className: 'fa fa-weibo' }),
+            React.createElement('i', { className: 'fa fa-weixin' })
+          )
+        )
+      );
+    }
+  }]);
+  return Login;
+}(React.Component), _class.contextTypes = {
+  router: React.PropTypes.object
+}, _temp));
+
+exports.default = Login;

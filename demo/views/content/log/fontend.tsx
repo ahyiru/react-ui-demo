@@ -10,12 +10,12 @@ var data={
 	'javascript':['ECMAScript6','ECMAScript7','typescript','babel','WebAssembly'],
 	'MV*':['angular','react','vue','polymer','ember'],
 	'SAM':['SAM','Redux','Mobx','Rxjs'],
-	'nodejs':['nodejs','express','mongodb','PM2','socket.IO'],
+	'nodejs':['nodejs','express','koa','mongodb','PM2','socket.IO'],
 	'http':['http/2','restful','fetch','json'],
 	'manage':['npm','yarn','git','GitHub','Docker'],
 	'develop':['webpack','gulp','sublime','markdown'],
 	'webapp':['渐进式PWA','微信小程序','html5 API','css3 animation'],
-	'hybrid':['Cordova','Ionic','React Native'],
+	'hybrid':['Cordova','React Native','Ionic','Weex'],
 	'desktop':['Electron','NW.js'],
 };
 

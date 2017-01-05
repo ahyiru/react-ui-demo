@@ -15,6 +15,8 @@ import {hasClass,addClass,removeClass} from '../../configs/tools';
   !!v.subMenu&&(v.toggleSlide=slideStyle);
 });*/
 
+var isH=hasClass(document.body,'horizontal');
+
 //根据屏幕大小控制collapse
 let smallScreen=()=>{
   clearTimeout(timer);
@@ -23,10 +25,12 @@ let smallScreen=()=>{
     if(document.body.clientWidth<992){
       // addClass(document.body,'y-sidebar-sm y-collapse');
       addClass(document.body,'y-collapse');
+      removeClass(document.body,'horizontal');
     }
      else{
       // removeClass(document.body,'y-sidebar-sm y-collapse');
       removeClass(document.body,'y-collapse');
+      isH&&addClass(document.body,'horizontal');
     }
   }
 
@@ -86,53 +90,55 @@ export default class Ysidebar extends React.Component<any,any> {
   };
 
   firstMenuClick=(v,k)=>{
-    let newMenu=this.state.menu;
-    let flag=!!v.subMenu;
-    if(!hasClass(document.body,'y-collapse')){
-      newMenu.map((val,key)=>{
-        if(k==key){
-          flag?(
-            val.open=val.open?'':'open',
-            val.toggleSlide={
-              height:val.open?(val.subMenu.length*32+16):0
-            }
-          ):(
-            val.selMenu='active'
-          );
-        }
-        else{
-          flag?(
-            val.open='',
-            val.toggleSlide={
-              height:0
-            }
-          ):(!!val.subMenu&&val.subMenu.map((subV,subK)=>{
-            subV.selected='';
-          }),val.selMenu='');
-        }
-        // val.toggleSlide=cloneObj(val.toggleSlide);
-      });
-      this.setState({
-        menu:newMenu
-      });
-    }
-    else{
-      newMenu.map((val,key)=>{
-        if(k==key){
-          !flag&&(
-            val.selMenu='active'
-          );
-        }
-        else{
-          flag&&(val.subMenu.map((subV,subK)=>{
-            subV.selected='';
-          }));
-          val.selMenu='';
-        }
-      });
-      this.setState({
-        menu:newMenu
-      });
+    if(!hasClass(document.body,'horizontal')){
+      let newMenu=this.state.menu;
+      let flag=!!v.subMenu;
+      if(!hasClass(document.body,'y-collapse')){
+        newMenu.map((val,key)=>{
+          if(k==key){
+            flag?(
+              val.open=val.open?'':'open',
+              val.toggleSlide={
+                height:val.open?(val.subMenu.length*32+16):0
+              }
+            ):(
+              val.selMenu='active'
+            );
+          }
+          else{
+            flag?(
+              val.open='',
+              val.toggleSlide={
+                height:0
+              }
+            ):(!!val.subMenu&&val.subMenu.map((subV,subK)=>{
+              subV.selected='';
+            }),val.selMenu='');
+          }
+          // val.toggleSlide=cloneObj(val.toggleSlide);
+        });
+        this.setState({
+          menu:newMenu
+        });
+      }
+      else{
+        newMenu.map((val,key)=>{
+          if(k==key){
+            !flag&&(
+              val.selMenu='active'
+            );
+          }
+          else{
+            flag&&(val.subMenu.map((subV,subK)=>{
+              subV.selected='';
+            }));
+            val.selMenu='';
+          }
+        });
+        this.setState({
+          menu:newMenu
+        });
+      }
     }
   };
 
@@ -182,6 +188,23 @@ export default class Ysidebar extends React.Component<any,any> {
         });
       },200);
     }
+    if(hasClass(document.body,'horizontal')){
+      let newMenu=this.state.menu;
+      let flag=!!v.subMenu;
+      newMenu.map((val,key)=>{
+        if(k==key){
+          flag&&(
+            val.open='open',
+            val.toggleSlide={
+              height:val.subMenu.length*32+16
+            }
+          )
+        }
+      });
+      this.setState({
+        menu:newMenu
+      });
+    }
   };
   menuMouseLeave=(v,k)=>{
     if(hasClass(document.body,'y-collapse')){
@@ -191,6 +214,23 @@ export default class Ysidebar extends React.Component<any,any> {
       newMenu.map((val,key)=>{
         if(k==key){
           val.hover='';
+        }
+      });
+      this.setState({
+        menu:newMenu
+      });
+    }
+    if(hasClass(document.body,'horizontal')){
+      let newMenu=this.state.menu;
+      let flag=!!v.subMenu;
+      newMenu.map((val,key)=>{
+        if(k==key){
+          flag&&(
+            val.open='',
+            val.toggleSlide={
+              height:0
+            }
+          )
         }
       });
       this.setState({

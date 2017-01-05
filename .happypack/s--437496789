@@ -1,0 +1,385 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _index = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.3.3@redbox-react/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.2@react-transform-catch-errors/lib/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = require('react');
+
+var React = _interopRequireWildcard(_react2);
+
+var _index5 = require('/Users/huyong/Desktop/react-ui-demo/node_modules/.1.0.4@react-transform-hmr/lib/index.js');
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _tools = require('../../../configs/tools');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+  Ytables: {
+    displayName: 'Ytables'
+  }
+};
+
+var _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/tables/yTables.tsx',
+  components: _components,
+  locals: [module],
+  imports: [React.default]
+});
+
+var _UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/huyong/Desktop/react-ui-demo/demo/views/content/tables/yTables.tsx',
+  components: _components,
+  locals: [],
+  imports: [React.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersHuyongDesktopReactUiDemoNode_modules104ReactTransformHmrLibIndexJs2(_UsersHuyongDesktopReactUiDemoNode_modules102ReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+// import {tableData} from '../../../models/models';
+
+/*const yth:any[]=tableData.thead;
+const ytb:any[]=tableData.tbody;*/
+
+var pagination = [];
+for (var i = 0; i < 10; i++) {
+  pagination[i] = i + 1;
+};
+
+var arrClone = function arrClone(arr) {
+  var newArr = [];
+  for (var _i = 0, l = arr.length; _i < l; _i++) {
+    if (arr[_i] instanceof Array) {
+      newArr[_i] = arrClone(arr[_i]);
+    } else {
+      newArr[_i] = arr[_i];
+    }
+  }
+  return newArr;
+};
+
+var Ytables = _wrapComponent('Ytables')(function (_React$Component) {
+  (0, _inherits3.default)(Ytables, _React$Component);
+
+  function Ytables(props) {
+    (0, _classCallCheck3.default)(this, Ytables);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Ytables.__proto__ || (0, _getPrototypeOf2.default)(Ytables)).call(this, props));
+
+    _this.edit = function (v, k) {
+      // v.editState=true;
+      // this.oldTable=this.state.ytb.slice(0);
+      _this.oldTable = (0, _tools.cloneObj)(_this.state.ytb);
+      _this.newTable = (0, _tools.cloneObj)(_this.state.ytb);
+      _this.newTable[k].editState = true;
+      _this.setState({
+        ytb: _this.newTable
+      });
+    };
+
+    _this.save = function (v, k) {
+      v.editState = false;
+      // this.state.ytb=this.newTable.slice(0);
+      // this.state.ytb=arrClone(this.newTable);
+      // this.newTable[k].editState=false;
+      _this.setState({
+        ytb: _this.newTable
+      });
+    };
+
+    _this.delete = function (v, k) {
+      // alert('sure?');
+      _this.state.ytb.splice(k, 1);
+      _this.setState({
+        ytb: _this.state.ytb
+      });
+    };
+
+    _this.cancel = function (v, k) {
+      v.editState = false;
+      _this.setState({
+        ytb: _this.oldTable
+      });
+    };
+
+    _this.select = function () {
+      _this.setState({
+        selected: !_this.state.selected
+      });
+    };
+
+    _this.getVal = function (vk, vsk, e) {
+      /*console.log(vk);
+      console.log(vsk);
+      console.log(e.target.value);*/
+      var self = _this;
+      self.newTable.map(function (v, k) {
+        if (vk == k) {
+          self.newTable[k].map(function (sv, sk) {
+            if (vsk == sk) {
+              self.newTable[k][sk] = e.target.value;
+            }
+          });
+        }
+      });
+      _this.setState({
+        ytb: _this.newTable
+      });
+    };
+
+    _this.oldTable = [];
+    _this.newTable = [];
+    _this.state = {
+      yth: _this.props.yth,
+      ytb: _this.props.ytb,
+      editable: _this.props.editable,
+      editState: false,
+      selected: false
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Ytables, [{
+    key: 'render',
+    value: function render() {
+      var that = this;
+      var _state = this.state,
+          yth = _state.yth,
+          ytb = _state.ytb,
+          editable = _state.editable,
+          editState = _state.editState,
+          selected = _state.selected;
+
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'div',
+          { className: 'ytable-header' },
+          React.createElement(
+            'div',
+            { className: 'y-select sm y-left' },
+            React.createElement('input', { type: 'text', className: 'y-input', defaultValue: '5' }),
+            React.createElement(
+              'span',
+              { className: 'select-icon', onClick: this.select },
+              React.createElement('i', { className: 'fa fa-caret-down' })
+            ),
+            React.createElement(
+              'span',
+              { className: 'select-tip' },
+              '5 \u6761/\u9875'
+            ),
+            React.createElement(
+              'ul',
+              { className: 'fade-in-up ' + (selected ? 'y-show' : '') },
+              React.createElement(
+                'li',
+                null,
+                '5'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '10'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '15'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '20'
+              ),
+              React.createElement(
+                'li',
+                null,
+                'all'
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'y-search y-right' },
+            React.createElement('input', { type: 'text', className: 'y-input', placeholder: '\u641C\u7D22...' }),
+            React.createElement(
+              'span',
+              { className: 'select-icon' },
+              React.createElement('i', { className: 'fa fa-search' })
+            )
+          )
+        ),
+        React.createElement(
+          'table',
+          { className: 'ytable ytable-bordered ytable-striped' },
+          React.createElement(
+            'thead',
+            null,
+            React.createElement(
+              'tr',
+              null,
+              yth.map(function (v, k) {
+                return React.createElement(
+                  'th',
+                  { key: 'th' + k },
+                  v
+                );
+              }),
+              editable && React.createElement(
+                'th',
+                { colSpan: 2 },
+                '\u64CD\u4F5C'
+              )
+            )
+          ),
+          React.createElement(
+            'tbody',
+            null,
+            ytb.map(function (v, k) {
+              return React.createElement(
+                'tr',
+                { key: 'tr' + k },
+                v.map(function (sv, sk) {
+                  return React.createElement(
+                    'td',
+                    { key: 'tr' + k + '-td' + sk },
+                    v.editState ? React.createElement('input', { type: 'text', value: sv, onChange: that.getVal.bind(that, k, sk), placeholder: sv }) : sv
+                  );
+                }),
+                editable && (v.editState ? React.createElement(
+                  'td',
+                  { key: 'save' + k, onClick: that.save.bind(that, v, k), className: 'edit' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;', className: 'bg-success' },
+                    React.createElement('i', { className: 'fa fa-file-text' }),
+                    ' \u4FDD\u5B58'
+                  )
+                ) : React.createElement(
+                  'td',
+                  { key: 'edit' + k, onClick: that.edit.bind(that, v, k), className: 'edit' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;' },
+                    React.createElement('i', { className: 'fa fa-pencil-square-o' }),
+                    ' \u7F16\u8F91'
+                  )
+                )),
+                editable && (v.editState ? React.createElement(
+                  'td',
+                  { key: 'cancel' + k, onClick: that.cancel.bind(that, v, k), className: 'delete' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;', className: 'bg-warning' },
+                    React.createElement('i', { className: 'fa fa-undo' }),
+                    ' \u53D6\u6D88'
+                  )
+                ) : React.createElement(
+                  'td',
+                  { key: 'delete' + k, onClick: that.delete.bind(that, v, k), className: 'delete' },
+                  React.createElement(
+                    'a',
+                    { href: 'javascript:;' },
+                    React.createElement('i', { className: 'fa fa-trash-o' }),
+                    ' \u5220\u9664'
+                  )
+                ))
+              );
+            })
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'ytable-footer' },
+          React.createElement(
+            'div',
+            { className: 'pagination' },
+            React.createElement(
+              'span',
+              null,
+              '\u5F53\u524D\u663E\u793A\u4E3A 1-5 \u9879\uFF0C\u517150\u9879\u3002'
+            ),
+            React.createElement(
+              'ul',
+              { className: 'y-right' },
+              React.createElement(
+                'li',
+                { className: 'disabled' },
+                '\u9996\u9875'
+              ),
+              React.createElement(
+                'li',
+                { className: 'disabled' },
+                '\u4E0A\u4E00\u9875'
+              ),
+              pagination.length > 5 ? pagination.map(function (v, k) {
+                return (k < 3 || k > pagination.length - 3) && React.createElement(
+                  'li',
+                  { key: 'page' + k, className: k == 0 && 'active' || k == 2 && 'more' },
+                  k == 2 ? '...' : k + 1
+                );
+              }) : pagination.map(function (v, k) {
+                return React.createElement(
+                  'li',
+                  { key: 'page' + k },
+                  k + 1
+                );
+              }),
+              React.createElement(
+                'li',
+                null,
+                '\u4E0B\u4E00\u9875'
+              ),
+              React.createElement(
+                'li',
+                null,
+                '\u5C3E\u9875'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return Ytables;
+}(React.Component));
+
+exports.default = Ytables;
