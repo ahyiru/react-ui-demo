@@ -9,7 +9,7 @@ var webpackHotMiddleware=require('webpack-hot-middleware');
 var app = express();
 var compiler = webpack(webpackConfig);
 
-// const opn = require('opn');
+const opn = require('opn');
 
 var PORT=8086;
 

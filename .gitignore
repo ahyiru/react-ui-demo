@@ -50,18 +50,18 @@ builder
 database
 tools
 project
-
-jsdemo.js
-ecosystem.json
-yarn.lock
-
-server.js
-start-server.js
-webpack.build.js
 node
 test
 
-.happypack
+# server
+jsdemo.js
+ecosystem.json
+yarn.lock
+server.js
+start-server.js
+webpack.build.js
 
+# file
+.happypack
 *.zip
 *.json
