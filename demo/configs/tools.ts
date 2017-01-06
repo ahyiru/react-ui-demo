@@ -267,6 +267,22 @@ export const loading:any=(ele)=>{
   };*/
 };
 
+//缓存操作
+export const localData={
+  get:(name)=>{
+    return JSON.parse(localStorage.getItem(name));
+  },
+  set:(name,data)=>{
+    localStorage.setItem(name,JSON.stringify(data));
+  },
+  rm:(name)=>{
+    localStorage.removeItem(name);
+  },
+  clear:()=>{
+    localStorage.clear();
+  },
+};
+
 
 
 

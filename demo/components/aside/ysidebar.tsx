@@ -67,7 +67,11 @@ export default class Ysidebar extends React.Component<any,any> {
     this.state=({
       menu:menu,
       icon1:'minus',
-      icon2:'minus'
+      icon2:'minus',
+      toggleMenu:{
+        height:'100%',
+        width:'100%'
+      }
     });
 
     //resize
@@ -184,25 +188,32 @@ export default class Ysidebar extends React.Component<any,any> {
           }
         });
         this.setState({
-          menu:newMenu
+          menu:newMenu,
+          toggleMenu:{}
         });
       },200);
     }
     if(hasClass(document.body,'horizontal')){
       let newMenu=this.state.menu;
       let flag=!!v.subMenu;
+      let toggleMenu={};
       newMenu.map((val,key)=>{
         if(k==key){
           flag&&(
             val.open='open',
             val.toggleSlide={
               height:val.subMenu.length*32+16
+            },
+            toggleMenu={
+              height:val.subMenu.length*32+16+62,
+              width:'200%'
             }
           )
         }
       });
       this.setState({
-        menu:newMenu
+        menu:newMenu,
+        toggleMenu:toggleMenu
       });
     }
   };
@@ -217,24 +228,31 @@ export default class Ysidebar extends React.Component<any,any> {
         }
       });
       this.setState({
-        menu:newMenu
+        menu:newMenu,
+        toggleMenu:{}
       });
     }
     if(hasClass(document.body,'horizontal')){
       let newMenu=this.state.menu;
       let flag=!!v.subMenu;
+      let toggleMenu={};
       newMenu.map((val,key)=>{
         if(k==key){
           flag&&(
             val.open='',
             val.toggleSlide={
               height:0
+            },
+            toggleMenu={
+              height:'100%',
+              width:'100%'
             }
           )
         }
       });
       this.setState({
-        menu:newMenu
+        menu:newMenu,
+        toggleMenu:toggleMenu
       });
     }
   };
@@ -261,7 +279,7 @@ export default class Ysidebar extends React.Component<any,any> {
   render() {
     const {projectList,userInfo}=this.props;
     
-    const {menu}=this.state;
+    const {menu,toggleMenu}=this.state;
 
     const that=this;
 
@@ -282,7 +300,7 @@ export default class Ysidebar extends React.Component<any,any> {
               <i className={`fa fa-${this.state.icon1}`}></i>
               <h4>导航栏</h4>
             </div>
-            <ul className={`y-sidebar-l1 ${this.state.collapsed1}`}>
+            <ul className={`y-sidebar-l1 ${this.state.collapsed1}`} style={toggleMenu}>
               
               {
                 menu.map((v,k)=>{

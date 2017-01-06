@@ -4,10 +4,12 @@ import Ynav from './ynav';
 
 import {dropList} from '../../models/models';
 
+import {hasClass} from '../../configs/tools';
+
 let loginInfo={
   loginUrl:'#/user/login',
   signupUrl:'#/user/signup'
-}
+};
 
 export default class Header extends React.Component<any,any> {
 
