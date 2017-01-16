@@ -17,8 +17,8 @@ export default class Card1 extends React.Component<any,any> {
       			<p><b>22</b> 次</p>
       		</div>
       	</div>
-        <a href="#/cards/card11">Card11</a>
-        <a href="#/cards/card12">Card12</a>
+        <a href="#/cards/card1/card11">Card11</a>
+        <a href="#/cards/card1/card12">Card12</a>
         {this.props.children}
       </div>
     )

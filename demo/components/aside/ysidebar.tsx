@@ -68,10 +68,7 @@ export default class Ysidebar extends React.Component<any,any> {
       menu:menu,
       icon1:'minus',
       icon2:'minus',
-      toggleMenu:{
-        height:'100%',
-        width:'100%'
-      }
+      toggleMenu:{}
     });
 
     //resize
@@ -91,6 +88,12 @@ export default class Ysidebar extends React.Component<any,any> {
       });
     });*/
     //
+  };
+
+  componentWillReceiveProps=(nextProps)=>{
+    this.setState({
+      menu:nextProps.menu
+    });
   };
 
   firstMenuClick=(v,k)=>{

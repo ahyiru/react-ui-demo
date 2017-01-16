@@ -10,7 +10,8 @@ export default class User extends React.Component<any,any> {
   };
 
   componentDidMount=()=>{
-  	var h=document.body.offsetHeight;
+  	// var h=document.body.offsetHeight;
+    var h=window.innerHeight;
   	var user:any=document.getElementsByClassName('user')[0];
   	user.style.height=h+'px';
   };

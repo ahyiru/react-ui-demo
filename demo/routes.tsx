@@ -8,6 +8,7 @@ import {
   Demo1,
   Demo2,
   DataUI,
+  DataTable,
   Demo3,
   Func1,
   Func2,
@@ -54,6 +55,7 @@ export default (
       <Route path="test/test1" component={Demo1} />
       <Route path="test/test2" component={Demo2} />
       <Route path="test/dataUI" component={DataUI} />
+      <Route path="test/dataUI/:tableName" component={DataTable} />
       <Route path="test/test3" component={Demo3} />
 
       <Route path="function/function1" component={Func1} />
@@ -65,8 +67,8 @@ export default (
       <Route path="ui/ui3" component={UI3} />
 
       <Route path="cards/card2" component={Card2} />
-      <Route path="cards" component={Card1} >
-        <IndexRedirect to="/cards/card11" />
+      <Route path="cards/card1" component={Card1} >
+        <IndexRedirect to="/cards/card1/card11" />
         <Route path="card11" component={Card11} />
         <Route path="card12" component={Card12} />
       </Route>

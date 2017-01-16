@@ -3,13 +3,12 @@ import * as React from 'react';
 import YsideBar from './ysidebar';
 import YrightBar from './yrightbar';
 
+import {localData} from '../../configs/tools';
+
 import {rightbarTabs,rightbarTabLists,projectList} from '../../models/models';
 
-let userInfo={
-  logo:require('../../styles/images/usr.jpg'),
-  name:'test',
-  email:'test@test.com'
-};
+let userInfo=localData.get('user');
+userInfo&&(userInfo.logo=require('../../styles/images/usr.jpg'));
 
 export default class Yaside extends React.Component<any,any> {
 
@@ -18,7 +17,6 @@ export default class Yaside extends React.Component<any,any> {
   };
 
   render() {
-
     return (
       <aside>
         <YsideBar menu={this.props.sideBarMenu} projectList={projectList} userInfo={false} />

@@ -68,10 +68,12 @@ export const cloneObj=(obj):any=>{
 };*/
 
 //获取当前页面--menu
-export const getCurrent=(menu,str)=>{
+export const getCurrent=(sidebarMenu,str)=>{
+  var menu=cloneObj(sidebarMenu);
   if(str){
     // 规定url书写规格。#/function/function1
     // str=str[0].slice(0,str[0].length-1);
+    var breadcrumb=[];
     str=str[1];
     if(str.split('/').length==2){str='#'+str;}
     menu.map((v,k)=>{
@@ -87,9 +89,9 @@ export const getCurrent=(menu,str)=>{
           }
           else{
             sv.selected='';
-            let a=str.split('/');
-            let url='/'+a[a.length-2];
-            if(url==sv.url&&!flag){
+            // let a=str.split('/');
+            // let url='/'+a[a.length-2];
+            if(str.indexOf(sv.url)>-1&&!flag){
               sv.selected='active';
               flag=true;
             }
@@ -111,6 +113,7 @@ export const getCurrent=(menu,str)=>{
         );
       }
       else{
+        v.url.indexOf('#')<0&&(v.url='#'+v.url);
         if(v.url==str){
           /*data.url=v.url;
           data.title=v.title;
@@ -130,32 +133,37 @@ export const getCurrent=(menu,str)=>{
   return menu;
 };
 //获取当前页面--breadcrumb
-export const getBreadcrumb=(menu,str)=>{
+export const getBreadcrumb=(sidebarMenu,str)=>{
+  var menu=cloneObj(sidebarMenu);
   if(str){
     str=str[1];
-    if(str.split('/').length==2){str='#'+str;}
+    // if(str.split('/').length==2){str='#'+str;}
     let data=[],tmp=[],level=-1,f=false;
     //获取当前页面--title
     const getTitle=(menu,str)=>{
-      level++;
+      // level++;
       menu.map((v,k):any=>{
         if(f) return false;
-        if(v.url==str){
+        var hasSub=v.subMenu&&v.subMenu.length>0;
+        v.url=='/'&&(v.url='#/');
+        if(str.indexOf(v.url)>-1&&!hasSub){
           let d={
             title:v.title,
-            url:'#'+v.url
+            url:v.url.indexOf('javascript:;')>-1?v.url:'#'+v.url
           };
           tmp.push(d);
+          if(v.url!=str){
+            tmp.push({title:str.split('/')[str.split('/').length-1],url:str,cpage:true});
+          }
           f=true;
           data=cloneObj(tmp);
           return data;
-        }
-        else{
+        }else{
           let ff=false;
-          if(v.subMenu&&v.subMenu.length>0){
+          if(hasSub){
             let d={
               title:v.title,
-              url:'#'+v.url
+              url:v.url.indexOf('javascript:;')>-1?v.url:'#'+v.url
             };
             tmp.push(d);
             ff=true;
@@ -270,10 +278,17 @@ export const loading:any=(ele)=>{
 //缓存操作
 export const localData={
   get:(name)=>{
-    return JSON.parse(localStorage.getItem(name));
+    var data;
+    try{
+      data=JSON.parse(localStorage.getItem(name));
+    }catch(err){
+      data=localStorage.getItem(name);
+    }
+    return data;
   },
   set:(name,data)=>{
-    localStorage.setItem(name,JSON.stringify(data));
+    if(typeof data==='object') data=JSON.stringify(data);
+    localStorage.setItem(name,data);
   },
   rm:(name)=>{
     localStorage.removeItem(name);
@@ -283,6 +298,17 @@ export const localData={
   },
 };
 
+
+//格式化文本
+export const formatTxt=(str)=>{
+  str=str.replace(/\n/g,'<pclass="txt-line"></p>');
+  str=str.replace(/\r/g,'<pclass="txt-line"></p>');
+  str=str.replace(/\s/g,'<spanclass="txt-space"></span>');
+  str=str.replace(/\t/g,'<spanclass="txt-space"></span>');
+  str=str.replace(/pclass/g,'p class');
+  str=str.replace(/spanclass/g,'span class');
+  return str;
+};
 
 
 

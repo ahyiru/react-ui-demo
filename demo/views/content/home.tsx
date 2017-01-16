@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import EventEmitter from '../../configs/eventEmitter';
 
-import {addClass,removeClass} from '../../configs/tools';
+import {hasClass,addClass,removeClass} from '../../configs/tools';
 
 import Ydnd from './ydnd';
 import Ypanel from './ypanel';
@@ -116,11 +116,24 @@ export default class Home extends React.Component<any,any> {
   	EventEmitter.dispatch('subNotify',direction);
   };
 
+  switchNav=()=>{
+    let body=document.body;
+    if(hasClass(body,'horizontal')){
+      removeClass(body,'horizontal');
+    }else{
+      addClass(body,'horizontal');
+    }
+  };
+
   render() {
     const {size}=this.state;
     return (
     	<div className="y-items">
     		<div className="y-item">
+          <h2>切换导航栏</h2>
+          <button className="ybtn ybtn-success mr" onClick={this.switchNav}>切换</button>
+        </div>
+        <div className="y-item">
           <h2>缩放</h2>
           <div>
             <input type="range" value={size} step=".1" min=".6" max="2.0" onChange={this.getSize} disabled />

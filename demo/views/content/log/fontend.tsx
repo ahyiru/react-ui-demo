@@ -13,7 +13,7 @@ var data={
 	'nodejs':['nodejs','express','koa','mongodb','PM2','socket.IO'],
 	'http':['http/2','restful','fetch','json'],
 	'manage':['npm','yarn','git','GitHub','Docker'],
-	'develop':['webpack','gulp','sublime','markdown'],
+	'develop':['Webpack','Rollup','Gulp','Sublime','Markdown'],
 	'webapp':['渐进式PWA','微信小程序','html5 API','css3 animation'],
 	'hybrid':['Cordova','React Native','Ionic','Weex'],
 	'desktop':['Electron','NW.js'],

@@ -5,19 +5,20 @@ var fetch=require('isomorphic-fetch');
 
 import Ytables from './yTables';
 
-/*export default class Table extends React.Component<any,any> {
+import './data-ui.less';
 
-  constructor(props){
-    super(props);
-  };
-
-  render() {
-
-    return (
-      <Ytables yth={tableData.thead} ytb={tableData.tbody} editable={true} />
-    );
+const cloneObj=(obj)=>{
+  var str='',newobj=obj.constructor===Array?[]:{};
+  if(typeof obj!=='object'){
+    return;
   }
-}*/
+  else{
+    for(var i in obj){
+      newobj[i]=typeof obj[i]==='object'?cloneObj(obj[i]):obj[i];
+    }
+  }
+  return newobj;
+};
 
 const obj2arr=(obj)=>{
 	var arr=[];
@@ -30,166 +31,127 @@ const obj2arr=(obj)=>{
   return arr;
 };
 
+// check value
+const chkVal=(val)=>{
+  var reg=/^[\u4E00-\u9FA5A-Za-z0-9_]{1,20}$/;
+  return reg.test(val);
+};
+
 var sthead=['id','用户名','密码'];
 
 export default class Demo2 extends React.Component<any,any> {
 	constructor(props){
     super(props);
     this.state=({
-  		data:[],
-  		info:{
-  			name:'',
-  			pwd:''
-  		}
+  		head:[],
+  		tableName:'users',
+  		tbody:[],
   	})
-    /*fetch('/info').then(response => response.json())
-		  .then(data => {
-		  	console.log(data);
-		  	this.setState({
-		  		data:data
-		  	})
-		  })
-		  .catch(e => console.log("error", e));*/
   };
   componentWillMount(){
-  	var that=this;
-  	fetch('/info').then(response => response.json())
-		  .then(data => {
-		  	// console.log(data);
-		  	that.setState({
-		  		data:data
-		  	})
-		  })
-		  .catch(e => console.log("error", e));
+  	var name=this.state.tableName;
+    console.log(name);
+  	this.moreInfo(name);
   };
   componentDidMount(){
-    /*fetch('/info',{
-	    method:'get',// 默认
-	    cors:'no-cors',// 默认
-	    headers:{
-	      'Content-Type':'application/x-www-form-urlencoded'
-	    }
-	  })
-	  .then((res)=>{
-	    console.log(res);
-	    return res.json();
-	  })
-	  .then((data)=>{
-	    console.log(data);
-	  })
-	  .catch((err)=>{
-	    console.log(err);
-	  });*/
-	  /*var that=this;
-  	fetch('/info').then(response => response.json())
-		  .then(data => {
-		  	// console.log(data);
-		  	that.setState({
-		  		data:data
-		  	})
-		  })
-		  .catch(e => console.log("error", e));*/
+    
   };
   componentWillUnmount(){
     
   };
-  addInfo=()=>{
-  	var data={
-  		username:this.state.info.name,
-  		password:this.state.info.pwd
-  	};
-  	console.log(this.state.info);
-  	fetch('/add',{
-  		method:'POST',
-  		body:JSON.stringify(data),
+
+  moreInfo=(name)=>{
+  	fetch('/table/'+name+'/info',{
+  		method:'GET',
   		headers:{'Content-Type':'application/json'},
   	}).then(response => response.json())
 		  .then(data => {
 		  	console.log(data);
-		  	fetch('/info').then(response => response.json())
-				  .then(data => {
-				  	console.log(data);
-				  	this.setState({
-				  		data:data
-				  	})
-				  })
-				  .catch(e => console.log("error", e));
+		  	data.head.splice(0,0,'ID');
+		  	this.setState({head:data.head,tbody:data.tbody,tableName:name});
 		  })
-		  .catch(e => console.log("添加失败,"+e));
+		  .catch(e => console.log("失败,"+e));
   };
-  del=(id)=>{
-  	// var that=this;
-  	fetch('/delete',{
+
+  addTableData=()=>{
+  	var head=this.state.head.slice(0);
+  	head.splice(0,1);
+  	var div=document.getElementById('addData');
+  	var input=div.getElementsByTagName('input'),val={};
+  	console.log(head);
+  	for(let i=0,l=head.length;i<l;i++){
+  		if(input[i].value==''){
+        alert('请填写完整！');
+        return false;
+      }
+  		val[head[i]]=input[i].value;
+  	}
+  	var name=this.state.tableName;
+  	fetch('/table/'+name+'/add',{
   		method:'POST',
-  		body:JSON.stringify({_id:id}),
+  		body:JSON.stringify(val),
   		headers:{'Content-Type':'application/json'},
   	}).then(response => response.json())
 		  .then(data => {
 		  	console.log(data);
-		  	fetch('/info').then(response => response.json())
-				  .then(data => {
-				  	console.log(data);
-				  	this.setState({
-				  		data:data
-				  	})
-				  })
-				  .catch(e => console.log("error", e));
+		  	this.setState({tbody:data.tbody});
 		  })
-		  .catch(e => console.log("删除失败,"+e));
+		  .catch(e => console.log("失败,"+e));
   };
-  getVal=(type,e)=>{
-  	if(type=='name'){
-  		this.setState({
-  			info:{
-  				name:e.target.value,
-  				pwd:this.state.info.pwd
-  			}
-  		})
-  	}
-  	else{
-  		this.setState({
-  			info:{
-  				name:this.state.info.name,
-  				pwd:e.target.value
-  			}
-  		})
-  	}
-  };
+
   render() {
   	// const {data}=this.state;
-  	const {info}=this.state;
+  	const {head,tbody}=this.state;
   	const that=this;
     return (
-    	<div>
-	      <Ytables yth={sthead} ytb={this.state.data} editable={true} />
-	      <table>
-	      	<thead>
-	      		<tr>
-	      			<th>id</th>
-	      			<th>用户名</th>
-	      			<th>密码</th>
-	      		</tr>
-	      	</thead>
-	      	<tbody>
-		        {
-		        	this.state.data.map((v,k)=>{
-		        		return (
-		        			<tr key={`test${k}`}>
-		        				<td>{v._id}</td>
-		        				<td>{v.username}</td>
-		        				<td>{v.password}</td>
-		        				<td onClick={that.del.bind(that,v._id)}>delete</td>
-		        			</tr>
-		        		)
-		        	})
-		        }
-		      </tbody>
-	      </table>
-	      <div>
-	        <span>用户名：</span><input type="text" value={info.name} onChange={this.getVal.bind(this,'name')} />
-	        <span>密 码：</span><input type="text" value={info.pwd} onChange={this.getVal.bind(this,'pwd')} />
-	        <button onClick={this.addInfo}>add</button>
-	      </div>
+    	<div className="data-ui">
+    		<div className="y-clearfloat">
+    			<div className="ycol-4" id="addData">
+    				<h2>表: <i>{this.state.tableName}</i></h2>
+	      		<form className="y-form yfv">
+	      			{
+		      			head.map((v,k)=>{
+		      				return (k>0&&<div key={`tt-${k}`} className="yform-group">
+										        <label>{v}</label>
+										        <input type="text" />
+									        </div>
+					        			)
+		      			})
+		      		}
+		      		<button type="button" className="ybtn ybtn-info y-right" onClick={this.addTableData}>添加数据</button>
+		        </form>
+      		</div>
+      		<div className="ycol-8">
+	      		{/*<table className="ytable ytable-bordered ytable-striped">
+	      							      	<thead>
+	      							      		<tr>
+	      								      		{
+	      								      			head.map((v,k)=>{
+	      								      				return <th key={`tt-${k}`}>{v}</th>
+	      								      			})
+	      								      		}
+	      							      		</tr>
+	      							      	</thead>
+	      							      	<tbody>
+	      								        {
+	      								        	tbody.map((v,k)=>{
+	      								        		return(
+	      									        		<tr key={`tr-${k}`}>
+	      									        			{
+	      									        				Object.keys(v).map((sv,sk)=>{
+	      									        					return sv!=='__v'&&<td key={`td-${sk}`}>{v[sv]}</td>
+	      									        				})
+	      									        			}
+	      									        		</tr>
+	      								        		)
+	      								        	})
+	      								        }
+	      								      </tbody>
+	      							      </table>*/}
+			      <Ytables yth={head} ytb={tbody} editable={true} showTbar={false} tableName={this.state.tableName} moreInfo={this.moreInfo} />
+			    </div>
+		    </div>
+
       </div>
     )
   };

@@ -6,7 +6,7 @@ import YpageHeader from './ypageheader';
 import YbackTop from './ybacktop';
 import Ynotify from './ynotify';
 
-import {getCurrent,getBreadcrumb} from '../../configs/tools';
+import {getCurrent,getBreadcrumb,localData} from '../../configs/tools';
 
 import {sidebarMenu,notifyList} from '../../models/models';
 
@@ -27,6 +27,10 @@ export default class Yframe extends React.Component<any,any> {
   };
   static defaultProps={
     auth:'yiru'
+  };
+
+  static contextTypes={
+    router:React.PropTypes.object
   };
 
   // breadcrumb多级显示
@@ -73,6 +77,7 @@ export default class Yframe extends React.Component<any,any> {
 	constructor(props){
     super(props);
     this.str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
+    // this.str=location.pathname;
 
     let menu=getCurrent(sidebarMenu,this.str);
     let breadcrumb=getBreadcrumb(sidebarMenu,this.str);
@@ -82,13 +87,25 @@ export default class Yframe extends React.Component<any,any> {
       notify:notifyList
     });
 
+    /*window.addEventListener('popstate',(e)=>{
+      console.log(e);
+    },false);*/
+
     window.addEventListener('hashchange',this.hashChg,false);
+  };
+
+  componentWillMount(){
+    var token=localStorage.getItem('token');
+    if(!token){
+      this.context.router.push('/user/login');
+    }
   };
 
   //hashchange
   hashChg=()=>{
     document.documentElement.scrollTop?(document.documentElement.scrollTop=0):(document.body.scrollTop=0);
     let str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
+    // let str=location.pathname;
     let menu=getCurrent(sidebarMenu,str);
     let breadcrumb=getBreadcrumb(sidebarMenu,str);
     this.setState({
@@ -104,6 +121,8 @@ export default class Yframe extends React.Component<any,any> {
   render() {
   	const {children}=this.props;
   	const {breadcrumb,menu,notify}=this.state;
+    let user=localData.get('user');
+    (user&&user.role<1)&&(menu.splice(1,1));
     return (
       <div>
         <Yheader />

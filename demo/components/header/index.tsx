@@ -4,7 +4,7 @@ import Ynav from './ynav';
 
 import {dropList} from '../../models/models';
 
-import {hasClass} from '../../configs/tools';
+import {hasClass,localData} from '../../configs/tools';
 
 let loginInfo={
   loginUrl:'#/user/login',
@@ -18,8 +18,8 @@ export default class Header extends React.Component<any,any> {
   };
 
   render() {
-    let loginFlag=localStorage.getItem('login'),login;
-    if(loginFlag){
+    let token=localData.get('token'),login;
+    if(token){
       login=false;
     }else{
       login=loginInfo;

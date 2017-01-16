@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import {localData} from '../../configs/tools';
 export default class YdropDown extends React.Component<any,any> {
 
   static contextTypes={
@@ -33,7 +33,9 @@ export default class YdropDown extends React.Component<any,any> {
   listClick=(name)=>{
     if(name=='profile'){
       // localStorage.removeItem('login');  // 删除login缓存
-      localStorage.clear();  // 删除所有缓存
+      // localStorage.clear();  // 删除所有缓存
+      localData.rm('token');
+      localData.rm('user');
       this.context.router.push(this.path);
     }
   };
@@ -45,7 +47,7 @@ export default class YdropDown extends React.Component<any,any> {
         {
           name=='profile'&&icon.split(' ')[0]!='fa'?
           <a href="javascript:;" className="img">
-            <span className="username">{localStorage.getItem('login')||'yiru'}</span>
+            <span className="username">{localData.get('user').name||'yiru'}</span>
             <img src={icon} />
           </a>:
           <a href="javascript:;">

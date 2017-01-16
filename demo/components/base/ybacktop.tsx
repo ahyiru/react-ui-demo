@@ -7,20 +7,31 @@ export default class YbackTop extends React.Component<any,any> {
     this.state=({
       hover:''
     });
-    //scroll
-    window.addEventListener('scroll',()=>{
-      let show='';
-      let st=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
-      if(st>500){
-        show='y-show';
-      }
-      else{
-        show='';
-      }
-      this.setState({
-        show:show
-      });
-    },false);
+    
+    window.addEventListener('scroll',this.yscroll,false);
+  };
+
+  //scroll
+  yscroll=()=>{
+    let show='';
+    let st=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+    if(st>500){
+      show='y-show';
+    }
+    else{
+      show='';
+    }
+    this.setState({
+      show:show
+    });
+  };
+
+  componentDidMount=()=>{
+    
+  };
+
+  componentWillUnmount=()=>{
+    window.removeEventListener('scroll',this.yscroll,false);
   };
 
   toTop=()=>{

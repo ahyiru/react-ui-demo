@@ -43,7 +43,8 @@ export default class API extends React.Component<any,any> {
     super(props);
     this.state=({
       name:'',
-      menu:[]
+      menu:[],
+      showApiMenu:''
     })
   };
 
@@ -96,12 +97,19 @@ export default class API extends React.Component<any,any> {
       .catch(e => console.log("error", e));
   };*/
 
+  slideApiMenu=()=>{
+    this.setState({
+      showApiMenu:this.state.showApiMenu?'':'show-api-menu'
+    });
+  };
+
   render() {
-    const {name,menu,content}=this.state;
+    const {name,menu,content,showApiMenu}=this.state;
     return(
     	<div className="api">
         <a className="back-to-home" href="#/">主页</a>
-    		<div className="api-menu">
+        <button className="ybtn ybtn-success toggle-api-sidebar" onClick={this.slideApiMenu}><i className="fa fa-align-justify"></i></button>
+    		<div className={`api-menu ${showApiMenu}`}>
           {/*<ul onClick={this.readMD}>*/}
           <ul>
             {

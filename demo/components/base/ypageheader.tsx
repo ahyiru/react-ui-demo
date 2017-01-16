@@ -20,29 +20,38 @@ export default class YpageHeader extends React.Component<any,any> {
         return <li><a href={d.url}>{d.subTitle}</a></li>;
       }
     };
+    let cpage=breadcrumb[2]&&breadcrumb[2].cpage;
     return (
       <div className="y-pageheader">
         {
-          !hidePagetitle&&
+          (!cpage&&!hidePagetitle)&&
             <h2>
               {
-                breadcrumb.map((v,k)=>{
+                breadcrumb.length>0?breadcrumb.map((v,k)=>{
                   return <span key={`title-${k}`}> {v.title} </span>;
-                })
+                }):
+                <span> 主页 </span>
               }
             </h2>
         }
         <div className="y-page-bar">
-          <ul className="y-page-breadcrumb">
-            <li>
-              <a href="#"><i className="fa fa-home"></i></a>
-            </li>
-            {
-              breadcrumb.map((v,k)=>{
-                return <li key={`bread-${k}`}><a href={k==0?'javascript:;':v.url}>{v.title}</a></li>;
-              })
-            }
-          </ul>
+          {
+            cpage?
+            <div className="y-page-header">
+              <a href={breadcrumb[1].url}><i className="fa fa-angle-left"></i> 返回</a>
+              <h2>{breadcrumb[2].title}</h2>
+            </div>:
+            <ul className="y-page-breadcrumb">
+              <li>
+                <a href="#"><i className="fa fa-home"></i></a>
+              </li>
+              {
+                breadcrumb.map((v,k)=>{
+                  return <li key={`bread-${k}`}><a href={v.url}>{v.title}</a></li>;
+                })
+              }
+            </ul>
+          }
           <article className="y-timer"></article>
         </div>
       </div>

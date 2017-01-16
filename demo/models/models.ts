@@ -1,6 +1,6 @@
 //sidebarMenu
 export const sidebarMenu=[{
-  url:'#/',
+  url:'/',
   title:'主页',
   leftIcon:'fa fa-home',
   rightIcon:'fa fa-angle-right',
@@ -142,14 +142,14 @@ export const sidebarMenu=[{
     icon:'fa fa-arrow-right',
     title:'card2'
   },{
-    url:'/cards',
+    url:'/cards/card1',
     icon:'fa fa-arrow-right',
     title:'card1',
     subMenu:[{
-      url:'/cards/card11',
+      url:'/cards/card1/card11',
       title:'card11',
     },{
-      url:'/cards/card12',
+      url:'/cards/card1/card12',
       title:'card12',
     }]
   },{
@@ -177,19 +177,19 @@ export const sidebarMenu=[{
     title:'TreeDrag'
   }]
 },{
-  url:'#/log',
+  url:'/log',
   title:'日志',
   leftIcon:'fa fa-github-alt',
   rightIcon:'fa fa-angle-right',
   open:''
 },{
-  url:'#/fontend',
+  url:'/fontend',
   title:'前端知识点',
   leftIcon:'fa fa-html5',
   rightIcon:'fa fa-angle-right',
   open:''
 },{
-  url:'#/mobx-demo',
+  url:'/mobx-demo',
   title:'mobx-demo',
   leftIcon:'fa fa-hourglass-start',
   rightIcon:'fa fa-angle-right',

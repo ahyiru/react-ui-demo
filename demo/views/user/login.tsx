@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+require('es6-promise').polyfill();
+var fetch=require('isomorphic-fetch');
+
+import {localData} from '../../configs/tools';
+
 export default class Login extends React.Component<any,any> {
 	static contextTypes={
     router:React.PropTypes.object
@@ -17,14 +22,12 @@ export default class Login extends React.Component<any,any> {
 
 	};
 	login=()=>{
-		/*var name=document.getElementById('username').value;
-    var password=document.getElementById('password').value;
     var data={
-      name:name,
-      password:password
+      email:this.state.mval,
+      password:this.state.pval
     };
     var path='/';
-    let users=JSON.parse(localStorage.getItem('users'));
+    /*let users=JSON.parse(localStorage.getItem('users'));
     if(users){
       var f=true;
       users.map((v,k)=>{
@@ -40,10 +43,24 @@ export default class Login extends React.Component<any,any> {
     else{
       this.context.router.push('info/signup');
       return true;
-    }
-    console.log('err');*/
-    localStorage.setItem('login','admin');
-    this.context.router.push('/');
+    }*/
+    fetch('/auth/login',{
+      method:'POST',
+      body:JSON.stringify(data),
+      headers:{'Content-Type':'application/json'},
+    }).then(response => response.json())
+      .then(data => {
+        if(data.message){
+          console.log(data.message);
+        }
+        if(data.token){
+          console.log(data.token);
+          localData.set('token',data.token);
+          localData.set('user',data.user);
+          this.context.router.push(path);
+        }
+      })
+      .catch(e => console.log("登录失败,"+e));
 	};
 
   getEmail=(e)=>{
@@ -74,20 +91,20 @@ export default class Login extends React.Component<any,any> {
     return(
     		<form>
           <h4>{this.state.title}</h4>
-          <div className="log-input">
+          <div className="log-row">
             <input type="text" placeholder="邮箱" value={mval} onChange={this.getEmail} />
             {mval?<i className="fa fa-times-circle" onClick={this.resetVal}></i>:''}
           </div>
-          <div className="log-input">
+          <div className="log-row">
             <input type={passwdType} placeholder="密码" value={pval} onChange={this.getPasswd} />
             {pval?<i className="fa fa-eye" onClick={this.changeType}></i>:''}
           </div>
-          <div className="log-input">
-    			  <button className="ybtn ybtn-success ybtn-block" onClick={this.login}>登录</button>
+          <div className="log-row">
+    			  <button type="button" className="ybtn ybtn-success ybtn-block" onClick={this.login}>登录</button>
           </div>
-          <div className="log-input">
-            <a className="find-pwd" href="#/user/signup">忘记密码</a>
-            <a className="reg-user" href="#/user/signup">免费注册</a>
+          <div className="log-row">
+            <a className="y-left" href="#/user/signup">忘记密码</a>
+            <a className="y-right" href="#/user/signup">免费注册</a>
           </div>
           <div className="other-log">
             <div className="other-txt">

@@ -2,6 +2,7 @@ import Home from './home';
 import Demo1 from './test/demo1';
 import Demo2 from './test/demo2';
 import DataUI from './test/dataUI';
+import DataTable from './test/datatable';
 import Demo3 from './test/demo3';
 import Func1 from './func/func1';
 import Func2 from './func/func2';
@@ -43,6 +44,7 @@ export{
   Demo1,
   Demo2,
   DataUI,
+  DataTable,
   Demo3,
   Func1,
   Func2,
