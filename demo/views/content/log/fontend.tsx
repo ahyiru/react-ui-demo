@@ -6,7 +6,7 @@ var data={
 	'ui':['UI','UX','UED','Material Design'],
 	'canvas':['css3','webGL','canvas','SVG','threejs'],
 	'css':['css','less','sass','PostCSS'],
-	'html5':['html5','localStorage','service Worker','web RTC','web VR'],
+	'html5':['html5','localStorage','Service Worker','web RTC','web VR'],
 	'javascript':['ECMAScript6','ECMAScript7','typescript','babel','WebAssembly'],
 	'MV*':['angular','react','vue','polymer','ember'],
 	'SAM':['SAM','Redux','Mobx','Rxjs'],
