@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import EventEmitter from '../../configs/eventEmitter';
+import {eventEmitter} from '../../configs/tools';
 
 import {hasClass,addClass,removeClass} from '../../configs/tools';
 
 import Ydnd from './ydnd';
 import Ypanel from './ypanel';
 
-import dnd from './ydrag';
+// import dnd from './ydrag';
 
 let themePkg=['default-theme','theme1','theme2','theme3','theme4','stheme1','stheme2','stheme3','stheme4','stheme5','ltheme1','ltheme2','ltheme3','ltheme4'];
 
@@ -45,15 +45,15 @@ export default class Home extends React.Component<any,any> {
     })
   };
 
-  componentDidMount(){
+  /*componentDidMount(){
     dnd.init();
   	// require('./ydrag');
-    /*let ydnd=require('./ydrag').default;
-    ydnd();*/
+    // let ydnd=require('./ydrag').default;
+    // ydnd();
   };
   componentWillUnmount(){
   	dnd.distroy();
-  };
+  };*/
 
   changeTheme=(theme)=>{
   	themePkg.map(function(v,k){
@@ -113,7 +113,7 @@ export default class Home extends React.Component<any,any> {
   };
 
   showNotify=(direction)=>{
-  	EventEmitter.dispatch('subNotify',direction);
+  	eventEmitter.dispatch('subNotify',direction);
   };
 
   switchNav=()=>{

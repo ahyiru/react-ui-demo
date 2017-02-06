@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import EventEmitter from '../../configs/eventEmitter';
+import {eventEmitter} from '../../configs/tools';
 
 export default class Ynotify extends React.Component<any,any> {
   timer:number;
@@ -15,7 +15,7 @@ export default class Ynotify extends React.Component<any,any> {
 
   componentDidMount(){
     let self=this,currentNotify={};
-    EventEmitter.subscribe('subNotify',(val)=>{
+    eventEmitter.subscribe('subNotify',(val)=>{
       this.props.notify.map((v,k)=>{
         if(v.class.indexOf(val)!=-1){
           currentNotify=v;
@@ -35,7 +35,7 @@ export default class Ynotify extends React.Component<any,any> {
   };
   componentWillUnmount(){
     clearTimeout(this.timer);
-    EventEmitter.unSubscribe('subNotify');
+    eventEmitter.unSubscribe('subNotify');
   };
 
   render() {

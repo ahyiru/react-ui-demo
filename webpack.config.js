@@ -1,14 +1,17 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HappyPack = require('happypack');
-var happyThreadPool = HappyPack.ThreadPool({ size: require('os').cpus().length });
+// var HappyPack = require('happypack');
+// var happyThreadPool = HappyPack.ThreadPool({ size: require('os').cpus().length });
 
 var appName=require('./package').name;
 
-var src='/demo';
+// var src='/demo';
+const src = path.resolve(process.cwd(), 'demo');
+const nodeModules = path.resolve(process.cwd(), 'node_modules');
 
 module.exports = {
+  context: src,
   // http://webpack.github.io/docs/configuration.html
   // https://webpack.github.io/docs/webpack-dev-server.html#webpack-dev-server-cli
   /*devServer: {
@@ -24,7 +27,7 @@ module.exports = {
   devtool: 'source-map',*/
 
   entry: {
-    app: [__dirname + src + '/index']
+    app: [ path.resolve(src, 'index.tsx')]
   },
   output: {
     // path.join 路径结合、合并.
@@ -35,72 +38,69 @@ module.exports = {
     libraryTarget:'umd',
   },
   resolve: {
-    root: [
-      __dirname + src,
-      __dirname + '/node_modules',
-      __dirname,
+    modules: [
+      // path.join(__dirname, 'demo'),
+      // path.join(__dirname, 'node_modules'),
+      src,
+      nodeModules,
     ],
-    extensions: ['', '.js', '.jsx','.ts','.tsx'],
+    extensions: ['.js','.jsx','.ts','.tsx','.json','.css','.less'],
   },
-  externals:{
-    /*'AMap':'AMap',
-    'BMap':'BMap',*/
-    /*'react':true,
-    'react-router':true,
-    'react-dom':true,
-    'echarts':true,*/
-  },
+  /*externals:{
+    // 'AMap':'AMap',
+    // 'BMap':'BMap',
+    // 'react':true,
+    // 'react-router':true,
+    // 'react-dom':true,
+    // 'echarts':true,
+  },*/
   module: {
-    /*preLoaders:[{
+    rules: [/*{
       test: /\.tsx?$/,
-      loaders:['tslint'],
-      exclude: /node_modules/,
-    }],*/
-    loaders: [{
-      test: /\.tsx?$/,
-      loaders:['babel','ts'],
-      exclude: /node_modules/,
-    }, {
+      enforce: "pre",
+      loader:'tslint',
+      exclude: [nodeModules],
+    }, */{
       test: /\.jsx?$/,
-      loaders:['happypack/loader?id=hyjs'],
-      exclude: /node_modules/,
+      loader:'babel-loader',
+      exclude: [nodeModules],
+      // include: [src,nodeModules],
     }, {
+      test: /\.tsx?$/,
+      use:['babel-loader','ts-loader'],
+      exclude: [nodeModules],
+      // include: [src,nodeModules],
+    },/* {
       test: /\.css$/,
-      loaders:['happypack/loader?id=hycss'],
-      // loaders: ['style', 'css'],
-      include: /components/,
-      // exclude: /node_modules/,
+      use: ['style-loader', 'css-loader'],
+      include: [src,nodeModules],
     }, {
       test: /\.less$/,
-      loaders:['happypack/loader?id=hyless'],
-      // loaders: ['style', 'css', 'less'],
-      include: /components/,
-      // exclude: /node_modules/,
-    }, {
+      use: ['style-loader', 'css-loader', 'less-loader'],
+      // include: /demo/,
+      include: [src,nodeModules],
+    },*/ {
       test: /\.(jpe?g|png|gif|svg|ico)/i,
-      loader: 'file?name=img/img_[hash:8].[ext]',
+      loader: 'file-loader?name=img/img_[hash:8].[ext]',
     }, /*,{
       test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=8192' //小于8K的图片将直接以base64的形式内联在代码中
     }*/{
       test: /\.(ttf|eot|svg|woff|woff2)/,
-      loader: 'file',
+      loader: 'file-loader',
     }, {
       test: /\.(pdf)/,
-      loader: 'file',
+      loader: 'file-loader',
     }, {
       test: /\.(swf|xap)/,
-      loader: 'file',
-    }, {
-      test: /\.json/,
-      loader: 'file',
+      loader: 'file-loader',
     }],
   },
   plugins: [
     new HtmlWebpackPlugin({
       title:appName,
-      template: __dirname + src + '/index.html',
-      favicon: __dirname + src + '/favicon.ico',
+      template: path.resolve(src, 'index.html'),
+      favicon: path.resolve(src, 'favicon.ico'),
       inject: false,
       minify: {
         html5: true,
@@ -110,35 +110,16 @@ module.exports = {
         removeTagWhitespace: true,
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
+        /*useShortDoctype: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,*/
       }
     }),
-    /*new HappyPack({
-      id:'hyts',
-      loaders:['babel','ts'],
-      threadPool:happyThreadPool,
-      cache:true,
-      verbose:true
-    }),*/
-    new HappyPack({
-      id:'hyjs',
-      loaders:['babel'],
-      threadPool:happyThreadPool,
-      cache:true,
-      verbose:true
-    }),
-    new HappyPack({
-      id:'hycss',
-      loaders:['style','css'],
-      threadPool:happyThreadPool,
-      cache:true,
-      verbose:true
-    }),
-    new HappyPack({
-      id:'hyless',
-      loaders:['style','css','less'],
-      threadPool:happyThreadPool,
-      cache:true,
-      verbose:true
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      // debug: true
     }),
     /*new webpack.ProvidePlugin({
       $: 'jquery',

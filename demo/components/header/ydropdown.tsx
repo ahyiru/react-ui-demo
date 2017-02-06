@@ -18,7 +18,7 @@ export default class YdropDown extends React.Component<any,any> {
       });
     }
     /*this.state=({
-      open:''
+      displayName:(localData.get('user')&&localData.get('user').name)||'admin'
     });*/
   };
 
@@ -47,7 +47,7 @@ export default class YdropDown extends React.Component<any,any> {
         {
           name=='profile'&&icon.split(' ')[0]!='fa'?
           <a href="javascript:;" className="img">
-            <span className="username">{localData.get('user').name||'yiru'}</span>
+            <span className="username">{(localData.get('user')&&localData.get('user').name)||'admin'}</span>
             <img src={icon} />
           </a>:
           <a href="javascript:;">

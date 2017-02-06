@@ -1,3 +1,25 @@
+export const eventEmitter={
+  _events:{},
+  dispatch:function(event,data){
+    if(!this._events[event]){
+      return; //没有监听事件
+    }
+    for(var i=0;i<this._events[event].length;i++){
+      this._events[event][i](data);
+    }
+  },
+  subscribe:function(event,callback){
+    if(!this._events[event]){
+      this._events[event]=[]; //创建新事件数组
+    }
+    this._events[event].push(callback);
+  },
+  unSubscribe:function(event){
+    if(this._events&&this._events[event]){
+      delete this._events[event]; //事件解绑
+    }
+  }
+};
 
 export const hasClass=(target,cname)=>{
   return target.className.match(new RegExp('(\\s|^)'+cname+'(\\s|$)')); 

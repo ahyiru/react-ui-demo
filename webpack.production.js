@@ -7,21 +7,32 @@ var webpackConfig = require('./webpack.config');
 process.env.NODE_ENV = 'production';
 
 module.exports = merge(webpackConfig, {
+  devtool: 'source-map',
+  cache: false,
   module: {
-    loaders: [{
+    rules: [{
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style','css'),
-      exclude: /components/,
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader:'style-loader',
+        use:'css-loader',
+      }),
+      // exclude: /components/,
     },{
       test: /\.less$/,
       //!从右到左的顺序依次调用less、css加载器，前一个的输出是后一个的输入
-      loader: ExtractTextPlugin.extract('style','css!less'),
-      exclude: /components/,
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader:'style-loader',
+        use:['css-loader','less-loader'],
+        // publicPath:'',
+      }),
+      // exclude: /components/,
     }],
   },
   plugins: [
-    new ExtractTextPlugin('[name]_[contenthash].css', {
+    new ExtractTextPlugin({
+      filename:'[name]_[contenthash].css',
       allChunks: true,
+      disable:false,
     }),
     new webpack.optimize.UglifyJsPlugin({
       output: {

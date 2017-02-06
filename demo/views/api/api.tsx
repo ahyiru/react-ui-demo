@@ -11,7 +11,7 @@ import 'highlight.js/styles/monokai-sublime.css';
 import './api.less';
 
 // start test post
-fetch('/test/get',{
+/*fetch('/test/get',{
   method:'GET'
 }).then(response => response.json())
   .then(data => {
@@ -33,7 +33,7 @@ fetch('/test/post',{
   .then(data => {
     console.log(data);
   })
-  .catch(e => console.log("error", e));
+  .catch(e => console.log("error", e));*/
 
 // end test post
 
