@@ -10,6 +10,7 @@ import {
   DataUI,
   DataTable,
   Demo3,
+  Demo4,
   Func1,
   Func2,
   Func3,
@@ -57,6 +58,7 @@ export default (
       <Route path="test/dataUI" component={DataUI} />
       <Route path="test/dataUI/:tableName" component={DataTable} />
       <Route path="test/test3" component={Demo3} />
+      <Route path="test/test4" component={Demo4} />
 
       <Route path="function/function1" component={Func1} />
       <Route path="function/function2" component={Func2} />

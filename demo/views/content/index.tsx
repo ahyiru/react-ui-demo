@@ -4,6 +4,7 @@ import Demo2 from './test/demo2';
 import DataUI from './test/dataUI';
 import DataTable from './test/datatable';
 import Demo3 from './test/demo3';
+import Demo4 from './test/demo4';
 import Func1 from './func/func1';
 import Func2 from './func/func2';
 import Func3 from './func/func3';
@@ -46,6 +47,7 @@ export{
   DataUI,
   DataTable,
   Demo3,
+  Demo4,
   Func1,
   Func2,
   Func3,

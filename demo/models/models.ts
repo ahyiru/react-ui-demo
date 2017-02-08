@@ -27,6 +27,10 @@ export const sidebarMenu=[{
     url:'/test/test3',
     icon:'fa fa-arrow-right',
     title:'demo3'
+  },{
+    url:'/test/test4',
+    icon:'fa fa-arrow-right',
+    title:'demo4'
   }]
 },{
   url:'javascript:;',
