@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route, IndexRoute, Redirect, IndexRedirect } from 'react-router';
-// import Base from './components/base/base';
-const Base=require('./components/base').default;
+// const Base=require('./components/base').default;
+import Frame from './components/base/';
 
 import {
   Home,
@@ -25,7 +25,7 @@ import {
   Datatables,
   BStables,
   Highcharts,
-  Echarts,
+  EchartDemo,
   Recharts,
   Easypie,
   Yform1,
@@ -44,12 +44,25 @@ import {
   Signup,
   About,
   API,
-  ErrorPage
+  ErrorPage,
+  //base
+  Layout,
+  Color,
+  ColDemo,
+  ItemsDemo,
+  ListDemo,
+  TabsDemo,
+  TableDemo,
+  FormDemo,
+  ButtonDemo,
+  InputDemo,
+  PanelDemo,
+  Tools,
 } from './views/content';
 
 export default (
   <Route>
-    <Route path="/" component={Base}>
+    <Route path="/" component={Frame}>
 
       <IndexRoute component={Home} />
 
@@ -85,7 +98,7 @@ export default (
       <Route path="tables/bstables" component={BStables} />
     
       <Route path="charts/highcharts" component={Highcharts} />
-      <Route path="charts/echarts" component={Echarts} />
+      <Route path="charts/echarts" component={EchartDemo} />
       <Route path="charts/recharts" component={Recharts} />
       <Route path="charts/easypie" component={Easypie} />
 
@@ -100,6 +113,20 @@ export default (
       <Route path="/log" component={Log} />
 
       <Route path="/fontend" component={Fontend} />
+
+      <Route path="base/layout" component={Layout} />
+      <Route path="base/color" component={Color} />
+      <Route path="base/col" component={ColDemo} />
+      <Route path="base/items" component={ItemsDemo} />
+      <Route path="base/list" component={ListDemo} />
+      <Route path="base/tabs" component={TabsDemo} />
+      <Route path="base/button" component={ButtonDemo} />
+      <Route path="base/input" component={InputDemo} />
+      <Route path="base/table" component={TableDemo} />
+      <Route path="base/form" component={FormDemo} />
+      <Route path="base/panel" component={PanelDemo} />
+      <Route path="base/echarts" component={EchartDemo} />
+      <Route path="base/tools" component={Tools} />
 
     </Route>
 

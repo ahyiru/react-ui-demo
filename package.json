@@ -20,6 +20,7 @@
     "start-server": "nodemon start-server.js",
     "start-man": "cd database && nodemon server.js",
     "jsdemo": "node jsdemo",
+    "stest":"cd node && nodemon test.js",
     "build": "webpack --config webpack.production.js --progress && npm run clean && mv _dist y_dist",
     "clean": "rimraf y_dist",
     "pkgdemo": "cd builder && NODE_ENV=production webpack --config webpack.build.js",

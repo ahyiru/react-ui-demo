@@ -33,6 +33,18 @@ export default class Log extends React.Component<any,any> {
 		    		<li>react-native的学习和开发</li>
 		    	</ul>
 	    	</article>
+	    	<article>
+		    	<h2>web设计器开发:</h2>
+		    	<p>数据字段整理清晰，存取接口设计明确。</p>
+		    	<ul>
+		    		<li>form</li>
+		    		<li>table</li>
+		    		<li>list</li>
+		    		<li>button</li>
+		    		<li>color</li>
+		    		<li>panel</li>
+		    	</ul>
+	    	</article>
     	</div>
     )
   }

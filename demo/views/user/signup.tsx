@@ -50,7 +50,7 @@ export default class Signup extends React.Component<any,any> {
       this.context.router.push('info/signup');
       return true;
     }*/
-    fetch('/auth/signup',{
+    fetch('http://localhost:18080/auth/signup',{
       method:'POST',
       body:JSON.stringify(data),
       headers:{'Content-Type':'application/json'},

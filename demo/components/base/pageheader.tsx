@@ -1,9 +1,19 @@
 import * as React from 'react';
 
-export default class YpageHeader extends React.Component<any,any> {
+export interface PageHeaderProps {
+  breadcrumb?:any;
+  hidePagetitle?:boolean;
+};
 
-	constructor(props){
-    super(props);
+export default class PageHeader extends React.Component<any,any> {
+
+  state={auth:'yiru'};
+  static propTypes={
+    breadcrumb:React.PropTypes.array,
+    hidePagetitle:React.PropTypes.bool,
+  };
+  static defaultProps={
+    hidePagetitle:false,
   };
 
   render() {
@@ -20,7 +30,8 @@ export default class YpageHeader extends React.Component<any,any> {
         return <li><a href={d.url}>{d.subTitle}</a></li>;
       }
     };
-    let cpage=breadcrumb[2]&&breadcrumb[2].cpage;
+    let l=breadcrumb.length;
+    let cpage=breadcrumb[l-1]&&breadcrumb[l-1].cpage;
     return (
       <div className="y-pageheader">
         {
@@ -38,8 +49,8 @@ export default class YpageHeader extends React.Component<any,any> {
           {
             cpage?
             <div className="y-page-header">
-              <a href={breadcrumb[1].url}><i className="fa fa-angle-left"></i> 返回</a>
-              <h2>{breadcrumb[2].title}</h2>
+              <a href={breadcrumb[l-2].url}><i className="fa fa-angle-left"></i> 返回</a>
+              <h2>{breadcrumb[l-1].title}</h2>
             </div>:
             <ul className="y-page-breadcrumb">
               <li>
@@ -52,7 +63,6 @@ export default class YpageHeader extends React.Component<any,any> {
               }
             </ul>
           }
-          <article className="y-timer"></article>
         </div>
       </div>
     );

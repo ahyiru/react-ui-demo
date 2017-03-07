@@ -1,26 +1,47 @@
 import * as React from 'react';
 
-import YsideBar from './ysidebar';
-import YrightBar from './yrightbar';
+import SideBar from './sidebar';
+import RightBar from './rightbar';
 
-import {localData} from '../../configs/tools';
+import Tabs,{Tabpage} from './tabs';
+
+import List from './list';
+
+import {isAuthed,getUser} from '../../servers/storage';
 
 import {rightbarTabs,rightbarTabLists,projectList} from '../../models/models';
 
-let userInfo=localData.get('user');
-userInfo&&(userInfo.logo=require('../../styles/images/usr.jpg'));
+export interface AsideProps {
+  sideBarMenu?:any;
+};
 
-export default class Yaside extends React.Component<any,any> {
-
-  constructor(props){
-    super(props);
+export default class Aside extends React.Component<AsideProps,any> {
+  state={auth:'yiru'};
+  static propTypes={
+    sideBarMenu:React.PropTypes.array,
   };
-
+  static defaultProps={
+    sideBarMenu:[],
+  };
   render() {
+    let user=getUser();
+    user&&(user.logo=require('../../styles/images/usr.jpg'));
     return (
       <aside>
-        <YsideBar menu={this.props.sideBarMenu} projectList={projectList} userInfo={false} />
-        <YrightBar tabs={rightbarTabs} tabList={rightbarTabLists} />
+        <SideBar menu={this.props.sideBarMenu} projectList={projectList} userInfo={user} />
+        <RightBar>
+          <Tabs>
+            {
+              rightbarTabs.map((v,k)=>{
+                return (
+                  <Tabpage key={`tabs-${k}`} icon={v.icon}>
+                    <List list={rightbarTabLists} name={v.name} />
+                  </Tabpage>
+                )
+              })
+            }
+          </Tabs>
+        </RightBar>
       </aside>
     );
   }

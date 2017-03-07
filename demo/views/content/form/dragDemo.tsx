@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './form.less';
 
-import drag from './drag';
+import drag from './draglist';
 
 export default class DragList extends React.Component<any,any> {
 

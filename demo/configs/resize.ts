@@ -1,14 +1,12 @@
-export const yresize=(element,fn)=>{
-  let rs:any={};
+export const $resize=(element,fn)=>{
   // let window=this;
   let document:any=window.document;
   let attachEvent=document.attachEvent;
   let isIE=(typeof navigator!=='undefined')?(navigator.userAgent.match(/Trident/)||navigator.userAgent.match(/Edge/)):null;
-
   let requestFrame=(()=>{
     let raf=window.requestAnimationFrame       ||
             window.webkitRequestAnimationFrame ||
-            // window.mozRequestAnimationFrame    ||
+         // window.mozRequestAnimationFrame    ||
             function callbackRAF(callback){
               return window.setTimeout(callback,1000/60);
             };
@@ -19,13 +17,12 @@ export const yresize=(element,fn)=>{
   let cancelFrame=(()=>{
     let cancel=window.cancelAnimationFrame       ||
                window.webkitCancelAnimationFrame ||
-               // window.mozCancelAnimationFrame    ||
+            // window.mozCancelAnimationFrame    ||
                window.clearTimeout;
     return function cancelFrameFunc(id){
       return cancel(id);
     };
   })();
-
   let resizeListener=(e)=>{
     let ele=e.target||e.srcElement;
     if(ele.__resizeRAF__){
@@ -40,14 +37,12 @@ export const yresize=(element,fn)=>{
       }
     });
   };
-
   let objectLoad=function(){
     this.contentDocument.defaultView.__resizeTrigger__=this.__resizeElement__;
     this.contentDocument.defaultView.addEventListener('resize',resizeListener,false);
   };
-
   // init
-  let resize=(()=>{
+  let resize=()=>{
     if(!element.__resizeListeners__){
       element.__resizeListeners__=[];
       if(attachEvent){
@@ -73,10 +68,9 @@ export const yresize=(element,fn)=>{
       }
     }
     element.__resizeListeners__.push(fn);
-  })();
-
+  };
   // unbind
-  rs.unbind=()=>{
+  let unbind=()=>{
     element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(fn),1);
     if(!element.__resizeListeners__.length){
       if(attachEvent){
@@ -87,9 +81,10 @@ export const yresize=(element,fn)=>{
       }
     }
   };
-
-  return rs;
-
+  return {
+    resize:resize,
+    unbind:unbind,
+  };
 };
 
 

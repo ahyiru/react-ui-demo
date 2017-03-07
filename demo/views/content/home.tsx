@@ -4,8 +4,8 @@ import {eventEmitter} from '../../configs/tools';
 
 import {hasClass,addClass,removeClass} from '../../configs/tools';
 
-import Ydnd from './ydnd';
-import Ypanel from './ypanel';
+import Dnd from './dnd';
+import Panel from './base/panel';
 
 // import dnd from './ydrag';
 
@@ -192,20 +192,24 @@ export default class Home extends React.Component<any,any> {
 	      </div>
 	      <div className="y-item">
 	      	<h2>panel</h2>
-	      	<Ydnd>
-            <Ypanel canDrag={false} panelTitle={panel.title} defaultTheme={panel.defaultTheme} {...panel.plugins} />
-          </Ydnd>
+	      	<Dnd>
+            <Panel canDrag={false} panelTitle={panel.title} headColor={panel.defaultTheme} {...panel.plugins}>
+              <div style={{height:'220px'}}></div>
+            </Panel>
+          </Dnd>
 	      </div>
 	      <div className="y-item">
 	      	<h2>可拖放panel</h2>
-	      	<div>
-		      	<Ydnd>
-	            <Ypanel canDrag={true} panelTitle={dragPanel.title1} defaultTheme={dragPanel.defaultTheme} {...dragPanel.plugins} />
-	          </Ydnd>
-	          <Ydnd>
-	            <Ypanel canDrag={true} panelTitle={dragPanel.title2} defaultTheme={dragPanel.defaultTheme} {...dragPanel.plugins} />
-	          </Ydnd>
-          </div>
+	      	<Dnd>
+            <Panel canDrag={true} panelTitle={dragPanel.title1} headColor={dragPanel.defaultTheme} {...dragPanel.plugins}>
+              <div style={{height:'220px'}}></div>
+            </Panel>
+          </Dnd>
+          <Dnd>
+            <Panel canDrag={true} panelTitle={dragPanel.title2} headColor={dragPanel.defaultTheme} {...dragPanel.plugins}>
+              <div style={{height:'220px'}}></div>
+            </Panel>
+          </Dnd>
 	      </div>
 	      <div className="y-item">
 	      	<h2>notification</h2>

@@ -2,148 +2,153 @@
 export const sidebarMenu=[{
   url:'/',
   title:'主页',
-  leftIcon:'fa fa-home',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'home',
+  rightIcon:'angle-right',
   open:''
 },{
   url:'javascript:;',
   title:'测试页面',
-  leftIcon:'fa fa-apple',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'apple',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/test/test1',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'demo1'
   },{
     url:'/test/test2',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'deno2'
   },{
     url:'/test/dataUI',
-    icon:'fa fa-arrow-right',
-    title:'数据可视化管理界面'
+    icon:'arrow-right',
+    title:'数据可视化管理界面',
+    subMenu:[{
+      url:'/test/dataUI',
+      icon:'arrow-right',
+      title:'deno2111111'
+    }],
   },{
     url:'/test/test3',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'demo3'
   },{
     url:'/test/test4',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'demo4'
   }]
 },{
   url:'javascript:;',
   title:'功能',
-  leftIcon:'fa fa-cogs',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'cogs',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/function/function1',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'功能1'
   },{
     url:'/function/function2',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'功能2'
   },{
     url:'/function/function3',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'功能3'
   }]
 },{
   url:'javascript:;',
   title:'UI设计',
-  leftIcon:'fa fa-picture-o',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'picture-o',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/ui/ui1',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'UI设计1'
   },{
     url:'/ui/ui2',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'UI设计2'
   },{
     url:'/ui/ui3',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'UI设计3'
   }]
 },{
   url:'javascript:;',
   title:'常用插件',
-  leftIcon:'fa fa-gavel',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'gavel',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/plugins/plugin1',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'常用插件1'
   },{
     url:'/plugins/plugin2',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'常用插件2'
   },{
     url:'/plugins/plugin3',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'常用插件3'
   },{
     url:'/plugins/plugin4',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'常用插件4'
   }]
 },{
   url:'javascript:;',
   title:'表格',
   leftIcon:'fa fa-table',
-  rightIcon:'fa fa-angle-right',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/tables/yTables',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'yTables'
   },{
     url:'/tables/datatables',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'bsTables'
   },{
     url:'/tables/bstables',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'bsTables'
   }]
 },{
   url:'javascript:;',
   title:'图表',
-  leftIcon:'fa fa-pie-chart',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'pie-chart',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/charts/highcharts',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'Highcharts'
   },{
     url:'/charts/echarts',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'Echarts'
   },{
     url:'/charts/Recharts',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'Recharts(D3)'
   },{
     url:'/charts/easypie',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'EasyPie'
   }]
 },{
   url:'javascript:;',
   title:'卡片',
-  leftIcon:'fa fa-id-card',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'id-card',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/cards/card2',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'card2'
   },{
     url:'/cards/card1',
@@ -158,64 +163,123 @@ export const sidebarMenu=[{
     }]
   },{
     url:'/cards/card3',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'card3'
   }]
 },{
   url:'javascript:;',
   title:'表单',
-  leftIcon:'fa fa-th-list',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'th-list',
+  rightIcon:'angle-right',
   open:'',
   subMenu:[{
     url:'/form/yform1',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'yform1'
   },{
     url:'/form/yform',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'yform'
   },{
     url:'/form/treedrag',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'TreeDrag'
   }]
 },{
   url:'/log',
   title:'日志',
-  leftIcon:'fa fa-github-alt',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'github-alt',
+  rightIcon:'angle-right',
   open:''
 },{
   url:'/fontend',
   title:'前端知识点',
-  leftIcon:'fa fa-html5',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'html5',
+  rightIcon:'angle-right',
   open:''
 },{
   url:'/mobx-demo',
   title:'mobx-demo',
-  leftIcon:'fa fa-hourglass-start',
-  rightIcon:'fa fa-angle-right',
+  leftIcon:'hourglass-start',
+  rightIcon:'angle-right',
   open:''
+},{
+  url:'javascript:;',
+  title:'基础组件',
+  leftIcon:'th-list',
+  rightIcon:'angle-right',
+  open:'',
+  subMenu:[{
+    url:'/base/layout',
+    icon:'arrow-right',
+    title:'layout布局'
+  },{
+    url:'/base/color',
+    icon:'arrow-right',
+    title:'color颜色'
+  },{
+    url:'/base/col',
+    icon:'arrow-right',
+    title:'col栅格'
+  },{
+    url:'/base/items',
+    icon:'arrow-right',
+    title:'items列表'
+  },{
+    url:'/base/list',
+    icon:'arrow-right',
+    title:'list列表'
+  },{
+    url:'/base/tabs',
+    icon:'arrow-right',
+    title:'tabs页签'
+  },{
+    url:'/base/button',
+    icon:'arrow-right',
+    title:'button按钮'
+  },{
+    url:'/base/input',
+    icon:'arrow-right',
+    title:'input输入框'
+  },{
+    url:'/base/table',
+    icon:'arrow-right',
+    title:'表格'
+  },{
+    url:'/base/form',
+    icon:'arrow-right',
+    title:'表单'
+  },{
+    url:'/base/panel',
+    icon:'arrow-right',
+    title:'面板'
+  },{
+    url:'/base/echarts',
+    icon:'arrow-right',
+    title:'图表'
+  },{
+    url:'/base/tools',
+    icon:'arrow-right',
+    title:'工具'
+  }]
 }];
 
 //notifyList
 export const notifyList=[{
   class:'top-left success',
-  icon:'fa fa-check-square-o',
+  icon:'check-square-o',
   txt:'更新成功！'
 },{
   class:'top-middle warning',
-  icon:'fa fa-exclamation-triangle',
+  icon:'exclamation-triangle',
   txt:'数据格式不规范！'
 },{
   class:'top-right danger',
-  icon:'fa fa-times-circle',
+  icon:'times-circle',
   txt:'更新出错！'
 },{
   class:'bottom-right info',
-  icon:'fa fa-info-circle',
+  icon:'info-circle',
   txt:'请升级版本！'
 }];
 
@@ -224,104 +288,129 @@ export const dropList={
   searchFlag:true,
   leftList:[{
     name:'theme',
-    icon:'fa fa-cog',
-    animate:'fade-in-up',
+    icon:'cog',
+    animate:'up',
     open:'',
     // items:['header','branding','sidebar','active']
     items:['头部','LOGO','侧边栏','选中']
   }],
   rightList:[{
+    name:'清缓',
+    icon:'fa-trash-o',
+    href:'javascript:;',
+  },{
+    name:'API',
+    icon:'book',
+    href:'#/api',
+  },{
     name:'msg',
-    icon:'fa fa-envelope',
-    animate:'fade-in-left',
+    icon:'envelope',
+    animate:'left',
     msg:'3',
     open:'',
     items:[{
       pic:'m1',
       h4:'你有一条新信息',
-      p:'请注意查收 '
+      p:'请注意查收 ',
+      icon:'weixin',
     },{
       pic:'m2',
       h4:'你有一条新信息',
-      p:'请注意查收 '
+      p:'请注意查收 ',
+      icon:'weixin',
     },{
       pic:'m3',
       h4:'你有一条新信息',
-      p:'请注意查收 '
+      p:'请注意查收 ',
+      icon:'weixin',
     },{
       pic:'m4',
       h4:'你有一条新信息',
-      p:'请注意查收 '
+      p:'请注意查收 ',
+      icon:'weixin',
     }]
   },{
     name:'tips',
-    icon:'fa fa-bell',
-    animate:'fade-in-up',
+    icon:'bell',
+    animate:'up',
     msg:'5',
     open:'',
     items:[{
       pic:'t1',
       h4:'你的系统有更新',
-      p:'请升级到最新版本'
+      p:'请升级到最新版本',
+      icon:'fa fa-weixin',
     },{
       pic:'t2',
       h4:'你的系统有更新',
-      p:'请升级到最新版本'
+      p:'请升级到最新版本',
+      icon:'fa fa-weixin',
     },{
       pic:'t3',
       h4:'你的系统有更新',
-      p:'请升级到最新版本'
+      p:'请升级到最新版本',
+      icon:'fa fa-weixin',
     },{
       pic:'t4',
       h4:'你的系统有更新',
-      p:'请升级到最新版本'
+      p:'请升级到最新版本',
+      icon:'fa fa-weixin',
     },{
       pic:'t5',
       h4:'你的系统有更新',
-      p:'请升级到最新版本'
+      p:'请升级到最新版本',
+      icon:'fa fa-weixin',
     }]
   },{
     name:'language',
-    icon:'fa fa-html5',
-    animate:'fade-in-down',
+    icon:'html5',
+    animate:'down',
     msg:'',
     open:'',
     items:[{
       pic:'中',
       h4:'中文',
-      p:'简体'
+      p:'简体',
+      icon:'weixin',
     },{
       pic:'英',
       h4:'English',
-      p:'en'
+      p:'en',
+      icon:'weixin',
     },{
       pic:'日',
       h4:'Japanese',
-      p:'japan'
+      p:'japan',
+      icon:'weixin',
     }]
   },{
     name:'profile',
-    icon:require('../styles/images/usr.jpg'),
-    animate:'fade-in-right',
+    img:require('../styles/images/usr.jpg'),
+    icon:'user',
+    animate:'right',
     msg:'4',
     open:'',
     items:[{
       pic:'用',
       h4:'用户信息',
-      p:''
+      p:'',
+      icon:'weixin',
     },{
       pic:'消',
       h4:'消息',
-      p:''
+      p:'',
+      icon:'weixin',
     },{
       pic:'设',
       h4:'设置',
-      p:''
+      p:'',
+      icon:'weixin',
     },{
       pic:'退',
       h4:'退出',
       p:'',
-      url:'user/login'
+      url:'user/login',
+      icon:'weixin',
     }]
   }]
 };
@@ -330,22 +419,22 @@ export const dropList={
 export const rightbarTabs=[{
   id:'0',
   name:'tab1',
-  tabIcon:'fa fa-weibo',
+  icon:'weibo',
   active:''
 },{
   id:'1',
   name:'tab2',
-  tabIcon:'fa fa-weixin',
+  icon:'weixin',
   active:''
 },{
   id:'2',
   name:'tab3',
-  tabIcon:'fa fa-qq',
+  icon:'qq',
   active:''
 },{
   id:'3',
   name:'tab4',
-  tabIcon:'fa fa-apple',
+  icon:'apple',
   active:''
 }];
 //rightbarTabLists
@@ -354,25 +443,25 @@ export const rightbarTabLists=[{
   pic:'l1',
   h4:'我想起那天夕阳下的奔跑1111111',
   p:'那是我们逝去的青春',
-  rightIcon:'fa fa-hand-o-left'
+  icon:'hand-o-left'
 },{
   num:'l2',
   pic:'l2',
   h4:'我想起那天夕阳下的奔跑',
   p:'那是我们逝去的青春',
-  rightIcon:'fa fa-hand-o-left'
+  icon:'hand-o-left'
 },{
   num:'l3',
   pic:'l3',
   h4:'我想起那天夕阳下的奔跑',
   p:'那是我们逝去的青春',
-  rightIcon:'fa fa-hand-o-left'
+  icon:'hand-o-left'
 },{
   num:'l4',
   pic:'l4',
   h4:'我想起那天夕阳下的奔跑',
   p:'那是我们逝去的青春',
-  rightIcon:'fa fa-hand-o-left'
+  icon:'hand-o-left'
 }];
 
 //tables
@@ -392,23 +481,23 @@ export const tableData={
 export const projectList=[{
   url:'http://localhost:8001/',
   title:'project1',
-  icon:'fa fa-user'
+  icon:'user'
 },{
   url:'http://localhost:8002/',
   title:'project2',
-  icon:'fa fa-user'
+  icon:'user'
 },{
   url:'http://localhost:8003/',
   title:'project3',
-  icon:'fa fa-user'
+  icon:'user'
 },{
   url:'http://localhost:8004/',
   title:'project4',
-  icon:'fa fa-user'
+  icon:'user'
 },{
   url:'http://localhost:8005/',
   title:'project5',
-  icon:'fa fa-user'
+  icon:'user'
 }];
 
 

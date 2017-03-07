@@ -1,10 +1,21 @@
 import * as React from 'react';
 const echarts=require('echarts');
 
-import {yresize} from '../../../configs/resize';
+import $resize from '../../../tools/$resize';
 
+export interface ButtonProps {
+  option?:any;
+  notMerge?:boolean;
+  lazyUpdate?:boolean;
+  style?:any;
+  className?:string;
+  theme?:string;
+  onChartReady?:any;
+  showLoading?:boolean;
+  onEvents?:any;
+};
 
-export default class Yecharts extends React.Component<any,any> {
+export default class Echarts extends React.Component<any,any> {
   refs:any;
   static propTypes={
     option: React.PropTypes.object.isRequired,
@@ -17,8 +28,10 @@ export default class Yecharts extends React.Component<any,any> {
     showLoading: React.PropTypes.bool,
     onEvents: React.PropTypes.object
   };
-  constructor(props){
-    super(props);
+  static defaultProps={
+    notMerge:false,
+    lazyUpdate:false,
+    style:{height:'300px'},
   };
   componentDidMount(){
     let echartObj=this.renderEchartDom();
@@ -27,9 +40,10 @@ export default class Yecharts extends React.Component<any,any> {
     if(typeof this.props.onChartReady==='function'){
       this.props.onChartReady(echartObj);
     }
-    yresize(this.refs.echartsDom,()=>{
-      echartObj.resize();
-    });
+    $resize(this.refs.echartsDom,this.resizeEvent);
+  };
+  resizeEvent=()=>{
+    this.renderEchartDom().resize();
   };
   componentDidUpdate() {
     this.renderEchartDom();
@@ -37,9 +51,7 @@ export default class Yecharts extends React.Component<any,any> {
   };
   componentWillUnmount() {
     echarts.dispose(this.refs.echartsDom);
-    yresize(this.refs.echartsDom,()=>{
-      this.renderEchartDom().resize();
-    }).unbind();
+    // $resize(this.refs.echartsDom,this.resizeEvent).unbind(); //路由跳转后此dom绑定的事件变量自动回收
   };
   bindEvents(instance,events) {
     var _loop=function _loop(eventName) {

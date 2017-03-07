@@ -1,34 +1,30 @@
 import * as React from 'react';
 
-import Yheader from '../header';
-import Yaside from '../aside';
-import YpageHeader from './ypageheader';
-import YbackTop from './ybacktop';
-import Ynotify from './ynotify';
+import Header from '../header';
+import Aside from '../aside';
+import PageHeader from './pageheader';
+import Main from './main';
+import Notify from './notify';
 
-import {getCurrent,getBreadcrumb,localData} from '../../configs/tools';
+import {getCurrent,getBreadcrumb} from '../../tools/dom-tools';
 
 import {sidebarMenu,notifyList} from '../../models/models';
 
+import {isAuthed,getUser,getDefault} from '../../servers/storage';
+
 // import AMap from 'AMap';
 
-interface BaseProps {
+/*const str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
+const menu=getCurrent(sidebarMenu,str);
+const breadcrumb=getBreadcrumb(sidebarMenu,str);*/
 
-}
-
-export default class Yframe extends React.Component<any,any> {
-  str:string|string[];
-  data:any;
-  static sidebarMenu=sidebarMenu;
-  static notifyList=notifyList;
-
-  static propTypes={
-    
-  };
-  static defaultProps={
-    auth:'yiru'
-  };
-
+export default class Frame extends React.Component<any,any> {
+  // str:string|string[];
+  // data:any;
+  /*state={
+    menu:menu,
+    breadcrumb:breadcrumb,
+  };*/
   static contextTypes={
     router:React.PropTypes.object
   };
@@ -74,78 +70,65 @@ export default class Yframe extends React.Component<any,any> {
     });
   };*/
 
-	constructor(props){
+	/*constructor(props){
     super(props);
     this.str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
     // this.str=location.pathname;
-
     let menu=getCurrent(sidebarMenu,this.str);
     let breadcrumb=getBreadcrumb(sidebarMenu,this.str);
     this.state=({
     	menu:menu,
     	breadcrumb:breadcrumb,
-      notify:notifyList
     });
-
-    /*window.addEventListener('popstate',(e)=>{
-      console.log(e);
-    },false);*/
-
+    // window.addEventListener('popstate',(e)=>{
+    //   console.log(e);
+    // },false);
+  };*/
+  
+  componentWillMount(){
+    if(!isAuthed()){
+      this.context.router.push('/user/login');
+      return;
+    }
     window.addEventListener('hashchange',this.hashChg,false);
   };
-
-  componentWillMount(){
-    var token=localStorage.getItem('token');
-    if(!token){
-      this.context.router.push('/user/login');
-    }
+  componentDidMount(){
+    
   };
-
   //hashchange
   hashChg=()=>{
     document.documentElement.scrollTop?(document.documentElement.scrollTop=0):(document.body.scrollTop=0);
-    let str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
+    /*let str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
     // let str=location.pathname;
     let menu=getCurrent(sidebarMenu,str);
     let breadcrumb=getBreadcrumb(sidebarMenu,str);
     this.setState({
       menu:menu,
-      breadcrumb:breadcrumb
-    });
-  }
-
+      breadcrumb:breadcrumb,
+    });*/
+  };
   componentWillUnmount=()=>{
     window.removeEventListener('hashchange',this.hashChg,false);
   };
 
   render() {
-  	const {children}=this.props;
-  	const {breadcrumb,menu,notify}=this.state;
-    let user=localData.get('user');
+  	// const {breadcrumb,menu}=this.state;
+    getDefault();
+    const str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
+    const menu=getCurrent(sidebarMenu,str);
+    const breadcrumb=getBreadcrumb(sidebarMenu,str);
+    
+    let user=getUser();
     (user&&user.role<1)&&(menu.splice(1,1));
     return (
-      <div>
-        <Yheader />
-        <Yaside sideBarMenu={menu} />
+      <div className="@yiru">
+        <Header />
+        <Aside sideBarMenu={menu} />
 
-        <main>
-	        <section className="y-main">
-	          <div className="y-container">
-	            
-              <YpageHeader breadcrumb={breadcrumb} hidePagetitle={false} />
+        <Main breadcrumb={breadcrumb} hidePagetitle={false}>
+          {this.props.children}
+        </Main>
 
-	            <div className="y-pagecontent">
-	              <div>{children}</div>
-	            </div>
-
-	          </div>
-	          
-	          <YbackTop />
-
-	        </section>
-	      </main>
-
-        <Ynotify notify={notify} />
       </div>
     );
   }

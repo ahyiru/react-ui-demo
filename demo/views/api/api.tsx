@@ -3,7 +3,7 @@ import * as React from 'react';
 require('es6-promise').polyfill();
 var fetch=require('isomorphic-fetch');
 
-import YbackTop from '../../components/base/ybacktop';
+import BackTop from '../../components/base/backtop';
 
 import {loading} from '../../configs/tools';
 
@@ -124,7 +124,7 @@ export default class API extends React.Component<any,any> {
           <div dangerouslySetInnerHTML={{__html:content}} />
         </div>
 
-        <YbackTop />
+        <BackTop />
     	</div>
     )
   }

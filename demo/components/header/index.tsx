@@ -1,10 +1,14 @@
 import * as React from 'react';
 
-import Ynav from './ynav';
+import Nav from './nav';
+
+import Brand from './brand';
 
 import {dropList} from '../../models/models';
 
-import {hasClass,localData} from '../../configs/tools';
+import {hasClass} from '../../tools/dom-tools';
+
+import {isAuthed} from '../../servers/storage';
 
 let loginInfo={
   loginUrl:'#/user/login',
@@ -18,22 +22,15 @@ export default class Header extends React.Component<any,any> {
   };
 
   render() {
-    let token=localData.get('token'),login;
-    if(token){
-      login=false;
-    }else{
+    let login=null;
+    if(!isAuthed()){
       login=loginInfo;
     }
-
     return (
       <header>
         <div className="y-header">
-          <section className="y-brand">
-            <a href="javascript:;" className="brand"> 
-              {/*<h4 className="logo"></h4>*/} <span><b>React</b> UI Demo</span>   
-            </a>
-          </section>
-          <Ynav className="y-nav" dropList={dropList} hideRightTogbar={false} login={login} />
+          <Brand title="React" subtitle="UI Demo" logo={false} />
+          <Nav dropList={dropList} hideRightTogbar={false} login={login} />
         </div>
       </header>
     );

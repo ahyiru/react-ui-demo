@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import {eventEmitter} from '../../configs/tools';
+import {$emitter} from '../../tools/yiru-tools';
 
-export default class Ynotify extends React.Component<any,any> {
+export default class Notify extends React.Component<any,any> {
   timer:number;
 	constructor(props){
     super(props);
@@ -14,13 +14,20 @@ export default class Ynotify extends React.Component<any,any> {
   };
 
   componentDidMount(){
-    let self=this,currentNotify={};
-    eventEmitter.subscribe('subNotify',(val)=>{
+    let self=this,currentNotify=null;
+    $emitter.subscribe('subNotify',(className,ico,val)=>{
       this.props.notify.map((v,k)=>{
-        if(v.class.indexOf(val)!=-1){
+        if(v.class.indexOf(className)!=-1){
           currentNotify=v;
+          ico&&(currentNotify.icon=ico);
+          val&&(currentNotify.txt=val);
         }
       });
+      currentNotify=currentNotify||{
+        class:'top-middle success',
+        icon:'fa fa-check-square-o',
+        txt:val
+      };
       clearTimeout(this.timer);
       self.setState({
         notify:currentNotify,
@@ -35,7 +42,7 @@ export default class Ynotify extends React.Component<any,any> {
   };
   componentWillUnmount(){
     clearTimeout(this.timer);
-    eventEmitter.unSubscribe('subNotify');
+    $emitter.unSubscribe('subNotify');
   };
 
   render() {

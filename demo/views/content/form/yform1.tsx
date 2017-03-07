@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import DragList from './dragList'
+import DragList from './dragDemo'
 
 let dragList=[{
   title:'test1'

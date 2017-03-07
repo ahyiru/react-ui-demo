@@ -19,7 +19,7 @@ import Table from './tables/index';
 import Datatables from './tables/datatables';
 import BStables from './tables/bstables';
 import Highcharts from './charts/highcharts';
-import Echarts from './charts/echarts';
+// import EchartDemo from './charts/echartdemo';
 import Recharts from './charts/recharts';
 import Easypie from './charts/easypie';
 import Yform1 from './form/yform1';
@@ -40,7 +40,22 @@ import About from '../about/about';
 import API from '../api/api';
 import ErrorPage from '../404/404';
 
-export{
+//base
+import Layout from './base/layout';
+import Tools from './base/tools';
+import Color from './base/color';
+import TableDemo from './base/tabledemo';
+import FormDemo from './base/formdemo';
+import ButtonDemo from './base/buttonDemo';
+import InputDemo from './base/inputDemo';
+import PanelDemo from './base/panelDemo';
+import EchartDemo from './base/echartdemo';
+import ColDemo from './base/coldemo';
+import ItemsDemo from './base/itemsdemo';
+import ListDemo from './base/listdemo';
+import TabsDemo from './base/tabsdemo';
+
+export {
 	Home,
   Demo1,
   Demo2,
@@ -62,7 +77,7 @@ export{
   Datatables,
   BStables,
   Highcharts,
-  Echarts,
+  EchartDemo,
   Recharts,
   Easypie,
   Yform1,
@@ -81,5 +96,6 @@ export{
   Signup,
   About,
   API,
-  ErrorPage
+  ErrorPage,
+  Layout,Color,TableDemo,FormDemo,ButtonDemo,InputDemo,PanelDemo,ColDemo,ItemsDemo,ListDemo,TabsDemo,Tools
 }

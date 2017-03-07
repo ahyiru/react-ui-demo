@@ -14,12 +14,12 @@ Promise对象有三种状态：
 
  */
 let promise = new Promise(function(resolve, reject) {
-    // ... some code
-    if ( /* 异步操作成功 */ ) {
-        resolve(value);
-    } else {
-        reject(error);
-    }
+  // ... some code
+  if ( /* 异步操作成功 */ ) {
+      resolve(value);
+  } else {
+      reject(error);
+  }
 });
 
 // good
@@ -37,28 +37,6 @@ promise.then(function(value) {
     // failure 
 });
 
-
-var d = new Date();
-var promise = new Promise(function(resolve, reject) {
-    // 一秒后进入resolve，并传递值
-    setTimeout(resolve, 1000, 'resolve from promise');
-});
-// 绑定回调函数
-promise.then(
-    result => console.log('result:', result, new Date() - d),
-    error => console.log('error:', error)
-)
-// result: resolve from promise 1002
-
-
-// 下面两种写法是等价的
-somePromise.catch(function(err) {
-    //...
-})
-somePromise.then(null, function(err) {
-    //...
-})
-
 // load image
 function loadImageAsync(url) {
   return new Promise(function(resolve, reject) {
@@ -72,29 +50,6 @@ function loadImageAsync(url) {
     image.src = url;
   });
 }
-
-
-/**********************************************************/
-
-let promise = new Promise((resolve, reject)=> {
-    // ... some code
-    if ( /* 异步操作成功 */ ) {
-        resolve(value);
-    } else {
-        reject(error);
-    }
-});
-
-// good
-promise
-  .then((data)=> { //cb
-    // success
-  })
-  .catch((err)=> {
-    // error
-  });
-
-
 
 
 

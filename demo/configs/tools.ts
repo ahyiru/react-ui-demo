@@ -45,8 +45,7 @@ export const removeClass=(target,cname)=>{
 export const toggleClass=(target,cname)=>{
   if(hasClass(target,cname)){
     removeClass(target,cname);
-  }
-  else{
+  }else{
     addClass(target,cname);
   }
 };
@@ -88,6 +87,17 @@ export const cloneObj=(obj):any=>{
     st-=50;
   },1);
 };*/
+export const backTop=(pix,time)=>{
+  let ele=document.documentElement.scrollTop?document.documentElement:document.body;
+  let timer=setInterval(()=>{
+    if(ele.scrollTop<=0){
+      ele.scrollTop=0;
+      clearInterval(timer);
+      return true;
+    }
+    ele.scrollTop-=pix;
+  },time);
+};
 
 //获取当前页面--menu
 export const getCurrent=(sidebarMenu,str)=>{

@@ -100,11 +100,22 @@ code{
   display:block;
   width:100%;
   background:#333;
+  font-size:13px;
   border-radius:5px;
   padding:10px;
-  color:#eee;
+  color:#f3f3f3;
   overflow-x:auto;
   overflow-y:auto;
+}
+code>h2{
+  font-size:16px;
+  font-weight:600;
+  font-style:italic;
+  color:#f05050;
+  margin:10px 0;
+}
+code>p{
+  margin:8px 0;
 }
 /*img*/
 img{

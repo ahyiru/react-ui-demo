@@ -1,0 +1,114 @@
+import React, { Component } from 'react';
+
+import Ylist from './ylist';
+
+export interface TabsProps {
+  tabs?:any;
+  tabList?:any;
+};
+
+export default class Tabs extends Component<TabsProps,any> {
+  static propTypes={
+    tabs:React.PropTypes.array,
+    tabList:React.PropTypes.array,
+  };
+  static defaultProps={
+    tabs:[],
+    tabList:[],
+  };
+  constructor(props){
+    super(props);
+    this.state=(this.init());
+  };
+
+  init=(index=0)=>{
+    const {tabs}=this.props;
+    tabs[index].active='active';
+    return {
+      tabs:tabs,
+      index:index,
+      currentTab:{
+        left:64*index
+      }
+    };
+  }
+
+  switchTab=(index)=>{
+    let tabs=this.state.tabs;
+    let currentTab=this.state.currentTab;
+    tabs.map((v,k)=>{
+      v.active='';
+      if(index==k){
+        v.active='active';
+        currentTab={
+          left:64*k
+        };
+      }
+    });
+    this.setState({
+      tabs:tabs,
+      index:index,
+      currentTab:currentTab
+    });
+  };
+
+  render() {
+    const {tabs,index,currentTab}=this.state;
+    console.log(this.props);
+    return (
+      <div className="">
+        <ul className="y-tab">
+          {
+            tabs.map((v,k)=>{
+              return(
+                <li key={`tab${k}`} className={v.active} onClick={this.switchTab.bind(this,k)}><i className={v.tabIcon}></i></li>
+              )
+            })
+          }
+          <span className="y-tab-act" style={currentTab}></span>
+        </ul>
+        <article className={`y-tab-page y-lists ${tabs[index].active}`}>
+          <h4 className="y-list-title">{tabs[index].name}</h4>
+          {this.props.children}
+        </article>
+        {/*<Ylist tab={tabs[index]} list={this.props.tabList} />*/}
+      </div>
+    );
+  }
+};
+
+export class Tabpage extends Component<any,any>{
+
+  render(){
+    console.log(this.props);
+    return (
+      <div className="">
+        {this.props.children}
+      </div>
+    )
+  };
+};
+
+/*export class Tabs1 extends Component<any,any>{
+  render(){
+    return (
+      <div className="">
+        <ul className="y-tab">
+
+        </ul>
+        <article className={`y-tab-page active}`}>
+          <h4 className="y-list-title">gg</h4>
+          {this.props.children}
+        </article>
+      </div>
+    )
+  };
+};*/
+
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import YdropDown from './ydropdown';
 
-import {removeClass,toggleClass} from '../../configs/tools';
+import {removeClass,toggleClass,localData,eventEmitter} from '../../configs/tools';
 
 export default class Ynav extends React.Component<any,any> {
 
@@ -82,7 +82,12 @@ export default class Ynav extends React.Component<any,any> {
       rightBar:true
     });
     toggleClass(document.getElementsByClassName('right-bar')[0],'open');
-  }  
+  };
+
+  clearCache=()=>{
+    localData.clear();
+    eventEmitter.dispatch('subNotify','成功清除全部缓存！');
+  };
 
   render() {
     const {leftList,rightList,searchFlag}=this.state;
@@ -117,6 +122,9 @@ export default class Ynav extends React.Component<any,any> {
         <article className="y-nav-wrap y-nav-right">
           {
             !login?<ul>
+              <li className="" onClick={this.clearCache}>
+                <a href="javascript:;" className=""><i className="fa fa-trash-o"></i> 清缓</a>
+              </li>
               <li className="">
                 <a href="#/api"><i className="fa fa-book"></i> API</a>
               </li>

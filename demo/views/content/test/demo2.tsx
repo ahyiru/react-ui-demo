@@ -5,6 +5,8 @@ var fetch=require('isomorphic-fetch');
 
 import Ytables from './yTables';
 
+import Input from '../base/input';
+
 import './data-ui.less';
 
 const cloneObj=(obj)=>{
@@ -105,7 +107,7 @@ export default class Demo2 extends React.Component<any,any> {
   	const that=this;
     return (
     	<div className="data-ui">
-    		<div className="y-clearfloat">
+    		<div className="y-clearfloat yrow">
     			<div className="ycol-4" id="addData">
     				<h2>表: <i>{this.state.tableName}</i></h2>
 	      		<form className="y-form yfv">
@@ -113,7 +115,7 @@ export default class Demo2 extends React.Component<any,any> {
 		      			head.map((v,k)=>{
 		      				return (k>0&&<div key={`tt-${k}`} className="yform-group">
 										        <label>{v}</label>
-										        <input type="text" />
+										        <Input />
 									        </div>
 					        			)
 		      			})
@@ -148,7 +150,7 @@ export default class Demo2 extends React.Component<any,any> {
 	      								        }
 	      								      </tbody>
 	      							      </table>*/}
-			      <Ytables yth={head} ytb={tbody} editable={true} showTbar={false} tableName={this.state.tableName} moreInfo={this.moreInfo} />
+			      <Ytables yth={head} ytb={tbody} editable={true} deletable={true} showTbar={false} tableName={this.state.tableName} moreInfo={this.moreInfo} />
 			    </div>
 		    </div>
 

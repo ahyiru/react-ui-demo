@@ -44,7 +44,7 @@ export default class Login extends React.Component<any,any> {
       this.context.router.push('info/signup');
       return true;
     }*/
-    fetch('/auth/login',{
+    fetch('http://localhost:18080/auth/login',{
       method:'POST',
       body:JSON.stringify(data),
       headers:{'Content-Type':'application/json'},

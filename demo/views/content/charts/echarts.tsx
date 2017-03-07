@@ -1,82 +1,88 @@
 import * as React from 'react';
+const echarts=require('echarts');
 
-import Yecharts from './yEcharts';
+import $resize from '../../../tools/$resize';
 
-import {chart1,chart2} from '../../../models/echarts';
+export interface ButtonProps {
+  option?:any;
+  notMerge?:boolean;
+  lazyUpdate?:boolean;
+  style?:any;
+  className?:string;
+  theme?:string;
+  onChartReady?:any;
+  showLoading?:boolean;
+  onEvents?:any;
+};
 
-interface ecProps {
-  
-}
-
-export default class Echarts extends React.Component<ecProps,any> {
-  timeTicket:number;
-  count:number;
-	constructor(props){
-    super(props);
-    this.timeTicket=null;
-    this.count=51;
-    this.state=({
-    	option:chart1,
-    	option2:chart2
-    });
+export default class Echarts extends React.Component<any,any> {
+  refs:any;
+  static propTypes={
+    option: React.PropTypes.object.isRequired,
+    notMerge: React.PropTypes.bool,
+    lazyUpdate: React.PropTypes.bool,
+    style: React.PropTypes.object,
+    className: React.PropTypes.string,
+    theme: React.PropTypes.string,
+    onChartReady: React.PropTypes.func,
+    showLoading: React.PropTypes.bool,
+    onEvents: React.PropTypes.object
   };
-  fetchNewDate=()=>{
-    let axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
-    let option = this.state.option;
-    let data0 = option.series[0].data;
-    let data1 = option.series[1].data;
-    data0.shift();
-    data0.push(Math.round(Math.random() * 1000));
-    data1.shift();
-    let r:any=Math.random() * 10 + 5;
-    data1.push(r.toFixed(1) - 0);
-
-    option.xAxis[0].data.shift();
-    option.xAxis[0].data.push(axisData);
-    option.xAxis[1].data.shift();
-    option.xAxis[1].data.push(this.count++);
-    this.setState({option:option});
+  static defaultProps={
+    notMerge:false,
+    lazyUpdate:false,
+    style:{height:'300px'},
   };
-  componentDidMount=()=>{
-    if (this.timeTicket) {
-      clearInterval(this.timeTicket);
+  componentDidMount(){
+    let echartObj=this.renderEchartDom();
+    let onEvents=this.props.onEvents||{};
+    this.bindEvents(echartObj,onEvents);
+    if(typeof this.props.onChartReady==='function'){
+      this.props.onChartReady(echartObj);
     }
-    this.timeTicket = setInterval(this.fetchNewDate, 1000);
+    $resize(this.refs.echartsDom,this.resizeEvent);
   };
-  componentWillUnmount=()=>{
-    if (this.timeTicket) {
-      clearInterval(this.timeTicket);
-    }
+  resizeEvent=()=>{
+    this.renderEchartDom().resize();
   };
-
-  onChartClick=(param,echart)=>{
-    console.log(param, echart);
-    alert('图表点击!');
+  componentDidUpdate() {
+    this.renderEchartDom();
+    this.bindEvents(this.getEchartsInstance(),this.props.onEvents||[]);
   };
-  onChartLegendselectchanged=(param,echart)=>{
-    console.log(param, echart);
-    alert('改变选中项!');
+  componentWillUnmount() {
+    echarts.dispose(this.refs.echartsDom);
+    // $resize(this.refs.echartsDom,this.resizeEvent).unbind(); //路由跳转后此dom绑定的事件变量自动回收
   };
-  onChartReady=(echart)=>{
-    console.log('图表已加载!', echart);
-  };
-
-  render() {
-  	let onEvents={
-      'click': this.onChartClick,
-      'legendselectchanged': this.onChartLegendselectchanged
+  bindEvents(instance,events) {
+    var _loop=function _loop(eventName) {
+      if (typeof eventName==='string'&&typeof events[eventName]==='function'){
+        instance.off(eventName);
+        instance.on(eventName,function(param){
+          events[eventName](param,instance);
+        });
+      }
     };
-    return (
-      <div className="y-items">
-      	<div className="y-item">
-	        <span>Echarts</span>
-	        <Yecharts ref='echarts_react' option={this.state.option} style={{height: 300}} />
-	      </div>
-	      <div className="y-item">
-	        <span>Echart1</span>
-	        <Yecharts option={this.state.option2} style={{height: 300}} onChartReady={this.onChartReady} onEvents={onEvents} />
-	      </div>
-      </div>
-    )
+    for (var eventName in events){
+      _loop(eventName);
+    }
   };
-}
+  renderEchartDom=()=>{
+    let echartObj=this.getEchartsInstance();
+    echartObj.setOption(this.props.option,this.props.notMerge||false,this.props.lazyUpdate||false);
+    if(this.props.showLoading){
+      echartObj.showLoading();
+    }else{
+      echartObj.hideLoading();
+    }
+    return echartObj;
+  };
+  getEchartsInstance=()=>{
+    return echarts.getInstanceByDom(this.refs.echartsDom)||echarts.init(this.refs.echartsDom,this.props.theme);
+  };
+  render() {
+    let style = this.props.style || {height: '300px'};
+    return (
+      <div ref='echartsDom' className={this.props.className} style={style} />
+    );
+  }
+};
