@@ -8,6 +8,9 @@ import Textarea from './textarea';
 import Radio from './radio';
 import Checkbox from './checkbox';
 import Select from './select';
+import Switch from './switch';
+import Button from './button';
+import Badge from './badge';
 
 export default class SelectDemo extends React.Component<any,any> {
 
@@ -15,6 +18,7 @@ export default class SelectDemo extends React.Component<any,any> {
     radioChecked:'0',
     checkboxChecked:null,
     selVal:'',
+    checkBox:true,
   };
 
   radioChange=(e)=>{
@@ -34,6 +38,10 @@ export default class SelectDemo extends React.Component<any,any> {
     this.setState({
       selVal:val,
     });
+  };
+
+  switchChk=(v)=>{
+    console.log(v);
   };
 
   render() {
@@ -68,6 +76,16 @@ export default class SelectDemo extends React.Component<any,any> {
             </Col>
             <Col span={4}>
               <Checkbox inline opt={[{label:'t11'},{label:'t12'},{label:'t13'}]} checked={this.state.checkboxChecked} change={this.checkboxChange} />
+            </Col>
+          </Row>
+          <Row gutter={12}>
+            <Col span={4}>
+              <Switch onText="开" offText="关" change={this.switchChk} />
+            </Col>
+            <Col span={4}>
+              <Badge text="3">
+                <Button color="info" text="测试" />
+              </Badge>
             </Col>
           </Row>
         </Form>

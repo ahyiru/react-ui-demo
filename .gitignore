@@ -52,6 +52,7 @@ tools
 project
 node
 test
+base
 
 # server
 jsdemo.js
