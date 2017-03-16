@@ -8,6 +8,10 @@ import 'font-awesome/css/font-awesome.css';
 import './styles/y-style.less';
 import './styles/stheme.less';
 
+import {getDefault} from './servers/storage';
+
+getDefault();
+
 export default (
   <Router history={hashHistory} routes={routes}/>
 );

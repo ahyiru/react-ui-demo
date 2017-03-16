@@ -8,11 +8,6 @@ export interface FormProps {
   horizontal?:boolean;
 };
 
-export interface FormItemProps {
-  label?:string;
-  inputOpt?:any;
-};
-
 export default class Form extends React.Component<FormProps,any> {
   static auth='yiru';
   state={auth:'yiru'};
@@ -33,16 +28,31 @@ export default class Form extends React.Component<FormProps,any> {
   };
 };
 
+export interface FormItemProps {
+  label?:string;
+  inputOpt?:any;
+  change?:any;
+  blur?:any;
+};
+
 export class FormItem extends React.Component<FormItemProps,any> {
   static auth='yiru';
   state={inputOpt:this.props.inputOpt};
   static propTypes={
     label:React.PropTypes.string,
     inputOpt:React.PropTypes.object,
+    change:React.PropTypes.func,
+    blur:React.PropTypes.func,
   };
   static defaultProps={
     
   };
+  componentWillReceiveProps=(nextProps)=>{
+    this.setState({
+      inputOpt:nextProps.inputOpt,
+    });
+  };
+  // 应放外层
   focusEvent=()=>{
     const {inputOpt}=this.state;
     inputOpt.error=null;
@@ -51,7 +61,7 @@ export class FormItem extends React.Component<FormItemProps,any> {
     });
   };
   render() {
-    const {label}=this.props;
+    const {label,change,blur}=this.props;
     const {inputOpt}=this.state;
     return (
       <div className="yform-group">

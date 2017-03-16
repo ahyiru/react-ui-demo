@@ -32,7 +32,7 @@ export default class Nav extends React.Component<NavProps,any> {
   };
 
   hideNav=(e)=>{
-    e.stopPropagation();
+    // e.stopPropagation();
     let leftList=this.state.leftList;
     let rightList=this.state.rightList;
     leftList.map((v,k)=>{
@@ -117,7 +117,7 @@ export default class Nav extends React.Component<NavProps,any> {
     const {login}=this.props;
     return (
       <nav className="y-nav">
-        <article className="y-nav-wrap y-left">
+        <article className="y-nav-wrap y-nav-left">
           <ul className="y-left">
             <li className="sidebar-collapse" onClick={this.sideBar}>
               <a href="javascript:;">
@@ -147,7 +147,7 @@ export default class Nav extends React.Component<NavProps,any> {
             }
           </ul>
         </article>
-        <article className="y-nav-wrap y-right">
+        <article className="y-nav-wrap y-nav-right">
           {
             !login?
             <ul>

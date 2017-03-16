@@ -11,6 +11,7 @@ import {
   DataTable,
   Demo3,
   Demo4,
+  Demo5,
   Func1,
   Func2,
   Func3,
@@ -58,6 +59,7 @@ import {
   InputDemo,
   PanelDemo,
   Tools,
+  SelectDemo,
 } from './views/content';
 
 export default (
@@ -72,6 +74,7 @@ export default (
       <Route path="test/dataUI/:tableName" component={DataTable} />
       <Route path="test/test3" component={Demo3} />
       <Route path="test/test4" component={Demo4} />
+      <Route path="test/test5" component={Demo5} />
 
       <Route path="function/function1" component={Func1} />
       <Route path="function/function2" component={Func2} />
@@ -127,6 +130,7 @@ export default (
       <Route path="base/panel" component={PanelDemo} />
       <Route path="base/echarts" component={EchartDemo} />
       <Route path="base/tools" component={Tools} />
+      <Route path="base/select" component={SelectDemo} />
 
     </Route>
 

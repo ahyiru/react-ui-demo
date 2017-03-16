@@ -113,7 +113,7 @@ export default class Frame extends React.Component<any,any> {
 
   render() {
   	// const {breadcrumb,menu}=this.state;
-    getDefault();
+    // getDefault();
     const str=location.hash.match(/#(\S+)\?/)||location.hash.match(/#(\S+)/);
     const menu=getCurrent(sidebarMenu,str);
     const breadcrumb=getBreadcrumb(sidebarMenu,str);

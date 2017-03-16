@@ -5,6 +5,7 @@ import DataUI from './test/dataUI';
 import DataTable from './test/datatable';
 import Demo3 from './test/demo3';
 import Demo4 from './test/demo4';
+import Demo5 from './test/demo5';
 import Func1 from './func/func1';
 import Func2 from './func/func2';
 import Func3 from './func/func3';
@@ -54,6 +55,7 @@ import ColDemo from './base/coldemo';
 import ItemsDemo from './base/itemsdemo';
 import ListDemo from './base/listdemo';
 import TabsDemo from './base/tabsdemo';
+import SelectDemo from './base/selectdemo';
 
 export {
 	Home,
@@ -63,6 +65,7 @@ export {
   DataTable,
   Demo3,
   Demo4,
+  Demo5,
   Func1,
   Func2,
   Func3,
@@ -97,5 +100,5 @@ export {
   About,
   API,
   ErrorPage,
-  Layout,Color,TableDemo,FormDemo,ButtonDemo,InputDemo,PanelDemo,ColDemo,ItemsDemo,ListDemo,TabsDemo,Tools
+  Layout,Color,TableDemo,FormDemo,ButtonDemo,InputDemo,PanelDemo,ColDemo,ItemsDemo,ListDemo,TabsDemo,Tools,SelectDemo
 }

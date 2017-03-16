@@ -118,7 +118,16 @@ export default class Home extends React.Component<any,any> {
 
   switchNav=()=>{
     let body=document.body;
-    if(hasClass(body,'horizontal')){
+    let isH=hasClass(document.body,'horizontal');
+    let isSH=hasClass(document.body,'h-collapse');
+    let isSmall=hasClass(document.body,'y-collapse');
+    if(isSmall){
+      removeClass(body,'y-collapse');
+      addClass(body,'h-collapse');
+    }else if(isSH){
+      removeClass(body,'h-collapse');
+      addClass(body,'y-collapse');
+    }else if(isH){
       removeClass(body,'horizontal');
     }else{
       addClass(body,'horizontal');

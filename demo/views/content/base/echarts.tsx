@@ -40,7 +40,7 @@ export default class Echarts extends React.Component<any,any> {
     if(typeof this.props.onChartReady==='function'){
       this.props.onChartReady(echartObj);
     }
-    $resize(this.refs.echartsDom,this.resizeEvent);
+    $resize(this.refs.echartsDom,this.resizeEvent).resize();
   };
   resizeEvent=()=>{
     this.renderEchartDom().resize();
@@ -51,7 +51,7 @@ export default class Echarts extends React.Component<any,any> {
   };
   componentWillUnmount() {
     echarts.dispose(this.refs.echartsDom);
-    // $resize(this.refs.echartsDom,this.resizeEvent).unbind(); //路由跳转后此dom绑定的事件变量自动回收
+    $resize(this.refs.echartsDom,this.resizeEvent).unbind(); //路由跳转后此dom绑定的事件变量自动回收
   };
   bindEvents(instance,events) {
     var _loop=function _loop(eventName) {

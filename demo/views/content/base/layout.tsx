@@ -192,7 +192,7 @@ export default class Layout extends React.Component<any,any> {
                 <h2>在min和max间生成随机数</h2>
                 <b>用法:</b>$rand(a,b)
                 <p>a: 数值a，b:数值b</p>
-                <h2>成一个n位数随机的数字字母字符串</h2>
+                <h2>生成一个n位数随机的数字字母字符串</h2>
                 <b>用法:</b>$randstr(n)
                 <p>n: 位数</p>
               </code>

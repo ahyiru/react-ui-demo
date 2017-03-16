@@ -23,6 +23,12 @@ let tbody=[{
   values:'true/false',
   default:'false'
 },{
+  key:'readOnly',
+  expr:'只读',
+  type:'boolean',
+  values:'true/false',
+  default:'false'
+},{
   key:'placeholder',
   expr:'提示消息',
   type:'string',
@@ -91,6 +97,12 @@ let tbody=[{
 },{
   key:'blur',
   expr:'失去焦点事件',
+  type:'function',
+  values:'-',
+  default:'-'
+},{
+  key:'click',
+  expr:'点击事件',
   type:'function',
   values:'-',
   default:'-'

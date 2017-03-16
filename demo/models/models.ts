@@ -36,6 +36,10 @@ export const sidebarMenu=[{
     url:'/test/test4',
     icon:'arrow-right',
     title:'demo4'
+  },{
+    url:'/test/test5',
+    icon:'arrow-right',
+    title:'demo5'
   }]
 },{
   url:'javascript:;',
@@ -101,7 +105,7 @@ export const sidebarMenu=[{
 },{
   url:'javascript:;',
   title:'表格',
-  leftIcon:'fa fa-table',
+  leftIcon:'table',
   rightIcon:'angle-right',
   open:'',
   subMenu:[{
@@ -152,7 +156,7 @@ export const sidebarMenu=[{
     title:'card2'
   },{
     url:'/cards/card1',
-    icon:'fa fa-arrow-right',
+    icon:'arrow-right',
     title:'card1',
     subMenu:[{
       url:'/cards/card1/card11',
@@ -261,6 +265,10 @@ export const sidebarMenu=[{
     url:'/base/tools',
     icon:'arrow-right',
     title:'工具'
+  },{
+    url:'/base/select',
+    icon:'arrow-right',
+    title:'单选、多选'
   }]
 }];
 
@@ -296,7 +304,7 @@ export const dropList={
   }],
   rightList:[{
     name:'清缓',
-    icon:'fa-trash-o',
+    icon:'trash-o',
     href:'javascript:;',
   },{
     name:'API',
@@ -339,27 +347,27 @@ export const dropList={
       pic:'t1',
       h4:'你的系统有更新',
       p:'请升级到最新版本',
-      icon:'fa fa-weixin',
+      icon:'weixin',
     },{
       pic:'t2',
       h4:'你的系统有更新',
       p:'请升级到最新版本',
-      icon:'fa fa-weixin',
+      icon:'weixin',
     },{
       pic:'t3',
       h4:'你的系统有更新',
       p:'请升级到最新版本',
-      icon:'fa fa-weixin',
+      icon:'weixin',
     },{
       pic:'t4',
       h4:'你的系统有更新',
       p:'请升级到最新版本',
-      icon:'fa fa-weixin',
+      icon:'weixin',
     },{
       pic:'t5',
       h4:'你的系统有更新',
       p:'请升级到最新版本',
-      icon:'fa fa-weixin',
+      icon:'weixin',
     }]
   },{
     name:'language',

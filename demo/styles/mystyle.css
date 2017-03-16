@@ -48,7 +48,7 @@ a:active{color:#c30;}
 a{text-decoration:none !important;}
 
 /* input */
-input,input[type=checkbox]:focus,button{outline:0;margin:0;}
+input,button,textarea{outline:0;margin:0;}
 /* button */
 input[disabled],button[disabled]{
   cursor:not-allowed;
@@ -60,7 +60,43 @@ button,input[type=button],input[type=submit]{
 }
 
 /* textarea */
-textarea{resize:none;}
+textarea{
+  // resize:none;
+  margin:0;
+  overflow:auto;
+  height:auto;
+}
+
+/*radio,checkbox*/
+input[type="radio"],input[type="checkbox"]{
+  
+}
+input[type="radio"][disabled],
+input[type="checkbox"][disabled]{
+  cursor:not-allowed;
+}
+input[type="radio"]:focus,input[type="checkbox"]:focus{
+  outline:5px auto -webkit-focus-ring-color;
+  outline-offset:-2px;
+}
+
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus{
+  outline:5px auto -webkit-focus-ring-color;
+  outline-offset:-2px;
+}
+
+input[type="file"]{
+  display:block;
+}
+input[type="range"]{
+  display:block;
+  width:100%;
+}
+select[multiple],select[size]{
+  height:auto;
+}
 
 /*ul*/
 ul{list-style:none;padding:0;margin:0;}
@@ -74,6 +110,11 @@ span{
   letter-spacing:normal;
   word-spacing:normal;
   vertical-align:middle;
+}
+
+/*img*/
+img{
+  vertical-align:bottom;
 }
 
 /* 文本溢出显示省略号 */
@@ -116,10 +157,6 @@ code>h2{
 }
 code>p{
   margin:8px 0;
-}
-/*img*/
-img{
-  vertical-align:bottom;
 }
 
 /*color*/
@@ -310,6 +347,15 @@ img{
 .bottom-right{
   animation:bottom-right .5s ease-in-out;
 }
+
+/*@keyframes test1{
+  0%{
+    height:0;
+  }
+  100%{
+    height:auto;
+  }
+}*/
 
 /*@media*/
 

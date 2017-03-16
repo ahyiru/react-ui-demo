@@ -1,0 +1,113 @@
+/*
+**	function
+**	20161011 __yiru
+*/
+
+.y-canvas{
+	.c-toolbar{
+		button{
+			margin:10px 5px;
+		}
+	}
+	.c-area{
+		position:relative;
+		height:400px;
+		canvas{
+			// border:1px solid #333;
+			position:absolute;
+			left:0;
+			top:0;
+			z-index:0;
+			&#canvas{
+				z-index:1;
+			}
+		}
+	}
+}
+
+.y-autocomplete{
+	height:400px;
+	>h2{
+		margin-bottom:15px;
+	}
+	ul{
+		position:absolute;
+		width:100%;
+		margin-top:2px;
+		height:250px;
+		overflow:auto;
+		border-radius:5px;
+		border:1px solid #ccc;
+		>li{
+			height:30px;
+			line-height:30px;
+			padding:0 10px;
+			cursor:pointer;
+			&:hover{
+				background-color:#aaa;
+			}
+			&.selected{
+				background-color:#ccc;
+			}
+		}
+	}
+	.test{
+		position:relative;
+		background-color:#fff;
+		ul{
+			z-index:-1;
+			display:none;
+			/*transform:translateY(-100%);
+			transition:all .5s;*/
+		}
+		&.focus{
+			i{
+				transform:rotate(-180deg);
+				transition:transform .3s;
+			}
+			ul{
+				z-index:auto;
+				display:block;
+				/*transform:translateY(2px);
+				transition:all .5s;*/
+			}
+		}
+	}
+}
+@keyframes anim{
+  0%{
+    opacity:0;
+    // transform:translate3d(0,-20px,0);
+    transform:translateY(-20px);
+  }
+  100%{
+    opacity:1;
+    transform:none;
+  }
+}
+.anim{
+  animation:anim .3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

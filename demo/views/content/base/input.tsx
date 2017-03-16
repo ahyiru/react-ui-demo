@@ -5,6 +5,7 @@ export type inputType='text'|'textarea';
 export interface InputProps {
   type?:inputType;
   disabled?:boolean;
+  readOnly?:boolean;
   placeholder?:string;
   value?:string;
   defaultValue?:string;
@@ -17,6 +18,11 @@ export interface InputProps {
   change?:React.FormEventHandler<any>;
   focus?:React.FormEventHandler<any>;
   blur?:React.FormEventHandler<any>;
+  mouserenter?:React.FormEventHandler<any>;
+  mouseleave?:React.FormEventHandler<any>;
+  keydown?:React.FormEventHandler<any>;
+  keyup?:React.FormEventHandler<any>;
+  click?:React.FormEventHandler<any>;
 };
 
 export default class Input extends React.Component<InputProps,any> {
@@ -30,15 +36,23 @@ export default class Input extends React.Component<InputProps,any> {
     change:React.PropTypes.func,
     focus:React.PropTypes.func,
     blur:React.PropTypes.func,
+    mouserenter:React.PropTypes.func,
+    mouseleave:React.PropTypes.func,
+    keydown:React.PropTypes.func,
+    keyup:React.PropTypes.func,
+    click:React.PropTypes.func,
+    disabled:React.PropTypes.bool,
+    readOnly:React.PropTypes.bool,
   };
   static defaultProps={
     type:'text',
     disabled:false,
+    readOnly:false,
     ileft:'',
   };
 
   render() {
-  	let {type,disabled,placeholder,value,defaultValue,ileft,iright,pleft,pright,error,noBorder,change,focus,blur}=this.props;
+  	let {type,disabled,readOnly,placeholder,value,defaultValue,ileft,iright,pleft,pright,error,noBorder,change,focus,blur,click,mouserenter,mouseleave,keyup}=this.props;
     ileft&&(pleft='');
     iright&&(pright='');
     const tp=type||'text';
@@ -51,7 +65,7 @@ export default class Input extends React.Component<InputProps,any> {
     return (
       <div className={`y-input${ic}${il}${bd}${pl}${pr}${err}`}>
         {pleft&&<span className="lspan">{pleft}</span>}
-        <input type={tp} name={name} placeholder={placeholder} disabled={disabled} value={value} onChange={change} onFocus={focus}  onBlur={blur} />
+        <input type={tp} name={name} placeholder={placeholder} disabled={disabled} readOnly={readOnly} value={value} onClick={click} onChange={change} onFocus={focus} onMouseEnter={mouserenter} onMouseLeave={mouseleave} onKeyUp={keyup} onBlur={blur} />
         {iright&&<i className={`fa fa-${iright}`}></i>}
         {ileft&&<i className={`fa fa-${ileft} il`}></i>}
         {pright&&<span className="rspan">{pright}</span>}

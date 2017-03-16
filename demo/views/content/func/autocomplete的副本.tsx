@@ -1,30 +1,40 @@
 import * as React from 'react';
 
-import {$unique,$sort} from '../../../tools/yiru-tools';
+import {ysort,yunique} from '../../../configs/tools';
 
+import './func.less';
+
+import Row from '../base/row';
+import Col from '../base/col';
 import Input from '../base/input';
 
-export interface AutocomProps {
-  data?:any;
-};
+export default class Autocomplete extends React.Component<any,any> {
+	timer:number;
+	constructor(props){
+    super(props);
+    this.timer=0;
+    this.state=({
+    	data:yunique(this.props.data),
+    	sv:'',
+  		result:[],
+  		selected:[],
 
-export default class Autocomplete extends React.Component<AutocomProps,any> {
-	timer:number=0;
-  state={
-    data:$unique(this.props.data),
-    selected:[],
-    result:[],
-    sv:'',
-  };
-  static propTypes={
-    data:React.PropTypes.array,
-  };
-  static defaultProps={
-    data:[],
+  		test:'',
+  		cls:'',
+    })
   };
 
+  componentDidMount(){
+		let t=this.state.data.sort(ysort);
+		console.log(this.props.data);
+		console.log(t);
+  };
+  componentWillUnmount(){
+  	
+  };
   getValue=(e)=>{
 		let sv=e.target.value;
+
 		if(this.timer){
   		clearTimeout(this.timer);
   	}
@@ -39,7 +49,8 @@ export default class Autocomplete extends React.Component<AutocomProps,any> {
 		  			newArr.push(v);
 		  		}
 		  	});
-		  }else{
+		  }
+		  else{
 		  	newArr=[];
 		  }
 	  	// console.log(newArr);
@@ -56,7 +67,7 @@ export default class Autocomplete extends React.Component<AutocomProps,any> {
 
 	selected=(e)=>{
 		this.setState({
-			sv:e.target.innerText,
+			sv:e.target.innerHTML,
   		result:[],
 		  selected:[]
   	});
@@ -67,7 +78,7 @@ export default class Autocomplete extends React.Component<AutocomProps,any> {
 		let selected=[];
 		newArr.map((v,k)=>{
 			selected[k]=false;
-			if(v==e.target.innerText){
+			if(v==e.target.innerHTML){
 				selected[k]=true;
 			}
 		});
@@ -130,22 +141,53 @@ export default class Autocomplete extends React.Component<AutocomProps,any> {
 		}
 	};
 
+	test=(e)=>{
+		this.setState({
+			test:e.target.value,
+		})
+	};
+	focus=(e)=>{
+		this.setState({
+			cls:' focus',
+		})
+	};
+	blur=(e)=>{
+		this.setState({
+			cls:'',
+		})
+	};
+
   render() {
-  	const {sv,result,selected}=this.state;
+  	const {sv,result,selected,test,cls}=this.state;
     return (
       <div className="y-autocomplete">
-      	<Input type="text" value={sv} change={this.getValue} keyup={this.keyEvent} />
-      	{
-      		!!result.length&&<ul onClick={this.selected}>
-      			{
-      				result.map((v,k)=>{
-      					return (
-      						<li className={selected[k]?'selected':''} key={`r-${k}`} onMouseEnter={this.mouseEnter}>{v}</li>
-      					)
-      				})
-      			}
-      		</ul>
-      	}
+        <h2>{this.props.title}</h2>
+        <Row gutter={12}>
+	        <Col span={4}>
+	        	<Input type="text" value={sv} change={this.getValue} keyup={this.keyEvent} />
+	        	{
+	        		!!result.length&&<ul onClick={this.selected}>
+	        			{
+	        				result.map((v,k)=>{
+	        					return (
+	        						<li className={selected[k]?'selected':''} key={`r-${k}`} onMouseEnter={this.mouseEnter}>{v}</li>
+	        					)
+	        				})
+	        			}
+	        		</ul>
+	        	}
+        	</Col>
+        	<Col span={4}>
+        		<div className={`test${cls}`}>
+		        	<Input type="text" value={test} iright="angle-up" change={this.test} focus={this.focus} blur={this.blur} />
+		        	<ul className="anim">
+		        		<li>1</li>
+		        		<li>2</li>
+		        		<li>3</li>
+		        	</ul>
+	        	</div>
+        	</Col>
+        </Row>
       </div>
     )
   };

@@ -1,32 +1,51 @@
 import * as React from 'react';
 
 import {hasClass,addClass,removeClass} from '../../tools/dom-tools';
-
-let isH=hasClass(document.body,'horizontal');
+import {$storage} from '../../tools/yiru-tools';
 
 //根据屏幕大小控制collapse
 let smallScreen=()=>{
-  clearTimeout(timer);
-  let collapse=localStorage.getItem('collapse')||'';
+  let isH=hasClass(document.body,'horizontal');
+  let isSH=hasClass(document.body,'h-collapse');
+  clearTimeout(resizeTimer);
+  let collapse=$storage.get('collapse')||'';
   if(!collapse){
-    if(document.body.clientWidth<992){
-      // addClass(document.body,'y-sidebar-sm y-collapse');
-      addClass(document.body,'y-collapse');
-      removeClass(document.body,'horizontal');
-    }
-     else{
-      // removeClass(document.body,'y-sidebar-sm y-collapse');
-      removeClass(document.body,'y-collapse');
-      isH&&addClass(document.body,'horizontal');
+    if(document.body.clientWidth<768){
+      if(isH){
+        removeClass(document.body,'horizontal');
+        addClass(document.body,'h-collapse');
+      }else if(isSH){
+
+      }else{
+        addClass(document.body,'y-collapse');
+      }
+    }else if(document.body.clientWidth<992){
+      if(isSH){
+        removeClass(document.body,'h-collapse');
+        addClass(document.body,'horizontal');
+      }else if(isH){
+        
+      }else{
+        addClass(document.body,'y-collapse');
+      }
+    }else{
+      if(isSH){
+        removeClass(document.body,'h-collapse');
+        addClass(document.body,'horizontal');
+      }else if(isH){
+
+      }else{
+        removeClass(document.body,'y-collapse');
+      }
     }
   }
-},timer=0;
+},resizeTimer=0;
 //...
-timer=setTimeout(smallScreen,350);
+resizeTimer=setTimeout(smallScreen,300);
 //...
 //resize
 window.addEventListener('resize',()=>{
-  timer=setTimeout(smallScreen,350);
+  resizeTimer=setTimeout(smallScreen,300);
 });
 
 export interface SidebarProps {
@@ -36,14 +55,15 @@ export interface SidebarProps {
 };
 
 export default class Sidebar extends React.Component<SidebarProps,any> {
-  static timer=0;
+  timer:number=0;
   state={
     menu:this.props.menu,
     icon1:'minus',
     icon2:'plus',
     collapsed1:'',
     collapsed2:' collapsed',
-    toggleMenu:null,
+    hideNavbar:false,
+    lopen:false,
   };
   static propTypes={
     menu:React.PropTypes.array,
@@ -57,11 +77,14 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
 
   componentWillReceiveProps=(nextProps)=>{
     this.setState({
-      menu:nextProps.menu
+      menu:nextProps.menu,
+      hideNavbar:false,
     });
   };
 
-  firstMenuClick=(v,k)=>{
+  /*firstMenuClick1=(v,k)=>{
+    // e.stopPropagation();
+    // e.preventDefault();
     if(!hasClass(document.body,'horizontal')){
       let newMenu=this.state.menu;
       let flag=!!v.subMenu;
@@ -76,8 +99,7 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
             ):(
               val.selMenu='active'
             );
-          }
-          else{
+          }else{
             flag?(
               val.open='',
               val.toggleSlide={
@@ -92,15 +114,13 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
         this.setState({
           menu:newMenu
         });
-      }
-      else{
+      }else{
         newMenu.map((val,key)=>{
           if(k==key){
             !flag&&(
               val.selMenu='active'
             );
-          }
-          else{
+          }else{
             flag&&(val.subMenu.map((subV,subK)=>{
               subV.selected='';
             }));
@@ -112,6 +132,30 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
         });
       }
     }
+  };*/
+  firstMenuClick=(v,k)=>{
+    let isH=hasClass(document.body,'horizontal');
+    let isS=hasClass(document.body,'y-collapse');
+    let hasSub=!!v.subMenu;
+    if(!isH&&!isS&&hasSub){
+      let newMenu=this.state.menu;
+      newMenu.map((val,key)=>{
+        if(k==key){
+          val.open=val.open?'':'open',
+          val.toggleSlide={
+            height:val.open?(val.subMenu.length*32+16):0
+          }
+        }else{
+          val.open='',
+          val.toggleSlide={
+            height:0
+          }
+        }
+      });
+      this.setState({
+        menu:newMenu
+      });
+    }
   };
 
   subMenuClick=(k,subKey)=>{
@@ -122,13 +166,11 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
         val.subMenu.map((sv,sk)=>{
           if(subKey==sk){
             sv.selected='active';
-          }
-          else{
+          }else{
             sv.selected='';
           }
         });
-      }
-      else{
+      }else{
         val.selMenu='';
         if(val.subMenu){
           val.subMenu.map((sv,sk)=>{
@@ -143,52 +185,30 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
   };
 
   menuMouseEnter=(v,k)=>{
-    if(hasClass(document.body,'y-collapse')){
-      timer=setTimeout(()=>{
-        addClass(document.getElementsByClassName('y-sidebar')[0],'open');
+    let isH=hasClass(document.body,'horizontal');
+    let isS=hasClass(document.body,'y-collapse');
+    if(isH||isS){
+      this.timer=setTimeout(()=>{
         let newMenu=this.state.menu;
         newMenu.map((val,key)=>{
           if(k==key){
             val.hover='hover';
-          }
-          else{
+          }else{
             val.hover='';
           }
         });
         this.setState({
           menu:newMenu,
-          toggleMenu:{}
+          lopen:isS,
         });
       },200);
     }
-    if(hasClass(document.body,'horizontal')){
-      let newMenu=this.state.menu;
-      let flag=!!v.subMenu;
-      let toggleMenu={};
-      newMenu.map((val,key)=>{
-        if(k==key){
-          flag&&(
-            val.open='open',
-            val.toggleSlide={
-              height:val.subMenu.length*32+16
-            },
-            toggleMenu={
-              height:val.subMenu.length*32+16+62,
-              width:'200%'
-            }
-          )
-        }
-      });
-      this.setState({
-        menu:newMenu,
-        toggleMenu:toggleMenu
-      });
-    }
   };
   menuMouseLeave=(v,k)=>{
-    if(hasClass(document.body,'y-collapse')){
-      clearTimeout(timer);
-      removeClass(document.getElementsByClassName('y-sidebar')[0],'open');
+    let isH=hasClass(document.body,'horizontal');
+    let isS=hasClass(document.body,'y-collapse');
+    if(isH||isS){
+      clearTimeout(this.timer);
       let newMenu=this.state.menu;
       newMenu.map((val,key)=>{
         if(k==key){
@@ -197,30 +217,7 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
       });
       this.setState({
         menu:newMenu,
-        toggleMenu:{}
-      });
-    }
-    if(hasClass(document.body,'horizontal')){
-      let newMenu=this.state.menu;
-      let flag=!!v.subMenu;
-      let toggleMenu={};
-      newMenu.map((val,key)=>{
-        if(k==key){
-          flag&&(
-            val.open='',
-            val.toggleSlide={
-              height:0
-            },
-            toggleMenu={
-              height:'100%',
-              width:'100%'
-            }
-          )
-        }
-      });
-      this.setState({
-        menu:newMenu,
-        toggleMenu:toggleMenu
+        lopen:false,
       });
     }
   };
@@ -235,8 +232,7 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
         collapsed1:this.state.collapsed1?'':' collapsed',
         icon1:this.state.icon1=='plus'?'minus':'plus'
       });
-    }
-    else if(id==2){
+    }else if(id==2){
       this.setState({
         collapsed2:this.state.collapsed2?'':' collapsed',
         icon2:this.state.icon2=='plus'?'minus':'plus'
@@ -244,13 +240,24 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
     }
   };
 
+  toggleNavbar=(e)=>{
+    e.stopPropagation();
+    this.setState({
+      hideNavbar:!this.state.hideNavbar,
+    })
+  };
+
   render() {
     const {projectList,userInfo}=this.props;
     
-    const {menu,toggleMenu}=this.state;
+    const {menu,hideNavbar,lopen}=this.state;
+
+    const ropen=hideNavbar?' r-open':'';
+
+    const open=lopen?' open':'';
 
     return (
-      <section className="y-sidebar">
+      <section className={`y-sidebar${ropen}${open}`}>
         <div className="y-sidebar-wrap">
           {
             userInfo&&
@@ -261,12 +268,12 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
             </div>
           }
           <div className="y-collapse-wrap"></div>
-          <div className="y-sidebar-list">
+          <div className="y-sidebar-list ysl-menu">
             <div className="y-sidebar-title" onClick={this.collapseList.bind(this,'1')}>
               <i className={`fa fa-${this.state.icon1}`}></i>
               <h4>导航栏</h4>
             </div>
-            <ul className={`y-sidebar-l1${this.state.collapsed1}`} style={toggleMenu}>
+            <ul className={`y-sidebar-l1${this.state.collapsed1}`}>
               
               {
                 menu.map((v,k)=>{
@@ -282,7 +289,7 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
                           {
                             v.subMenu.map((sv,sk)=>{
                               return(
-                                <li key={`subMenu${sk}`} onClick={this.subMenuClick.bind(this,k,sk)}>
+                                <li key={`subMenu${sk}`} /*onClick={this.subMenuClick.bind(this,k,sk)}*/>
                                   <a href={sv.url} className={sv.selected}>
                                     <i className={`fa fa-${sv.icon}`}></i>
                                     <span>{sv.title}</span>
@@ -324,6 +331,11 @@ export default class Sidebar extends React.Component<SidebarProps,any> {
               </ul>
             </div>
           :''}
+        </div>
+        <div className="navbar-collapse">
+          <a href="javascript:;" onClick={this.toggleNavbar}>
+            <i className="fa fa-bars"></i>
+          </a>
         </div>
       </section>
     );
