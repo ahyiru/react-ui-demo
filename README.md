@@ -40,7 +40,3 @@ $ cd appName && yarn install
 $ npm start
 `
 
-#### 持续更新中...
-
-![2016回顾](doc/2016.png)
-
